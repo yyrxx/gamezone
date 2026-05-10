@@ -1,128 +1,372 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Hub Pro</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <style>
-        :root { --bg: #000; --panel: #111; --accent: #fff; --gray: #444; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 15px; }
-        .app-container { max-width: 450px; margin: auto; }
-        
-        /* Header Style */
-        .header { text-align: center; padding: 20px 0; border-bottom: 1px solid var(--gray); margin-bottom: 20px; }
-        .header h1 { font-size: 1.4rem; letter-spacing: 3px; margin: 0; }
-        
-        /* Tabs */
-        .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
-        .tab { flex: 1; padding: 12px; background: var(--panel); border: 1px solid var(--gray); text-align: center; cursor: pointer; font-size: 0.9rem; }
-        .tab.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: bold; }
-        
-        /* Forms */
-        .form-section { background: var(--panel); padding: 20px; border-radius: 4px; border: 1px solid #222; display: none; }
-        .form-section.active { display: block; animation: fadeIn 0.3s ease; }
-        
-        label { display: block; font-size: 0.75rem; color: #777; margin-bottom: 5px; text-transform: uppercase; }
-        input { width: 100%; padding: 12px; background: #000; border: 1px solid var(--gray); color: #fff; margin-bottom: 15px; box-sizing: border-box; outline: none; }
-        input:focus { border-color: var(--accent); }
-        
-        .btn-main { width: 100%; padding: 15px; background: var(--accent); color: #000; border: none; font-weight: bold; cursor: pointer; transition: 0.2s; }
-        .btn-skip { width: 100%; padding: 10px; background: transparent; color: #777; border: 1px solid var(--gray); margin-top: 10px; cursor: pointer; }
-        
-        /* Admin Hidden */
-        .admin-trigger { margin-top: 40px; color: #111; font-size: 0.5rem; border: none; background: none; width: 100%; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>موقع الألعاب المصغرة</title>
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Tahoma;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+    overflow-x:hidden;
+}
+
+header{
+    background:#111827;
+    padding:20px;
+    text-align:center;
+    font-size:32px;
+    font-weight:bold;
+    box-shadow:0 0 15px rgba(0,0,0,.4);
+}
+
+.games{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    padding:30px;
+}
+
+.card{
+    background:#1e293b;
+    border-radius:20px;
+    padding:20px;
+    text-align:center;
+    transition:.3s;
+    cursor:pointer;
+    border:2px solid transparent;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    border-color:#38bdf8;
+    box-shadow:0 0 20px rgba(56,189,248,.5);
+}
+
+.card h2{
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#cbd5e1;
+    margin-bottom:15px;
+}
+
+button{
+    background:#38bdf8;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#0ea5e9;
+}
+
+.game-screen{
+    display:none;
+    padding:30px;
+    text-align:center;
+}
+
+.back{
+    margin-bottom:20px;
+    background:#ef4444;
+}
+
+#xoBoard{
+    width:300px;
+    margin:20px auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:5px;
+}
+
+.cell{
+    width:95px;
+    height:95px;
+    background:#334155;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:40px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+#word{
+    font-size:35px;
+    letter-spacing:10px;
+    margin:20px;
+}
+
+input{
+    padding:10px;
+    border:none;
+    border-radius:10px;
+    width:220px;
+    text-align:center;
+}
+
+canvas{
+    background:#1e293b;
+    border-radius:15px;
+    margin-top:20px;
+}
+</style>
 </head>
+
 <body>
 
-<div class="app-container">
-    <div class="header">
-        <h1>PRO_HUB v2</h1>
-    </div>
+<header>
+🎮 موقع الألعاب المصغرة
+</header>
 
-    <div class="tabs">
-        <div class="tab active" id="tabOld" onclick="switchTab('old')">بيع قديم</div>
-        <div class="tab" id="tabNew" onclick="switchTab('new')">إنشاء جديد</div>
-    </div>
+<div class="games" id="menu">
 
-    <!-- فورم القديم -->
-    <div id="sectionOld" class="form-section active">
-        <label>إيميل جوجل القديم</label>
-        <input type="text" id="old_email" placeholder="example@gmail.com">
-        <label>كلمة المرور</label>
-        <input type="password" id="old_pass" placeholder="******">
-        <button class="btn-main" onclick="send('قديم')">تأكيد البيع</button>
-    </div>
+<div class="card">
+    <h2>🂱 دومينو</h2>
+    <p>لعبة دومينو بسيطة</p>
+    <button onclick="openGame('domino')">ابدأ</button>
+</div>
 
-    <!-- فورم الجديد (مع جلب المعلومات) -->
-    <div id="sectionNew" class="form-section">
-        <div id="fetchArea">
-            <p style="font-size: 0.85rem; color: #aaa;">سيتم جلب بيانات الإيميل من البوت المخصص تلقائياً.</p>
-            <button class="btn-main" onclick="requestAutoData()">جلب البيانات آلياً</button>
-        </div>
-        
-        <div id="manualArea" style="display:none; margin-top: 15px;">
-            <label>الإيميل الجديد</label>
-            <input type="text" id="new_email" readonly style="background: #111; color: #55ff55;">
-            <label>كلمة المرور</label>
-            <input type="text" id="new_pass" readonly style="background: #111;">
-            <button class="btn-main" onclick="send('جديد')">حفظ الإيميل</button>
-            <button class="btn-skip" onclick="requestAutoData()">تخطي وجلب غيره</button>
-        </div>
-    </div>
+<div class="card">
+    <h2>❌⭕ اكس او</h2>
+    <p>العب ضد صديقك</p>
+    <button onclick="openGame('xo')">ابدأ</button>
+</div>
 
-    <button class="admin-trigger" onclick="openAdmin()">ADMIN_LOGS</button>
+<div class="card">
+    <h2>🔪 رمي السكاكين</h2>
+    <p>اضرب الهدف بدون اصطدام</p>
+    <button onclick="openGame('knife')">ابدأ</button>
+</div>
+
+<div class="card">
+    <h2>🧠 خمن الكلمة</h2>
+    <p>حاول معرفة الكلمة</p>
+    <button onclick="openGame('guess')">ابدأ</button>
+</div>
+
+<div class="card">
+    <h2>⚽ كرة القدم</h2>
+    <p>سدد الكرة داخل المرمى</p>
+    <button onclick="openGame('football')">ابدأ</button>
+</div>
+
+</div>
+
+<!-- دومينو -->
+<div class="game-screen" id="domino">
+<button class="back" onclick="goHome()">رجوع</button>
+<h1>🂱 لعبة الدومينو</h1>
+<p>قريباً تقدر تضيف قوانين كاملة 😄</p>
+</div>
+
+<!-- اكس او -->
+<div class="game-screen" id="xo">
+<button class="back" onclick="goHome()">رجوع</button>
+
+<h1>❌⭕ لعبة اكس او</h1>
+
+<div id="xoBoard"></div>
+
+<h2 id="status"></h2>
+</div>
+
+<!-- السكاكين -->
+<div class="game-screen" id="knife">
+<button class="back" onclick="goHome()">رجوع</button>
+
+<h1>🔪 لعبة رمي السكاكين</h1>
+<p>اضغط الزر لرمي سكين</p>
+
+<h2 id="knifeScore">النقاط: 0</h2>
+
+<button onclick="throwKnife()">ارمِ سكين</button>
+</div>
+
+<!-- خمن الكلمة -->
+<div class="game-screen" id="guess">
+<button class="back" onclick="goHome()">رجوع</button>
+
+<h1>🧠 خمن الكلمة</h1>
+
+<div id="word">_ _ _ _</div>
+
+<input type="text" id="guessInput" placeholder="اكتب الكلمة">
+<br><br>
+
+<button onclick="checkWord()">تحقق</button>
+
+<h2 id="guessResult"></h2>
+</div>
+
+<!-- كرة القدم -->
+<div class="game-screen" id="football">
+<button class="back" onclick="goHome()">رجوع</button>
+
+<h1>⚽ لعبة كرة القدم</h1>
+
+<p>اضغط على الكرة للتسديد</p>
+
+<canvas id="footballCanvas" width="400" height="300"></canvas>
 </div>
 
 <script>
-    let tg = window.Telegram.WebApp;
-    tg.expand();
-    let currentMode = 'old';
 
-    function switchTab(mode) {
-        currentMode = mode;
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
-        
-        if(mode === 'old') {
-            document.getElementById('tabOld').classList.add('active');
-            document.getElementById('sectionOld').classList.add('active');
-        } else {
-            document.getElementById('tabNew').classList.add('active');
-            document.getElementById('sectionNew').classList.add('active');
+function openGame(id){
+    document.getElementById("menu").style.display="none";
+
+    let games=document.querySelectorAll(".game-screen");
+    games.forEach(g=>g.style.display="none");
+
+    document.getElementById(id).style.display="block";
+}
+
+function goHome(){
+    document.getElementById("menu").style.display="grid";
+
+    let games=document.querySelectorAll(".game-screen");
+    games.forEach(g=>g.style.display="none");
+}
+
+/* =========================
+   لعبة XO
+========================= */
+
+const board=document.getElementById("xoBoard");
+const statusText=document.getElementById("status");
+
+let current="X";
+let cells=["","","","","","","","",""];
+
+function drawBoard(){
+    board.innerHTML="";
+
+    cells.forEach((cell,index)=>{
+        let div=document.createElement("div");
+        div.classList.add("cell");
+        div.innerText=cell;
+
+        div.onclick=()=>{
+            if(cells[index]==""){
+                cells[index]=current;
+                current=current=="X"?"O":"X";
+                drawBoard();
+                checkWinner();
+            }
+        };
+
+        board.appendChild(div);
+    });
+}
+
+function checkWinner(){
+    const wins=[
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+        [0,4,8],
+        [2,4,6]
+    ];
+
+    wins.forEach(w=>{
+        let a=w[0],b=w[1],c=w[2];
+
+        if(cells[a] &&
+           cells[a]==cells[b] &&
+           cells[a]==cells[c]){
+            statusText.innerText=
+            "الفائز هو: "+cells[a];
         }
-    }
+    });
+}
 
-    // طلب البيانات من البوت
-    function requestAutoData() {
-        tg.sendData(JSON.stringify({ action: "get_new_email" }));
-        // هنا الموقع ينتظر رسالة من البوت لتحديث الحقول (سنقوم بتنفيذها في البوت)
-    }
+drawBoard();
 
-    function send(type) {
-        let e = type === 'قديم' ? document.getElementById('old_email').value : document.getElementById('new_email').value;
-        let p = type === 'قديم' ? document.getElementById('old_pass').value : document.getElementById('new_pass').value;
-        
-        if(!e || !p) { alert("البيانات غير مكتملة"); return; }
-        
-        tg.sendData(JSON.stringify({ type: type, email: e, pass: p }));
-        
-        // مسح الحقول بعد الإرسال
-        if(type === 'قديم') { 
-            document.getElementById('old_email').value = ''; 
-            document.getElementById('old_pass').value = ''; 
-        }
-        alert("تم الإرسال بنجاح!");
-    }
+/* =========================
+   خمن الكلمة
+========================= */
 
-    function openAdmin() {
-        if(prompt("Code:") === "727") {
-            // كود عرض الأرشيف كما في الرد السابق
-        }
+const secret="برمجة";
+
+function checkWord(){
+    let val=document.getElementById("guessInput").value;
+
+    if(val==secret){
+        document.getElementById("guessResult")
+        .innerText="✅ صحيح!";
+    }else{
+        document.getElementById("guessResult")
+        .innerText="❌ خطأ!";
     }
+}
+
+/* =========================
+   السكاكين
+========================= */
+
+let knifePoints=0;
+
+function throwKnife(){
+    knifePoints++;
+
+    document.getElementById("knifeScore")
+    .innerText="النقاط: "+knifePoints;
+}
+
+/* =========================
+   كرة القدم
+========================= */
+
+const canvas=document.getElementById("footballCanvas");
+const ctx=canvas.getContext("2d");
+
+let ballX=200;
+let ballY=220;
+
+function drawFootball(){
+    ctx.clearRect(0,0,400,300);
+
+    // مرمى
+    ctx.strokeStyle="white";
+    ctx.strokeRect(140,30,120,50);
+
+    // كرة
+    ctx.beginPath();
+    ctx.arc(ballX,ballY,20,0,Math.PI*2);
+    ctx.fillStyle="white";
+    ctx.fill();
+
+    requestAnimationFrame(drawFootball);
+}
+
+canvas.addEventListener("click",()=>{
+    ballY=60;
+
+    setTimeout(()=>{
+        ballY=220;
+    },500);
+});
+
+drawFootball();
+
 </script>
+
 </body>
 </html>
