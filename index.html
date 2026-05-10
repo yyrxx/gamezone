@@ -1,370 +1,731 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>موقع الألعاب المصغرة</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Game Zone | موقع الألعاب</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Tahoma;
+    font-family:'Cairo',sans-serif;
 }
 
 body{
-    background:#0f172a;
+    background:#0b1020;
     color:white;
     overflow-x:hidden;
 }
 
-header{
-    background:#111827;
-    padding:20px;
-    text-align:center;
-    font-size:32px;
-    font-weight:bold;
-    box-shadow:0 0 15px rgba(0,0,0,.4);
+/* الخلفية */
+
+.bg{
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at top right,#2563eb33,transparent 30%),
+    radial-gradient(circle at bottom left,#7c3aed33,transparent 30%),
+    #0b1020;
+    z-index:-1;
 }
 
+/* النافبار */
+
+nav{
+    width:100%;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    backdrop-filter:blur(10px);
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:#0b1020cc;
+    border-bottom:1px solid #ffffff10;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:900;
+    background:linear-gradient(to right,#38bdf8,#8b5cf6);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+nav ul{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#38bdf8;
+}
+
+/* الهيدر */
+
+.hero{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:40px;
+}
+
+.hero-content{
+    max-width:800px;
+}
+
+.hero h1{
+    font-size:70px;
+    line-height:1.2;
+    margin-bottom:20px;
+}
+
+.hero span{
+    background:linear-gradient(to right,#38bdf8,#8b5cf6);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    color:#cbd5e1;
+    font-size:20px;
+    line-height:2;
+    margin-bottom:35px;
+}
+
+.hero button{
+    padding:16px 35px;
+    border:none;
+    border-radius:18px;
+    font-size:18px;
+    cursor:pointer;
+    background:linear-gradient(to right,#2563eb,#7c3aed);
+    color:white;
+    transition:.3s;
+    box-shadow:0 0 25px #2563eb55;
+}
+
+.hero button:hover{
+    transform:scale(1.05);
+}
+
+/* الألعاب */
+
 .games{
+    padding:80px 8%;
+}
+
+.section-title{
+    text-align:center;
+    font-size:45px;
+    margin-bottom:50px;
+}
+
+.cards{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-    padding:30px;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
 }
 
 .card{
-    background:#1e293b;
-    border-radius:20px;
-    padding:20px;
-    text-align:center;
-    transition:.3s;
-    cursor:pointer;
-    border:2px solid transparent;
+    background:#131c31;
+    border:1px solid #ffffff10;
+    border-radius:28px;
+    padding:30px;
+    transition:.4s;
+    position:relative;
+    overflow:hidden;
+}
+
+.card::before{
+    content:'';
+    position:absolute;
+    width:180px;
+    height:180px;
+    background:#2563eb33;
+    border-radius:50%;
+    top:-80px;
+    left:-80px;
 }
 
 .card:hover{
-    transform:translateY(-8px);
+    transform:translateY(-10px);
     border-color:#38bdf8;
-    box-shadow:0 0 20px rgba(56,189,248,.5);
+    box-shadow:0 0 30px #38bdf822;
+}
+
+.icon{
+    font-size:55px;
+    margin-bottom:20px;
 }
 
 .card h2{
     margin-bottom:10px;
+    font-size:28px;
 }
 
 .card p{
     color:#cbd5e1;
-    margin-bottom:15px;
+    line-height:1.8;
+    margin-bottom:20px;
 }
 
-button{
-    background:#38bdf8;
-    color:white;
+.play-btn{
+    width:100%;
+    padding:14px;
     border:none;
+    border-radius:14px;
+    background:linear-gradient(to right,#0ea5e9,#7c3aed);
+    color:white;
+    font-size:17px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.play-btn:hover{
+    opacity:.9;
+}
+
+/* نافذة اللعبة */
+
+.popup{
+    position:fixed;
+    inset:0;
+    background:#000000cc;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+}
+
+.popup-content{
+    width:90%;
+    max-width:700px;
+    background:#131c31;
+    border-radius:30px;
+    padding:35px;
+    text-align:center;
+    border:1px solid #38bdf833;
+    animation:show .3s ease;
+}
+
+@keyframes show{
+    from{
+        transform:scale(.8);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.close{
+    background:#ef4444;
+    border:none;
+    color:white;
     padding:10px 18px;
     border-radius:12px;
     cursor:pointer;
-    font-size:16px;
+    float:left;
 }
 
-button:hover{
-    background:#0ea5e9;
+.game-area{
+    margin-top:40px;
 }
 
-.game-screen{
-    display:none;
-    padding:30px;
-    text-align:center;
-}
+/* XO */
 
-.back{
-    margin-bottom:20px;
-    background:#ef4444;
-}
-
-#xoBoard{
+.board{
     width:300px;
-    margin:20px auto;
+    margin:auto;
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:5px;
+    gap:8px;
 }
 
 .cell{
-    width:95px;
     height:95px;
-    background:#334155;
+    background:#1e293b;
+    border-radius:15px;
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
     font-size:40px;
-    border-radius:12px;
     cursor:pointer;
+    transition:.2s;
 }
 
-#word{
-    font-size:35px;
+.cell:hover{
+    background:#334155;
+}
+
+/* خمن الكلمة */
+
+.word{
+    font-size:45px;
     letter-spacing:10px;
-    margin:20px;
+    margin:20px 0;
 }
 
 input{
-    padding:10px;
+    width:250px;
+    padding:14px;
     border:none;
-    border-radius:10px;
-    width:220px;
+    border-radius:14px;
     text-align:center;
+    font-size:18px;
+    margin-top:10px;
 }
 
-canvas{
-    background:#1e293b;
-    border-radius:15px;
-    margin-top:20px;
+/* الفوتر */
+
+footer{
+    margin-top:80px;
+    padding:30px;
+    text-align:center;
+    color:#94a3b8;
+    border-top:1px solid #ffffff10;
 }
+
+/* موبايل */
+
+@media(max-width:700px){
+
+.hero h1{
+    font-size:45px;
+}
+
+nav ul{
+    display:none;
+}
+
+.section-title{
+    font-size:35px;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
-<header>
-🎮 موقع الألعاب المصغرة
-</header>
+<div class="bg"></div>
 
-<div class="games" id="menu">
+<!-- النافبار -->
 
-<div class="card">
-    <h2>🂱 دومينو</h2>
-    <p>لعبة دومينو بسيطة</p>
-    <button onclick="openGame('domino')">ابدأ</button>
+<nav>
+
+<div class="logo">GAME ZONE</div>
+
+<ul>
+<li><a href="#">الرئيسية</a></li>
+<li><a href="#">الألعاب</a></li>
+<li><a href="#">حول</a></li>
+<li><a href="#">تواصل</a></li>
+</ul>
+
+</nav>
+
+<!-- الهيدر -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>
+أفضل <span>الألعاب المصغرة</span>
+في موقع واحد
+</h1>
+
+<p>
+استمتع بألعاب ممتعة وسريعة بتصميم احترافي وأجواء عصرية ✨
+</p>
+
+<button onclick="scrollToGames()">
+ابدأ اللعب
+</button>
+
 </div>
 
-<div class="card">
-    <h2>❌⭕ اكس او</h2>
-    <p>العب ضد صديقك</p>
-    <button onclick="openGame('xo')">ابدأ</button>
-</div>
+</section>
+
+<!-- الألعاب -->
+
+<section class="games" id="games">
+
+<h2 class="section-title">
+🎮 الألعاب
+</h2>
+
+<div class="cards">
+
+<!-- XO -->
 
 <div class="card">
-    <h2>🔪 رمي السكاكين</h2>
-    <p>اضرب الهدف بدون اصطدام</p>
-    <button onclick="openGame('knife')">ابدأ</button>
-</div>
+<div class="icon">❌⭕</div>
 
-<div class="card">
-    <h2>🧠 خمن الكلمة</h2>
-    <p>حاول معرفة الكلمة</p>
-    <button onclick="openGame('guess')">ابدأ</button>
-</div>
+<h2>اكس او</h2>
 
-<div class="card">
-    <h2>⚽ كرة القدم</h2>
-    <p>سدد الكرة داخل المرمى</p>
-    <button onclick="openGame('football')">ابدأ</button>
-</div>
+<p>
+تحدى صديقك في لعبة الذكاء الشهيرة.
+</p>
 
+<button class="play-btn" onclick="openGame('xo')">
+العب الآن
+</button>
 </div>
 
 <!-- دومينو -->
-<div class="game-screen" id="domino">
-<button class="back" onclick="goHome()">رجوع</button>
-<h1>🂱 لعبة الدومينو</h1>
-<p>قريباً تقدر تضيف قوانين كاملة 😄</p>
+
+<div class="card">
+<div class="icon">🂱</div>
+
+<h2>دومينو</h2>
+
+<p>
+استمتع بلعبة الدومينو الكلاسيكية.
+</p>
+
+<button class="play-btn" onclick="openGame('domino')">
+العب الآن
+</button>
 </div>
 
-<!-- اكس او -->
-<div class="game-screen" id="xo">
-<button class="back" onclick="goHome()">رجوع</button>
+<!-- سكاكين -->
 
-<h1>❌⭕ لعبة اكس او</h1>
+<div class="card">
+<div class="icon">🔪</div>
 
-<div id="xoBoard"></div>
+<h2>رمي السكاكين</h2>
 
-<h2 id="status"></h2>
+<p>
+اختبر سرعتك ودقتك في إصابة الهدف.
+</p>
+
+<button class="play-btn" onclick="openGame('knife')">
+العب الآن
+</button>
 </div>
 
-<!-- السكاكين -->
-<div class="game-screen" id="knife">
-<button class="back" onclick="goHome()">رجوع</button>
+<!-- خمن -->
 
-<h1>🔪 لعبة رمي السكاكين</h1>
-<p>اضغط الزر لرمي سكين</p>
+<div class="card">
+<div class="icon">🧠</div>
 
-<h2 id="knifeScore">النقاط: 0</h2>
+<h2>خمن الكلمة</h2>
 
-<button onclick="throwKnife()">ارمِ سكين</button>
+<p>
+هل تستطيع معرفة الكلمة الصحيحة؟
+</p>
+
+<button class="play-btn" onclick="openGame('guess')">
+العب الآن
+</button>
 </div>
 
-<!-- خمن الكلمة -->
-<div class="game-screen" id="guess">
-<button class="back" onclick="goHome()">رجوع</button>
+<!-- كرة -->
 
-<h1>🧠 خمن الكلمة</h1>
+<div class="card">
+<div class="icon">⚽</div>
 
-<div id="word">_ _ _ _</div>
+<h2>كرة القدم</h2>
 
-<input type="text" id="guessInput" placeholder="اكتب الكلمة">
-<br><br>
+<p>
+سدد الكرة داخل المرمى واحصل على نقاط.
+</p>
 
-<button onclick="checkWord()">تحقق</button>
-
-<h2 id="guessResult"></h2>
+<button class="play-btn" onclick="openGame('football')">
+العب الآن
+</button>
 </div>
 
-<!-- كرة القدم -->
-<div class="game-screen" id="football">
-<button class="back" onclick="goHome()">رجوع</button>
-
-<h1>⚽ لعبة كرة القدم</h1>
-
-<p>اضغط على الكرة للتسديد</p>
-
-<canvas id="footballCanvas" width="400" height="300"></canvas>
 </div>
+
+</section>
+
+<!-- نافذة الألعاب -->
+
+<div class="popup" id="popup">
+
+<div class="popup-content">
+
+<button class="close" onclick="closeGame()">
+إغلاق
+</button>
+
+<div class="game-area" id="gameArea"></div>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 Game Zone - جميع الحقوق محفوظة
+</footer>
 
 <script>
 
-function openGame(id){
-    document.getElementById("menu").style.display="none";
+/* فتح الألعاب */
 
-    let games=document.querySelectorAll(".game-screen");
-    games.forEach(g=>g.style.display="none");
+function openGame(type){
 
-    document.getElementById(id).style.display="block";
+document.getElementById("popup").style.display="flex";
+
+let area=document.getElementById("gameArea");
+
+if(type==="domino"){
+
+area.innerHTML=`
+<h1>🂱 لعبة الدومينو</h1>
+<br>
+<p>نسخة احترافية تقدر تطورها لاحقاً 😄</p>
+`;
+
 }
 
-function goHome(){
-    document.getElementById("menu").style.display="grid";
+/* XO */
 
-    let games=document.querySelectorAll(".game-screen");
-    games.forEach(g=>g.style.display="none");
+if(type==="xo"){
+
+area.innerHTML=`
+<h1>❌⭕ لعبة اكس او</h1>
+
+<br>
+
+<div class="board" id="board"></div>
+
+<h2 id="status"></h2>
+`;
+
+startXO();
+
 }
 
-/* =========================
-   لعبة XO
-========================= */
+/* السكاكين */
 
-const board=document.getElementById("xoBoard");
-const statusText=document.getElementById("status");
+if(type==="knife"){
+
+area.innerHTML=`
+<h1>🔪 لعبة رمي السكاكين</h1>
+
+<br>
+
+<h2 id="score">النقاط: 0</h2>
+
+<br>
+
+<button class="play-btn" onclick="throwKnife()">
+ارمِ سكين
+</button>
+`;
+
+}
+
+/* خمن الكلمة */
+
+if(type==="guess"){
+
+area.innerHTML=`
+<h1>🧠 خمن الكلمة</h1>
+
+<div class="word">
+_ _ _ _
+</div>
+
+<input id="guessInput" placeholder="اكتب الكلمة">
+
+<br><br>
+
+<button class="play-btn" onclick="checkGuess()">
+تحقق
+</button>
+
+<h2 id="result"></h2>
+`;
+
+}
+
+/* كرة القدم */
+
+if(type==="football"){
+
+area.innerHTML=`
+<h1>⚽ لعبة كرة القدم</h1>
+
+<br>
+
+<h2 id="goals">الأهداف: 0</h2>
+
+<br>
+
+<button class="play-btn" onclick="goal()">
+⚽ سدد الكرة
+</button>
+`;
+
+}
+
+}
+
+function closeGame(){
+document.getElementById("popup").style.display="none";
+}
+
+/* سكرول */
+
+function scrollToGames(){
+
+window.scrollTo({
+top:document.getElementById("games").offsetTop,
+behavior:"smooth"
+});
+
+}
+
+/* XO */
 
 let current="X";
 let cells=["","","","","","","","",""];
 
-function drawBoard(){
-    board.innerHTML="";
+function startXO(){
 
-    cells.forEach((cell,index)=>{
-        let div=document.createElement("div");
-        div.classList.add("cell");
-        div.innerText=cell;
+const board=document.getElementById("board");
 
-        div.onclick=()=>{
-            if(cells[index]==""){
-                cells[index]=current;
-                current=current=="X"?"O":"X";
-                drawBoard();
-                checkWinner();
-            }
-        };
+board.innerHTML="";
 
-        board.appendChild(div);
-    });
+cells=["","","","","","","","",""];
+current="X";
+
+cells.forEach((cell,index)=>{
+
+const div=document.createElement("div");
+
+div.classList.add("cell");
+
+div.innerText=cell;
+
+div.onclick=()=>{
+
+if(cells[index]===""){
+
+cells[index]=current;
+
+current=current==="X"?"O":"X";
+
+startXO();
+
+checkWinner();
+
+}
+
+};
+
+board.appendChild(div);
+
+});
+
 }
 
 function checkWinner(){
-    const wins=[
-        [0,1,2],
-        [3,4,5],
-        [6,7,8],
-        [0,3,6],
-        [1,4,7],
-        [2,5,8],
-        [0,4,8],
-        [2,4,6]
-    ];
 
-    wins.forEach(w=>{
-        let a=w[0],b=w[1],c=w[2];
+const wins=[
+[0,1,2],
+[3,4,5],
+[6,7,8],
+[0,3,6],
+[1,4,7],
+[2,5,8],
+[0,4,8],
+[2,4,6]
+];
 
-        if(cells[a] &&
-           cells[a]==cells[b] &&
-           cells[a]==cells[c]){
-            statusText.innerText=
-            "الفائز هو: "+cells[a];
-        }
-    });
+wins.forEach(w=>{
+
+let a=w[0];
+let b=w[1];
+let c=w[2];
+
+if(
+cells[a] &&
+cells[a]===cells[b] &&
+cells[a]===cells[c]
+){
+
+document.getElementById("status").innerText=
+"الفائز هو "+cells[a];
+
 }
 
-drawBoard();
+});
 
-/* =========================
-   خمن الكلمة
-========================= */
+}
+
+/* سكاكين */
+
+let knifeScore=0;
+
+function throwKnife(){
+
+knifeScore++;
+
+document.getElementById("score").innerText=
+"النقاط: "+knifeScore;
+
+}
+
+/* خمن الكلمة */
 
 const secret="برمجة";
 
-function checkWord(){
-    let val=document.getElementById("guessInput").value;
+function checkGuess(){
 
-    if(val==secret){
-        document.getElementById("guessResult")
-        .innerText="✅ صحيح!";
-    }else{
-        document.getElementById("guessResult")
-        .innerText="❌ خطأ!";
-    }
+let value=document.getElementById("guessInput").value;
+
+if(value===secret){
+
+document.getElementById("result").innerText=
+"✅ صحيح";
+
+}else{
+
+document.getElementById("result").innerText=
+"❌ خطأ";
+
 }
 
-/* =========================
-   السكاكين
-========================= */
-
-let knifePoints=0;
-
-function throwKnife(){
-    knifePoints++;
-
-    document.getElementById("knifeScore")
-    .innerText="النقاط: "+knifePoints;
 }
 
-/* =========================
-   كرة القدم
-========================= */
+/* كرة القدم */
 
-const canvas=document.getElementById("footballCanvas");
-const ctx=canvas.getContext("2d");
+let goals=0;
 
-let ballX=200;
-let ballY=220;
+function goal(){
 
-function drawFootball(){
-    ctx.clearRect(0,0,400,300);
+goals++;
 
-    // مرمى
-    ctx.strokeStyle="white";
-    ctx.strokeRect(140,30,120,50);
+document.getElementById("goals").innerText=
+"الأهداف: "+goals;
 
-    // كرة
-    ctx.beginPath();
-    ctx.arc(ballX,ballY,20,0,Math.PI*2);
-    ctx.fillStyle="white";
-    ctx.fill();
-
-    requestAnimationFrame(drawFootball);
 }
-
-canvas.addEventListener("click",()=>{
-    ballY=60;
-
-    setTimeout(()=>{
-        ballY=220;
-    },500);
-});
-
-drawFootball();
 
 </script>
 
