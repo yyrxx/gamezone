@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>🎮 GameZone - عالم الألعاب</title>
 <style>
+/* ===== CORE STYLES (UNCHANGED LOOK) ===== */
 :root {
   --bg-primary: #0a0a1a;
   --bg-secondary: #12122a;
@@ -40,86 +41,44 @@
 }
 
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg-primary); color: var(--text-primary); min-height: 100vh; overflow-x: hidden; transition: background 0.5s; }
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  min-height: 100vh;
-  overflow-x: hidden;
-  transition: background 0.5s;
-}
-
-.bg-animation {
-  position: fixed; top:0; left:0; width:100%; height:100%;
-  z-index: 0; overflow: hidden; pointer-events: none;
-}
-.bg-animation .orb {
-  position: absolute; border-radius: 50%; filter: blur(80px);
-  opacity: 0.3; animation: floatOrb 20s infinite ease-in-out;
-}
+/* Background Animation */
+.bg-animation { position: fixed; top:0; left:0; width:100%; height:100%; z-index: 0; overflow: hidden; pointer-events: none; }
+.bg-animation .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; animation: floatOrb 20s infinite ease-in-out; }
 .orb:nth-child(1) { width:400px;height:400px;background:var(--accent);top:-100px;left:-100px;animation-delay:0s; }
 .orb:nth-child(2) { width:300px;height:300px;background:var(--accent2);top:50%;right:-50px;animation-delay:-5s; }
 .orb:nth-child(3) { width:350px;height:350px;background:var(--accent3);bottom:-100px;left:30%;animation-delay:-10s; }
 .orb:nth-child(4) { width:250px;height:250px;background:var(--accent4);top:30%;left:50%;animation-delay:-15s; }
-
-@keyframes floatOrb {
-  0%,100% { transform:translate(0,0) scale(1); }
-  25% { transform:translate(100px,-50px) scale(1.1); }
-  50% { transform:translate(-50px,100px) scale(0.9); }
-  75% { transform:translate(80px,50px) scale(1.05); }
-}
+@keyframes floatOrb { 0%,100% { transform:translate(0,0) scale(1); } 25% { transform:translate(100px,-50px) scale(1.1); } 50% { transform:translate(-50px,100px) scale(0.9); } 75% { transform:translate(80px,50px) scale(1.05); } }
 
 .container { position:relative; z-index:1; max-width:900px; margin:0 auto; padding:20px; }
 
+/* Hero */
 .hero { text-align:center; padding:40px 0 30px; animation:fadeInDown 1s ease; }
-.hero-logo {
-  font-size:clamp(2.5rem,8vw,4.5rem); font-weight:900;
-  background:linear-gradient(135deg,var(--accent),var(--accent2),var(--accent3));
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  background-clip:text; margin-bottom:10px; letter-spacing:-1px;
-}
+.hero-logo { font-size:clamp(2.5rem,8vw,4.5rem); font-weight:900; background:linear-gradient(135deg,var(--accent),var(--accent2),var(--accent3)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:10px; letter-spacing:-1px; }
 .hero-logo .emoji { -webkit-text-fill-color:initial; animation:bounce 2s infinite; display:inline-block; }
 .hero-subtitle { color:var(--text-secondary); font-size:clamp(0.9rem,2.5vw,1.2rem); font-weight:300; letter-spacing:2px; }
 .stats-bar { display:flex; justify-content:center; gap:20px; margin-top:20px; flex-wrap:wrap; }
-.stat-item {
-  background:var(--bg-card); padding:10px 20px; border-radius:50px;
-  font-size:0.85rem; color:var(--text-secondary); backdrop-filter:blur(10px);
-  border:1px solid rgba(108,92,231,0.2);
-}
+.stat-item { background:var(--bg-card); padding:10px 20px; border-radius:50px; font-size:0.85rem; color:var(--text-secondary); backdrop-filter:blur(10px); border:1px solid rgba(108,92,231,0.2); }
 .stat-item span { color:var(--accent2); font-weight:700; }
-
 @keyframes fadeInDown { from{opacity:0;transform:translateY(-30px)} to{opacity:1;transform:translateY(0)} }
 @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
 
 .section-title { font-size:1.5rem; font-weight:700; margin:30px 0 20px; display:flex; align-items:center; gap:10px; }
 .section-title::before { content:''; width:4px; height:30px; background:var(--gradient1); border-radius:2px; }
 
+/* Games Grid */
 .games-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:20px; padding-bottom:40px; }
-.game-card {
-  background:var(--bg-card); border-radius:var(--radius); overflow:hidden; cursor:pointer;
-  transition:var(--transition); border:1px solid rgba(108,92,231,0.1);
-  position:relative; animation:fadeInUp 0.6s ease backwards;
-}
-.game-card:nth-child(1){animation-delay:.1s} .game-card:nth-child(2){animation-delay:.2s}
-.game-card:nth-child(3){animation-delay:.3s} .game-card:nth-child(4){animation-delay:.4s}
-.game-card:nth-child(5){animation-delay:.5s} .game-card:nth-child(6){animation-delay:.6s}
-
+.game-card { background:var(--bg-card); border-radius:var(--radius); overflow:hidden; cursor:pointer; transition:var(--transition); border:1px solid rgba(108,92,231,0.1); position:relative; animation:fadeInUp 0.6s ease backwards; }
+.game-card:nth-child(1){animation-delay:.1s} .game-card:nth-child(2){animation-delay:.2s} .game-card:nth-child(3){animation-delay:.3s} .game-card:nth-child(4){animation-delay:.4s} .game-card:nth-child(5){animation-delay:.5s} .game-card:nth-child(6){animation-delay:.6s}
 @keyframes fadeInUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
 .game-card:hover { transform:translateY(-8px) scale(1.02); box-shadow:var(--shadow-hover); border-color:rgba(108,92,231,0.4); }
 .game-card:active { transform:translateY(-4px) scale(0.98); }
-
-.card-image {
-  height:160px; display:flex; align-items:center; justify-content:center;
-  font-size:4rem; position:relative; overflow:hidden;
-}
-.card-image::after {
-  content:''; position:absolute; bottom:0; left:0; right:0; height:50%;
-  background:linear-gradient(transparent,var(--bg-card));
-}
+.card-image { height:160px; display:flex; align-items:center; justify-content:center; font-size:4rem; position:relative; overflow:hidden; }
+.card-image::after { content:''; position:absolute; bottom:0; left:0; right:0; height:50%; background:linear-gradient(transparent,var(--bg-card)); }
 .card-image .game-icon { z-index:1; transition:var(--transition); filter:drop-shadow(0 5px 15px rgba(0,0,0,0.3)); }
 .game-card:hover .game-icon { transform:scale(1.2) rotate(5deg); }
-
 .card-body { padding:15px 20px 20px; }
 .card-body h3 { font-size:1.15rem; font-weight:700; margin-bottom:5px; }
 .card-body p { font-size:0.8rem; color:var(--text-secondary); margin-bottom:12px; line-height:1.5; }
@@ -127,293 +86,136 @@ body {
 .card-level { font-size:0.75rem; padding:4px 12px; border-radius:50px; background:rgba(108,92,231,0.15); color:var(--accent); font-weight:600; }
 .card-score { font-size:0.75rem; color:var(--accent4); font-weight:600; }
 
-/* ===== GAME MODAL ===== */
-.game-modal {
-  position:fixed; top:0; left:0; width:100%; height:100%; z-index:1000;
-  display:none; align-items:center; justify-content:center;
-  background:rgba(10,10,26,0.95); backdrop-filter:blur(20px); padding:15px;
-  animation:fadeIn .3s ease;
+/* Ad Banners */
+.ad-banner {
+  width: 100%;
+  height: 100px;
+  background: rgba(255,255,255,0.05);
+  border: 2px dashed rgba(255,255,255,0.1);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin: 20px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
+
+/* Modal */
+.game-modal { position:fixed; top:0; left:0; width:100%; height:100%; z-index:1000; display:none; align-items:center; justify-content:center; background:rgba(10,10,26,0.95); backdrop-filter:blur(20px); padding:15px; animation:fadeIn .3s ease; }
 .game-modal.active { display:flex; }
 @keyframes fadeIn { from{opacity:0} to{opacity:1} }
-
-.game-container {
-  background:var(--bg-secondary); border-radius:var(--radius);
-  width:100%; max-width:600px; max-height:90vh; overflow-y:auto;
-  position:relative; animation:slideUp .4s cubic-bezier(.175,.885,.32,1.275);
-  border:1px solid rgba(108,92,231,0.2);
-}
+.game-container { background:var(--bg-secondary); border-radius:var(--radius); width:100%; max-width:600px; max-height:90vh; overflow-y:auto; position:relative; animation:slideUp .4s cubic-bezier(.175,.885,.32,1.275); border:1px solid rgba(108,92,231,0.2); }
 @keyframes slideUp { from{opacity:0;transform:translateY(50px) scale(.95)} to{opacity:1;transform:translateY(0) scale(1)} }
-
-.game-header {
-  padding:20px; display:flex; justify-content:space-between; align-items:center;
-  border-bottom:1px solid rgba(108,92,231,0.15); position:sticky; top:0;
-  background:var(--bg-secondary); z-index:10; border-radius:var(--radius) var(--radius) 0 0;
-}
+.game-header { padding:20px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(108,92,231,0.15); position:sticky; top:0; background:var(--bg-secondary); z-index:10; border-radius:var(--radius) var(--radius) 0 0; }
 .game-header h2 { font-size:1.2rem; display:flex; align-items:center; gap:8px; }
 .game-info { display:flex; gap:15px; font-size:0.85rem; }
 .game-info span { color:var(--accent4); font-weight:700; }
-
-.close-btn {
-  width:40px; height:40px; border-radius:50%; border:none;
-  background:rgba(255,255,255,0.1); color:var(--text-primary);
-  font-size:1.2rem; cursor:pointer; transition:var(--transition);
-  display:flex; align-items:center; justify-content:center;
-}
+.close-btn { width:40px; height:40px; border-radius:50%; border:none; background:rgba(255,255,255,0.1); color:var(--text-primary); font-size:1.2rem; cursor:pointer; transition:var(--transition); display:flex; align-items:center; justify-content:center; }
 .close-btn:hover { background:rgba(253,121,168,0.3); transform:rotate(90deg); }
-
 .game-body { padding:20px; min-height:300px; display:flex; flex-direction:column; align-items:center; }
 
-/* ===== MODE SELECTOR ===== */
-.mode-selector {
-  display:flex; flex-direction:column; gap:12px; width:100%; max-width:300px; margin:20px 0;
-}
-.mode-btn {
-  padding:18px 25px; border-radius:15px; border:2px solid rgba(108,92,231,0.3);
-  background:var(--bg-card); color:var(--text-primary); font-size:1.1rem;
-  font-weight:600; cursor:pointer; transition:var(--transition);
-  display:flex; align-items:center; gap:12px;
-}
-.mode-btn:hover { border-color:var(--accent); background:rgba(108,92,231,0.15); transform:translateY(-3px); }
-.mode-btn:active { transform:scale(0.97); }
-.mode-btn .mode-icon { font-size:1.8rem; }
+/* Generic Buttons & Status */
+.game-status { font-size:1.1rem; margin:15px 0; font-weight:600; min-height:30px; text-align:center; }
+.play-btn { padding:12px 30px; border:none; border-radius:50px; background:var(--gradient1); color:white; font-size:1rem; font-weight:700; cursor:pointer; transition:var(--transition); margin-top:10px; }
+.play-btn:hover { transform:scale(1.05); box-shadow:0 5px 20px rgba(108,92,231,0.4); }
+.play-btn:active { transform:scale(0.95); }
+.mode-select { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 300px; margin-top: 20px; }
+.mode-btn { padding: 15px; border: 1px solid rgba(108,92,231,0.3); background: var(--bg-card); color: var(--text-primary); border-radius: 15px; font-size: 1rem; cursor: pointer; transition: var(--transition); }
+.mode-btn:hover { background: var(--accent); border-color: var(--accent); transform: scale(1.02); }
 
-.difficulty-selector {
-  display:flex; gap:10px; margin:15px 0;
-}
-.diff-btn {
-  padding:10px 20px; border-radius:12px; border:none;
-  font-size:0.95rem; font-weight:700; cursor:pointer;
-  transition:var(--transition); color:white;
-}
-.diff-btn.easy { background:linear-gradient(135deg,#55efc4,#00b894); }
-.diff-btn.medium { background:linear-gradient(135deg,#fdcb6e,#f39c12); }
-.diff-btn.hard { background:linear-gradient(135deg,#fd79a8,#e84393); }
-.diff-btn:hover { transform:scale(1.05); }
-
-/* ===== XO ===== */
+/* Specific Games Styles */
 .xo-board { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; width:280px; margin:20px 0; }
-.xo-cell {
-  width:85px; height:85px; background:var(--bg-card); border-radius:15px;
-  border:2px solid rgba(108,92,231,0.2); font-size:2.2rem; font-weight:900;
-  cursor:pointer; transition:var(--transition); display:flex; align-items:center;
-  justify-content:center; color:var(--text-primary);
-}
+.xo-cell { width:85px; height:85px; background:var(--bg-card); border-radius:15px; border:2px solid rgba(108,92,231,0.2); font-size:2.2rem; font-weight:900; cursor:pointer; transition:var(--transition); display:flex; align-items:center; justify-content:center; color:var(--text-primary); }
 .xo-cell:hover:not(.taken) { border-color:var(--accent); background:rgba(108,92,231,0.1); transform:scale(1.05); }
-.xo-cell.x { color:var(--accent); }
-.xo-cell.o { color:var(--accent3); }
+.xo-cell.x { color:var(--accent); } .xo-cell.o { color:var(--accent3); }
 .xo-cell.win { animation:winPulse .5s ease; border-color:var(--accent4); background:rgba(253,203,110,0.2); }
 @keyframes winPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
 
-.game-status { font-size:1.1rem; margin:15px 0; font-weight:600; min-height:30px; text-align:center; }
-.play-btn {
-  padding:12px 30px; border:none; border-radius:50px; background:var(--gradient1);
-  color:white; font-size:1rem; font-weight:700; cursor:pointer;
-  transition:var(--transition); margin-top:10px;
-}
-.play-btn:hover { transform:scale(1.05); box-shadow:0 5px 20px rgba(108,92,231,0.4); }
-
-/* ===== MEMORY ===== */
 .memory-board { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; width:300px; margin:20px 0; }
-.memory-card {
-  width:68px; height:68px; background:var(--bg-card); border-radius:12px;
-  border:2px solid rgba(108,92,231,0.2); cursor:pointer;
-  transition:var(--transition); display:flex; align-items:center; justify-content:center;
-  position:relative; transform-style:preserve-3d;
-}
-.memory-card-inner {
-  width:100%;height:100%;position:relative;transition:transform .6s;transform-style:preserve-3d;
-}
-.memory-card.flipped .memory-card-inner { transform:rotateY(180deg); }
-.memory-card-front,.memory-card-back {
-  position:absolute;width:100%;height:100%;backface-visibility:hidden;
-  display:flex;align-items:center;justify-content:center;border-radius:12px;
-}
-.memory-card-front {
-  background:var(--gradient1);font-size:1.8rem;transform:rotateY(180deg);
-}
-.memory-card-back {
-  background:var(--bg-card);font-size:1.5rem;color:var(--accent);
-  border:2px solid rgba(108,92,231,0.2);
-}
-.memory-card.matched { border-color:var(--accent5); }
-.memory-card.matched .memory-card-front { background:var(--gradient5); }
+.memory-card { width:68px; height:68px; background:var(--bg-card); border-radius:12px; border:2px solid rgba(108,92,231,0.2); font-size:1.8rem; cursor:pointer; transition:var(--transition); display:flex; align-items:center; justify-content:center; position:relative; }
+.memory-card .card-front { display:none; }
+.memory-card .card-back { font-size:1.5rem; color:var(--accent); }
+.memory-card.flipped { border-color:var(--accent2); background:rgba(0,206,201,0.1); }
+.memory-card.flipped .card-front { display:block; }
+.memory-card.flipped .card-back { display:none; }
+.memory-card.matched { border-color:var(--accent5); background:rgba(85,239,196,0.15); animation:matchPop .4s ease; }
+@keyframes matchPop { 0%{transform:scale(1)} 50%{transform:scale(1.15) rotate(5deg)} 100%{transform:scale(1)} }
 
-/* ===== CLICK SPEED ===== */
-.click-area {
-  width:250px; height:250px; border-radius:50%; background:var(--gradient1);
-  display:flex; align-items:center; justify-content:center; cursor:pointer;
-  transition:var(--transition); margin:20px 0; position:relative; user-select:none;
-}
-.click-area:hover { transform:scale(1.05); box-shadow:0 0 40px rgba(108,92,231,0.4); }
-.click-area:active { transform:scale(0.95); }
-.click-area.p2 { background:var(--gradient3); }
-.click-area .click-text { color:white; font-size:1.3rem; font-weight:700; text-align:center; pointer-events:none; }
-.click-area .click-count { font-size:3rem; display:block; margin-top:5px; }
-.click-ripple {
-  position:absolute; border-radius:50%; background:rgba(255,255,255,0.3);
-  animation:ripple .6s ease-out; pointer-events:none;
-}
-@keyframes ripple { from{width:0;height:0;opacity:1} to{width:200px;height:200px;opacity:0;margin:-100px} }
+.click-area-war { display: flex; justify-content: space-around; width: 100%; margin: 20px 0; }
+.click-player-zone { text-align: center; width: 45%; }
+.click-big-btn { width: 100%; height: 150px; border-radius: 20px; border: none; font-size: 1.5rem; font-weight: bold; color: white; cursor: pointer; transition: transform 0.1s; margin-top: 10px; }
+.click-p1 { background: var(--gradient1); }
+.click-p2 { background: var(--gradient3); }
+.click-big-btn:active { transform: scale(0.95); }
 
-.click-arena { display:flex; gap:20px; align-items:center; flex-wrap:wrap; justify-content:center; }
-.vs-badge {
-  font-size:1.5rem; font-weight:900; color:var(--accent4);
-  animation:bounce 1s infinite;
-}
+.word-display { font-size:2.5rem; letter-spacing:5px; margin:20px 0; font-weight:700; color:var(--accent2); }
+.word-hint-box { background: rgba(253, 203, 110, 0.1); padding: 10px 20px; border-radius: 10px; color: var(--accent4); margin-bottom: 20px; border: 1px solid rgba(253, 203, 110, 0.3); }
+.letter-keyboard { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; max-width:350px; margin:10px 0; }
+.letter-btn { width:38px; height:38px; border-radius:10px; border:1px solid rgba(108,92,231,0.2); background:var(--bg-card); color:var(--text-primary); font-size:1rem; font-weight:600; cursor:pointer; transition:var(--transition); }
+.letter-btn:hover:not(:disabled) { background:var(--accent); border-color:var(--accent); transform:scale(1.1); }
+.letter-btn:disabled { opacity:0.3; cursor:not-allowed; }
+.letter-btn.correct { background:var(--accent5); border-color:var(--accent5); color:#000; }
+.letter-btn.wrong { background:var(--accent3); border-color:var(--accent3); }
 
-/* ===== WORD GUESS ===== */
-.word-display { font-size:2.5rem; letter-spacing:15px; margin:20px 0; font-weight:700; color:var(--accent2); }
-.word-hint { color:var(--accent4); font-size:1rem; margin-bottom:15px; text-align:center; padding:10px 20px; background:rgba(253,203,110,0.1); border-radius:12px; border:1px solid rgba(253,203,110,0.2); }
-.ar-keyboard { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; max-width:400px; margin:10px 0; }
-.ar-letter-btn {
-  width:42px; height:42px; border-radius:10px; border:1px solid rgba(108,92,231,0.2);
-  background:var(--bg-card); color:var(--text-primary); font-size:1rem;
-  font-weight:600; cursor:pointer; transition:var(--transition);
-}
-.ar-letter-btn:hover:not(:disabled) { background:var(--accent); border-color:var(--accent); transform:scale(1.1); }
-.ar-letter-btn:disabled { opacity:0.3; cursor:not-allowed; }
-.ar-letter-btn.correct { background:var(--accent5); border-color:var(--accent5); color:#000; }
-.ar-letter-btn.wrong { background:var(--accent3); border-color:var(--accent3); }
-.hangman-lives { font-size:1.5rem; margin:10px 0; }
-
-/* ===== MAZE ===== */
 .maze-board { display:grid; gap:1px; margin:15px 0; background:rgba(108,92,231,0.1); padding:8px; border-radius:15px; }
-.maze-cell { width:35px; height:35px; border-radius:6px; transition:all .3s ease; }
-.maze-cell.wall { background:var(--bg-card); border-radius:4px; }
+.maze-cell { width:25px; height:25px; border-radius:4px; transition:background .2s; }
+.maze-cell.wall { background:var(--bg-card); }
 .maze-cell.path { background:rgba(108,92,231,0.05); }
-.maze-cell.player { 
-  background:transparent; display:flex; align-items:center; justify-content:center;
-  font-size:1.5rem; animation:playerBounce .5s ease;
-}
-.maze-cell.goal {
-  background:rgba(253,203,110,0.15); display:flex; align-items:center; justify-content:center;
-  font-size:1.3rem; animation:goalPulse 1.5s infinite;
-}
-.maze-cell.visited { background:rgba(108,92,231,0.1); }
-@keyframes playerBounce { 0%{transform:scale(0.5)} 60%{transform:scale(1.2)} 100%{transform:scale(1)} }
-@keyframes goalPulse { 0%,100%{transform:scale(.8);opacity:.6} 50%{transform:scale(1.1);opacity:1} }
-.maze-controls {
-  display:grid; grid-template-columns:repeat(3,55px); grid-template-rows:repeat(2,55px);
-  gap:6px; margin-top:10px;
-}
-.maze-btn {
-  width:55px; height:55px; border-radius:14px; border:none;
-  background:var(--bg-card); color:var(--text-primary); font-size:1.4rem;
-  cursor:pointer; transition:var(--transition); display:flex; align-items:center; justify-content:center;
-}
-.maze-btn:hover { background:var(--accent); transform:scale(1.1); }
-.maze-btn:active { transform:scale(0.9); }
+.maze-cell.player { background:var(--accent); border-radius:50%; box-shadow:0 0 10px var(--accent); transform: scale(0.8); }
+.maze-cell.goal { background:var(--accent4); border-radius:50%; box-shadow:0 0 10px var(--accent4); animation: goalPulse 1s infinite; }
+@keyframes goalPulse { 0%,100%{transform:scale(0.8)} 50%{transform:scale(1)} }
+.maze-controls { display:grid; grid-template-columns:repeat(3,50px); grid-template-rows:repeat(2,50px); gap:5px; margin-top:10px; }
+.maze-btn { width:50px; height:50px; border-radius:12px; border:none; background:var(--bg-card); color:var(--text-primary); font-size:1.2rem; cursor:pointer; transition:var(--transition); display:flex; align-items:center; justify-content:center; }
+.maze-btn:hover { background:var(--accent); }
 
-/* ===== PUZZLE (PICTURE) ===== */
-.puzzle-board { display:grid; gap:4px; margin:15px 0; border-radius:15px; overflow:hidden; }
-.puzzle-tile {
-  cursor:pointer; transition:var(--transition); border:2px solid rgba(108,92,231,0.3);
-  border-radius:8px; display:flex; align-items:center; justify-content:center;
-  font-size:2rem; overflow:hidden; position:relative;
-}
-.puzzle-tile:hover:not(.empty) { transform:scale(0.95); border-color:var(--accent); }
-.puzzle-tile.empty { background:var(--bg-primary); border-color:transparent; cursor:default; }
-.puzzle-tile .tile-pattern {
-  width:100%;height:100%;display:flex;align-items:center;justify-content:center;
-  font-size:inherit;
-}
-.puzzle-preview {
-  width:120px;height:120px;border-radius:12px;margin:10px 0;
-  border:2px solid rgba(108,92,231,0.3);overflow:hidden;
-}
+.puzzle-board { display:grid; gap:2px; margin:15px 0; background: rgba(0,0,0,0.2); padding: 5px; border-radius: 10px; }
+.puzzle-piece { background-size: 200% 200%; cursor: pointer; border-radius: 5px; transition: transform 0.2s; border: 1px solid rgba(255,255,255,0.1); }
+.puzzle-piece.empty { background: transparent !important; border: none; cursor: default; }
+.puzzle-preview { width: 100px; height: 100px; border-radius: 10px; border: 2px solid var(--accent); margin-bottom: 10px; background-size: cover; }
 
-/* ===== SCORE MODAL ===== */
 .score-modal { text-align:center; padding:30px; }
 .score-modal .big-emoji { font-size:4rem; margin-bottom:15px; animation:bounce 1s infinite; }
 .score-modal h2 { font-size:1.5rem; margin-bottom:10px; }
-.score-modal .score-value {
-  font-size:2.5rem; font-weight:900;
-  background:linear-gradient(135deg,var(--accent4),var(--accent3));
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-  margin:10px 0;
-}
+.score-modal .score-value { font-size:2.5rem; font-weight:900; background:linear-gradient(135deg,var(--accent4),var(--accent3)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin:10px 0; }
 .score-modal .best-score { color:var(--accent2); font-size:0.9rem; margin-bottom:20px; }
 
-/* ===== AD SPACE ===== */
-.ad-space {
-  width:100%; margin:20px 0; padding:20px;
-  border-radius:12px; border:2px dashed rgba(108,92,231,0.2);
-  background:rgba(108,92,231,0.05);
-  text-align:center; color:var(--text-secondary);
-  font-size:0.8rem; min-height:80px;
-  display:flex; align-items:center; justify-content:center;
-}
-.ad-space::before { content:'📢 مساحة إعلانية'; font-size:0.85rem; opacity:0.6; }
+.loading-screen { position:fixed; top:0; left:0; width:100%; height:100%; background:var(--bg-primary); z-index:10000; display:flex; align-items:center; justify-content:center; flex-direction:column; transition:opacity .5s; }
+.loading-screen.hidden { opacity:0; pointer-events:none; }
+.loader { width:60px; height:60px; border:4px solid rgba(108,92,231,0.2); border-top-color:var(--accent); border-radius:50%; animation:spin .8s linear infinite; margin-bottom:20px; }
+@keyframes spin { to{transform:rotate(360deg)} }
+.loading-text { color:var(--text-secondary); font-size:0.9rem; animation:pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:.5} 50%{opacity:1} }
 
-.ad-space-banner {
-  width:100%; margin:15px 0; padding:15px;
-  border-radius:10px; border:1px dashed rgba(108,92,231,0.15);
-  background:rgba(108,92,231,0.03);
-  text-align:center; min-height:60px;
-  display:flex; align-items:center; justify-content:center;
-  color:var(--text-secondary); font-size:0.75rem;
-}
-.ad-space-banner::before { content:'📢 إعلان'; opacity:0.5; }
-
-/* ===== SCROLLBAR ===== */
-::-webkit-scrollbar { width:6px; }
-::-webkit-scrollbar-track { background:transparent; }
-::-webkit-scrollbar-thumb { background:var(--accent); border-radius:3px; }
-
-/* ===== RESPONSIVE ===== */
+/* Responsive */
 @media(max-width:600px) {
   .games-grid { grid-template-columns:1fr; }
   .game-card { display:flex; flex-direction:row; align-items:center; }
   .card-image { width:100px; height:100px; flex-shrink:0; border-radius:var(--radius) 0 0 var(--radius); }
   .card-image::after { background:linear-gradient(to right,transparent,var(--bg-card)); width:50%; height:100%; }
   .card-body { flex:1; padding:15px; }
-  .xo-board { width:240px; }
-  .xo-cell { width:72px; height:72px; font-size:1.8rem; }
-  .memory-board { width:260px; }
-  .memory-card { width:58px; height:58px; }
-  .click-area { width:200px; height:200px; }
-  .maze-cell { width:28px; height:28px; }
+  .xo-board { width:240px; } .xo-cell { width:72px; height:72px; font-size:1.8rem; }
+  .memory-board { width:260px; } .memory-card { width:58px; height:58px; }
+  .click-area-war { flex-direction: column; gap: 20px; align-items: center; }
+  .click-player-zone { width: 100%; }
 }
 @media(min-width:601px) and (max-width:900px) { .games-grid { grid-template-columns:repeat(2,1fr); } }
-
-.particle {
-  position:fixed; pointer-events:none; z-index:9999;
-  animation:particleFly 1s ease-out forwards;
-}
-@keyframes particleFly {
-  0%{opacity:1;transform:translate(0,0) scale(1)}
-  100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(0)}
-}
-
-.loading-screen {
-  position:fixed; top:0; left:0; width:100%; height:100%;
-  background:var(--bg-primary); z-index:10000;
-  display:flex; align-items:center; justify-content:center; flex-direction:column;
-  transition:opacity .5s;
-}
-.loading-screen.hidden { opacity:0; pointer-events:none; }
-.loader {
-  width:60px; height:60px; border:4px solid rgba(108,92,231,0.2);
-  border-top-color:var(--accent); border-radius:50%;
-  animation:spin .8s linear infinite; margin-bottom:20px;
-}
-@keyframes spin { to{transform:rotate(360deg)} }
-.loading-text { color:var(--text-secondary); font-size:0.9rem; animation:pulse 1.5s infinite; }
-@keyframes pulse { 0%,100%{opacity:.5} 50%{opacity:1} }
 </style>
 </head>
 <body>
 
+<!-- LOADING SCREEN -->
 <div class="loading-screen" id="loadingScreen">
   <div class="loader"></div>
   <div class="loading-text">جاري تحميل الألعاب...</div>
 </div>
 
-<div class="bg-animation">
-  <div class="orb"></div><div class="orb"></div><div class="orb"></div><div class="orb"></div>
-</div>
+<!-- ANIMATED BACKGROUND -->
+<div class="bg-animation"><div class="orb"></div><div class="orb"></div><div class="orb"></div><div class="orb"></div></div>
 
+<!-- MAIN CONTAINER -->
 <div class="container">
   <div class="hero">
     <div class="hero-logo"><span class="emoji">🎮</span> GameZone</div>
@@ -424,12 +226,17 @@ body {
     </div>
   </div>
 
+  <!-- AD SPACE TOP -->
+  <div class="ad-banner">مساحة إعلانية</div>
+
   <div class="section-title">🕹️ اختر لعبتك</div>
   <div class="games-grid" id="gamesGrid"></div>
 
-  <div class="ad-space"></div>
+  <!-- AD SPACE BOTTOM -->
+  <div class="ad-banner">مساحة إعلانية</div>
 </div>
 
+<!-- GAME MODAL -->
 <div class="game-modal" id="gameModal">
   <div class="game-container">
     <div class="game-header">
@@ -445,6 +252,7 @@ body {
 </div>
 
 <script>
+// ===== SOUND ENGINE =====
 var audioCtx;
 function initAudio(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)()}
 function playSound(freq,dur,type,vol){
@@ -458,50 +266,49 @@ function playLose(){playSound(200,0.4,'sawtooth',0.08)}
 function playMatch(){playSound(600,0.1,'sine',0.1);setTimeout(function(){playSound(900,0.15,'sine',0.1)},80)}
 function playFlip(){playSound(400,0.08,'sine',0.08)}
 
-function spawnParticles(x,y,count,colors){
-  count=count||8;colors=colors||['#6c5ce7','#00cec9','#fd79a8','#fdcb6e','#55efc4'];
-  for(var i=0;i<count;i++){
-    var p=document.createElement('div');p.className='particle';
-    p.style.left=x+'px';p.style.top=y+'px';
-    var s=Math.random()*10+5;p.style.width=s+'px';p.style.height=s+'px';
-    p.style.background=colors[Math.floor(Math.random()*colors.length)];
-    p.style.borderRadius='50%';
-    p.style.setProperty('--tx',(Math.random()-0.5)*200+'px');
-    p.style.setProperty('--ty',(Math.random()-0.5)*200+'px');
-    document.body.appendChild(p);(function(el){setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el)},1000)})(p);
-  }
-}
+// ===== DATA & STATE =====
+var games=[
+  {id:'xo',name:'إكس أو Pro',icon:'❌⭕',desc:'ضد صديق أو الذكاء الاصطناعي',gradient:'var(--gradient1)'},
+  {id:'memory',name:'اختبار الذاكرة',icon:'🧠',desc:'تذكر الأماكن بسرعة البرق',gradient:'var(--gradient2)'},
+  {id:'clickspeed',name:'حرب النقر',icon:'⚡',desc:'من الأسرع؟ ضد صديق أو AI',gradient:'var(--gradient3)'},
+  {id:'wordguess',name:'كلمات وألغاز',icon:'🔤',desc:'خمن الكلمة العربية مع تلميح',gradient:'var(--gradient4)'},
+  {id:'maze',name:'المتاهة',icon:'🏰',desc:'جد الطريق للخروج',gradient:'var(--gradient5)'},
+  {id:'puzzle',name:'أحجية الصور',icon:'🧩',desc:'ركب الصورة المقطعة',gradient:'var(--gradient2)'}
+];
+
+var currentGame=null, score=0;
+var _gameInterval=null,_gameTimeout=null;
 
 function saveScore(game,sc){var k='gz_'+game;var p=parseInt(localStorage.getItem(k))||0;if(sc>p){localStorage.setItem(k,sc);return true}return false}
 function getScore(game){return parseInt(localStorage.getItem('gz_'+game))||0}
 
-var games=[
-  {id:'xo',name:'إكس أو',icon:'❌⭕',desc:'تحدَّ صديقك أو الذكاء الاصطناعي',gradient:'var(--gradient1)'},
-  {id:'memory',name:'اختبار الذاكرة',icon:'🧠',desc:'اكتشف الأزواج المتطابقة',gradient:'var(--gradient2)'},
-  {id:'clickspeed',name:'سرعة النقر',icon:'⚡',desc:'اضغط بأسرع ما يمكن',gradient:'var(--gradient3)'},
-  {id:'wordguess',name:'تخمين الكلمات',icon:'🔤',desc:'خمن الكلمة العربية السرية',gradient:'var(--gradient4)'},
-  {id:'maze',name:'المتاهة',icon:'🏰',desc:'اعثر على الطريق عبر المتاهة',gradient:'var(--gradient5)'},
-  {id:'puzzle',name:'أحجية الصور',icon:'🧩',desc:'رتب الصورة المبعثرة',gradient:'var(--gradient2)'}
-];
-
-var currentGame=null,currentMode=null,currentDiff=null,score=0;
-var _gi=null,_gt=null;
-
+// ===== RENDER CARDS =====
 function renderCards(){
   var g=document.getElementById('gamesGrid');g.innerHTML='';
+  // Insert Ad after 2nd item
+  var adIndex = Math.ceil(games.length / 2);
+  
   games.forEach(function(gr,i){
+    if(i === adIndex) {
+      var adDiv = document.createElement('div');
+      adDiv.className = 'ad-banner';
+      adDiv.style.gridColumn = '1 / -1';
+      adDiv.textContent = 'مساحة إعلانية';
+      g.appendChild(adDiv);
+    }
+    
     var best=getScore(gr.id);
     var c=document.createElement('div');c.className='game-card';
     c.style.animationDelay=(i*0.1)+'s';
     c.onclick=function(){openGame(gr.id)};
-    c.innerHTML='<div class="card-image" style="background:'+gr.gradient+'"><span class="game-icon">'+gr.icon+'</span></div><div class="card-body"><h3>'+gr.name+'</h3><p>'+gr.desc+'</p><div class="card-footer"><span class="card-score">🏆 '+best+'</span></div></div>';
+    c.innerHTML='<div class="card-image" style="background:'+gr.gradient+'"><span class="game-icon">'+gr.icon+'</span></div><div class="card-body"><h3>'+gr.name+'</h3><p>'+gr.desc+'</p><div class="card-footer"><span class="card-level">🎮 العب الآن</span><span class="card-score">🏆 '+best+'</span></div></div>';
     g.appendChild(c);
   });
-  if((i+1)%3===0){var ad=document.createElement('div');ad.className='ad-space';g.appendChild(ad);}
 }
 
+// ===== OPEN/CLOSE =====
 function openGame(id){
-  playClick();currentGame=id;score=0;currentMode=null;currentDiff=null;
+  playClick();currentGame=id;score=0;
   var g=games.find(function(x){return x.id===id});
   document.getElementById('gameTitle').innerHTML=g.icon+' '+g.name;
   document.getElementById('gameScore').textContent=0;
@@ -513,7 +320,9 @@ function openGame(id){
 function closeGame(){
   playClick();document.getElementById('gameModal').classList.remove('active');
   document.body.style.overflow='';currentGame=null;
-  if(_gi)clearInterval(_gi);if(_gt)clearTimeout(_gt);
+  if(_gameInterval)clearInterval(_gameInterval);
+  if(_gameTimeout)clearTimeout(_gameTimeout);
+  document.onkeydown = null; // clear keys
   renderCards();
 }
 document.getElementById('gameModal').addEventListener('click',function(e){
@@ -526,64 +335,73 @@ function updateScore(ns){
   document.getElementById('gameBest').textContent=getScore(currentGame);
 }
 
-function showModeSelect(id){
-  var b=document.getElementById('gameBody');
-  var modes=['friend','ai'];
-  var modeIcons={friend:'👥',ai:'🤖'};
-  var modeLabels={friend:'ضد صديق',ai:'ضد الذكاء الاصطناعي'};
-  var html='<div class="game-status">اختر وضع اللعب</div><div class="mode-selector">';
-  for(var m=0;m<modes.length;m++){
-    html+='<button class="mode-btn" onclick="selectMode(\''+modes[m]+'\')"><span class="mode-icon">'+modeIcons[modes[m]]+'</span>'+modeLabels[modes[m]]+'</button>';
-  }
-  html+='</div>';
-  b.innerHTML=html;
-}
-
-function selectMode(mode){
-  currentMode=mode;
-  if(mode==='ai'){
-    var b=document.getElementById('gameBody');
-    b.innerHTML='<div class="game-status">اختر مستوى الصعوبة</div><div class="difficulty-selector"><button class="diff-btn easy" onclick="selectDiff(\'easy\')">😊 سهل</button><button class="diff-btn medium" onclick="selectDiff(\'medium\')">😐 متوسط</button><button class="diff-btn hard" onclick="selectDiff(\'hard\')">😈 صعب</button></div>';
-  }else{
-    currentDiff='friend';
-    initGame();
-  }
-}
-
-function selectDiff(diff){
-  currentDiff=diff;
-  initGame();
-}
-
 function showWinMessage(msg){
   playWin();
   document.getElementById('gameBody').innerHTML=
-    '<div class="score-modal"><div class="big-emoji">🎉</div><h2>'+msg+'</h2><div class="score-value">'+score+' نقطة</div><div class="best-score">🏆 أفضل نتيجة: '+getScore(currentGame)+'</div><button class="play-btn" onclick="initGame()">العب مرة أخرى 🔄</button></div>';
+    '<div class="score-modal"><div class="big-emoji">🎉</div><h2>'+msg+'</h2><div class="score-value">'+score+' نقطة</div><div class="best-score">🏆 أفضل نتيجة: '+getScore(currentGame)+'</div><button class="play-btn" onclick="showModeSelect(currentGame)">العب مرة أخرى 🔄</button></div>';
 }
 function showLoseMessage(msg){
   playLose();
   document.getElementById('gameBody').innerHTML=
-    '<div class="score-modal"><div class="big-emoji">😢</div><h2>'+msg+'</h2><div class="score-value">'+score+' نقطة</div><div class="best-score">🏆 أفضل نتيجة: '+getScore(currentGame)+'</div><button class="play-btn" onclick="initGame()">حاول مرة أخرى 🔄</button></div>';
+    '<div class="score-modal"><div class="big-emoji">😢</div><h2>'+msg+'</h2><div class="score-value">'+score+' نقطة</div><div class="best-score">🏆 أفضل نتيجة: '+getScore(currentGame)+'</div><button class="play-btn" onclick="initGame(currentGame, lastMode, lastDifficulty)">حاول مرة أخرى 🔄</button></div>';
 }
 
-function initGame(){
-  if(_gi)clearInterval(_gi);if(_gt)clearTimeout(_gt);
-  score=0;document.getElementById('gameScore').textContent=0;
-  switch(currentGame){
-    case 'xo':initXO();break;case 'memory':initMemory();break;
-    case 'clickspeed':initClickSpeed();break;case 'wordguess':initWordGuess();break;
-    case 'maze':initMaze();break;case 'puzzle':initPuzzle();break;
+var lastMode = null;
+var lastDifficulty = null;
+
+function showModeSelect(id) {
+  var body = document.getElementById('gameBody');
+  var html = '<div class="game-status">اختر وضع اللعب</div><div class="mode-select">';
+  
+  if(id === 'xo') {
+    html += '<button class="mode-btn" onclick="initGame(\'xo\', \'friend\')">👥 ضد صديق (محلي)</button>';
+    html += '<button class="mode-btn" onclick="initGame(\'xo\', \'ai\', \'easy\')">🤖 ضد كمبيوتر (سهل)</button>';
+    html += '<button class="mode-btn" onclick="initGame(\'xo\', \'ai\', \'medium\')">🤖 ضد كمبيوتر (متوسط)</button>';
+    html += '<button class="mode-btn" onclick="initGame(\'xo\', \'ai\', \'hard\')">🤖 ضد كمبيوتر (مستحيل)</button>';
+  } else if (id === 'clickspeed') {
+     html += '<button class="mode-btn" onclick="initGame(\'clickspeed\', \'friend\')">👥 ضد صديق (نفس الجهاز)</button>';
+     html += '<button class="mode-btn" onclick="initGame(\'clickspeed\', \'ai\', \'easy\')">🤖 ضد كمبيوتر (بطيء)</button>';
+     html += '<button class="mode-btn" onclick="initGame(\'clickspeed\', \'ai\', \'medium\')">🤖 ضد كمبيوتر (سريع)</button>';
+     html += '<button class="mode-btn" onclick="initGame(\'clickspeed\', \'ai\', \'hard\')">🤖 ضد كمبيوتر (برقّي)</button>';
+  } else if (id === 'puzzle') {
+     html += '<button class="mode-btn" onclick="initGame(\'puzzle\', \'easy\')">🟢 سهل (3×3)</button>';
+     html += '<button class="mode-btn" onclick="initGame(\'puzzle\', \'medium\')">🟡 متوسط (4×4)</button>';
+     html += '<button class="mode-btn" onclick="initGame(\'puzzle\', \'hard\')">🔴 صعب (5×5)</button>';
+  } else {
+    // For others, just start
+    html += '<button class="mode-btn" onclick="initGame(\''+id+'\')">🎮 ابدأ اللعب</button>';
+  }
+  
+  html += '</div>';
+  body.innerHTML = html;
+}
+
+function initGame(id, mode, diff) {
+  if(_gameInterval)clearInterval(_gameInterval);
+  if(_gameTimeout)clearTimeout(_gameTimeout);
+  lastMode = mode || 'default';
+  lastDifficulty = diff || 'normal';
+  score = 0;
+  document.getElementById('gameScore').textContent = 0;
+
+  switch(id){
+    case 'xo':initXO(mode, diff);break;
+    case 'memory':initMemory();break;
+    case 'clickspeed':initClickSpeed(mode, diff);break;
+    case 'wordguess':initWordGuess();break;
+    case 'maze':initMaze();break;
+    case 'puzzle':initPuzzle(mode);break;
   }
 }
 
 // ===== 1. XO GAME =====
-var xoBoard,xoTurn,xoGameOver,xoAI;
-function initXO(){
+var xoBoard,xoTurn,xoGameOver,xoMode,xoDiff;
+function initXO(mode, diff){
   xoBoard=['','','','','','','','',''];xoTurn='X';xoGameOver=false;
-  xoAI=currentDiff;
-  var label=currentMode==='friend'?'👥 ضد صديق':'🤖 AI: '+(xoAI==='easy'?'سهل':xoAI==='medium'?'متوسط':'صعب');
+  xoMode=mode; xoDiff=diff;
+  var statusText = mode === 'friend' ? 'دور اللاعب ❌' : 'دورك! أنت ❌';
   document.getElementById('gameBody').innerHTML=
-    '<div class="game-status" id="xoStatus">'+label+' | دور ❌</div><div class="xo-board" id="xoBoard"></div>';
+    '<div class="game-status" id="xoStatus">'+statusText+'</div><div class="xo-board" id="xoBoard"></div>';
   var b=document.getElementById('xoBoard');
   for(var i=0;i<9;i++){
     var c=document.createElement('div');c.className='xo-cell';
@@ -592,107 +410,97 @@ function initXO(){
   }
 }
 function xoMove(i){
-  if(xoBoard[i]||xoGameOver||xoTurn!=='X')return;
-  playClick();xoBoard[i]='X';
-  var cells=document.querySelectorAll('.xo-cell');
-  cells[i].textContent='❌';cells[i].classList.add('taken','x');
-  if(checkXOWin('X')){xoGameOver=true;updateScore(15);showWinMessage('فزت! 🎉');return}
-  if(xoBoard.every(function(c){return c!==' '})){xoGameOver=true;showLoseMessage('تعادل! 🤝');return}
-  if(currentMode==='friend'){
-    xoTurn='O';document.getElementById('xoStatus').textContent='دور ⭕';
-  }else{
-    xoTurn='O';document.getElementById('xoStatus').textContent='دور الذكاء الاصطناعي...';
-    _gt=setTimeout(xoAI_Move,400);
-  }
-}
-function xoFriendMove(i){
   if(xoBoard[i]||xoGameOver)return;
-  playClick();xoBoard[i]='O';
+  playClick();
+  xoBoard[i]=xoTurn;
   var cells=document.querySelectorAll('.xo-cell');
-  cells[i].textContent='⭕';cells[i].classList.add('taken','o');
-  if(checkXOWin('O')){xoGameOver=true;updateScore(0);showLoseMessage('صديقك فاز! 😅');return}
-  if(xoBoard.every(function(c){return c!==' '})){xoGameOver=true;showLoseMessage('تعادل! 🤝');return}
-  xoTurn='X';document.getElementById('xoStatus').textContent='دور ❌';
+  cells[i].textContent=xoTurn==='X'?'❌':'⭕';
+  cells[i].classList.add('taken', xoTurn.toLowerCase());
+  
+  if(checkXOWin(xoTurn)){
+    xoGameOver=true;
+    var winner = xoTurn === 'X' ? 'اللاعب ❌' : 'اللاعب ⭕';
+    if(xoMode === 'ai') winner = xoTurn === 'X' ? 'أنت فزت! 🎉' : 'الكمبيوتر فاز! 🤖';
+    updateScore(xoTurn==='X'?10:5);
+    showWinMessage(winner); return;
+  }
+  if(!xoBoard.includes('')){xoGameOver=true;showLoseMessage('تعادل! 🤝');return}
+  
+  xoTurn = xoTurn==='X'?'O':'X';
+  
+  if(xoMode === 'friend'){
+    document.getElementById('xoStatus').textContent = 'دور اللاعب ' + (xoTurn==='X'?'❌':'⭕');
+  } else {
+    document.getElementById('xoStatus').textContent = 'دور الكمبيوتر...';
+    _gameTimeout=setTimeout(xoAI_Move, 600);
+  }
 }
 function xoAI_Move(){
+  if(xoGameOver) return;
   var move;
-  if(xoAI==='easy'){
-    var a=[];for(var i=0;i<9;i++)if(xoBoard[i]==='')a.push(i);
-    move=a[Math.floor(Math.random()*a.length)];
-  }else{
-    for(var i=0;i<9;i++){if(xoBoard[i]===''){xoBoard[i]='O';if(checkXOWin('O')){xoBoard[i]='';move=i;break}xoBoard[i]=''}}
+  // Logic based on difficulty
+  if(xoDiff === 'easy'){
+    var avail=[];for(var i=0;i<9;i++)if(xoBoard[i]==='')avail.push(i);
+    move=avail[Math.floor(Math.random()*avail.length)];
+  } else {
+    // Medium/Hard logic (Win -> Block -> Center -> Random)
+    // Try Win
+    for(var i=0;i<9;i++){if(xoBoard[i]===''){xoBoard[i]='O';if(checkXOWin('O','silent')){move=i;xoBoard[i]='';break}xoBoard[i]=''}}
+    // Block
+    if(move===undefined){for(var i=0;i<9;i++){if(xoBoard[i]===''){xoBoard[i]='X';if(checkXOWin('X','silent')){move=i;xoBoard[i]='';break}xoBoard[i]=''}}}
+    // Center/Random
     if(move===undefined){
-      for(var i=0;i<9;i++){if(xoBoard[i]===''){xoBoard[i]='X';if(checkXOWin('X')){xoBoard[i]='';move=i;break}xoBoard[i]=''}}
-    }
-    if(move===undefined){
-      if(xoBoard[4]==='')move=4;
-      else{var corners=[0,2,6,8].filter(function(i){return xoBoard[i]===''});
-        if(corners.length)move=corners[Math.floor(Math.random()*corners.length)];
-        else{var a=[];for(var i=0;i<9;i++)if(xoBoard[i]==='')a.push(i);move=a[Math.floor(Math.random()*a.length)]}
-      }
+       if(xoBoard[4]==='') move=4;
+       else {
+         var corners=[0,2,6,8].filter(function(i){return xoBoard[i]===''});
+         if(corners.length && xoDiff==='hard') move=corners[Math.floor(Math.random()*corners.length)];
+         else { var a=[];for(var i=0;i<9;i++)if(xoBoard[i]==='')a.push(i);move=a[Math.floor(Math.random()*a.length)]}
+       }
     }
   }
-  xoBoard[move]='O';
-  var cells=document.querySelectorAll('.xo-cell');
-  cells[move].textContent='⭕';cells[move].classList.add('taken','o');
-  if(checkXOWin('O')){xoGameOver=true;showLoseMessage('الذكاء الاصطناعي فاز! 🤖');return}
-  if(xoBoard.every(function(c){return c!==' '})){xoGameOver=true;showLoseMessage('تعادل! 🤝');return}
-  xoTurn='X';document.getElementById('xoStatus').textContent='دورك! أنت ❌';
+  xoMove(move);
 }
-function checkXOWin(m){
+function checkXOWin(m, silent){
   var w=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
   var cells=document.querySelectorAll('.xo-cell');
   for(var i=0;i<w.length;i++){
     if(xoBoard[w[i][0]]===m&&xoBoard[w[i][1]]===m&&xoBoard[w[i][2]]===m){
-      cells[w[i][0]].classList.add('win');cells[w[i][1]].classList.add('win');cells[w[i][2]].classList.add('win');
+      if(!silent){cells[w[i][0]].classList.add('win');cells[w[i][1]].classList.add('win');cells[w[i][2]].classList.add('win');}
       return true;
     }
   }return false;
 }
 
-// Override XO cell click for friend mode
-(function(){
-  var origMove=xoMove;
-})();
-
-// Patch: need friend mode click handler
-function handleXOClick(i){
-  if(currentMode==='friend' && xoTurn==='O'){
-    xoFriendMove(i);
-  }else{
-    xoMove(i);
-  }
-}
-
-// ===== 2. MEMORY GAME (IMPROVED) =====
-var memFlipped,memMatched,memLocked,memTimer,memSeconds,memPairs;
+// ===== 2. MEMORY GAME (Enhanced) =====
+var memFlipped,memMatched,memLocked,memTotalPairs,memTimer;
 function initMemory(){
-  var emojis=['🍎','🍊','🍋','🍇','🍓','🫐','🍑','🥝','🍌','🍒','🥭','🍍','🥥','🍈','🍐','🍏','🫒','🥑','🌶️','🌽','🥕','🧄','🧅','🥔'];
-  var pairs=Math.min(4+Math.floor(Math.random()*4),8);
-  var cols=4;var total=pairs*2;
+  var emojis=['🍎','🍊','🍋','🍇','🍓','🫐','🍑','🥝','🍌','🍒','🥭','🍍'];
+  var pairs = 6; // Standard 4x3 or 4x4
+  var cols = 4;
   var selected=emojis.slice(0,pairs);
   var deck=selected.concat(selected);
   deck.sort(function(){return Math.random()-0.5});
-  memFlipped=[];memMatched=0;memLocked=false;memSeconds=0;memPairs=pairs;
-
+  memFlipped=[];memMatched=0;memLocked=false;memTotalPairs=pairs;
+  
   document.getElementById('gameBody').innerHTML=
-    '<div class="game-status">⏱️ <span id="memTimer">00:00</span> | الأزواج: <span id="memPairsLeft">'+pairs+'</span></div>'+
-    '<div class="memory-board" id="memoryBoard" style="grid-template-columns:repeat('+cols+',1fr)"></div>';
+    '<div class="game-status">⏱️ الوقت: <span id="memTime">0</span> ثانية</div><div class="memory-board" id="memoryBoard" style="grid-template-columns:repeat('+cols+',1fr)"></div>';
+  
   var board=document.getElementById('memoryBoard');
   board.style.width=(cols*78)+'px';
   deck.forEach(function(emoji,i){
     var c=document.createElement('div');c.className='memory-card';
     c.dataset.emoji=emoji;
-    c.innerHTML='<div class="memory-card-inner"><div class="memory-card-front">'+emoji+'</div><div class="memory-card-back">❓</div></div>';
+    c.innerHTML='<span class="card-front">'+emoji+'</span><span class="card-back">❓</span>';
     c.onclick=function(){flipMemoryCard(c)};
     board.appendChild(c);
   });
-  _gi=setInterval(function(){
-    memSeconds++;
-    var m=Math.floor(memSeconds/60);var s=memSeconds%60;
-    var el=document.getElementById('memTimer');
-    if(el)el.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
-  },1000);
+  
+  var time = 0;
+  _gameInterval = setInterval(function(){
+    time++;
+    var el = document.getElementById('memTime');
+    if(el) el.textContent = time;
+  }, 1000);
 }
 function flipMemoryCard(card){
   if(memLocked||card.classList.contains('flipped')||card.classList.contains('matched'))return;
@@ -702,16 +510,14 @@ function flipMemoryCard(card){
     var a=memFlipped[0],b=memFlipped[1];
     if(a.dataset.emoji===b.dataset.emoji){
       playMatch();a.classList.add('matched');b.classList.add('matched');memMatched++;
-      var el=document.getElementById('memPairsLeft');if(el)el.textContent=memPairs-memMatched;
+      updateScore(10);
       memFlipped=[];memLocked=false;
-      if(memMatched>=memPairs){
-        clearInterval(_gi);
-        var points=Math.max(5,(30-memSeconds))*2;
-        updateScore(points);
-        _gt=setTimeout(function(){showWinMessage('أحسنت! ذاكرتك قوية! 🧠 في '+memSeconds+' ثانية')},500);
+      if(memMatched===memTotalPairs){
+        clearInterval(_gameInterval);
+        showWinMessage('أنهيت الاختبار! 🧠');
       }
     }else{
-      _gt=setTimeout(function(){
+      _gameTimeout=setTimeout(function(){
         a.classList.remove('flipped');b.classList.remove('flipped');
         memFlipped=[];memLocked=false;
       },800);
@@ -719,136 +525,88 @@ function flipMemoryCard(card){
   }
 }
 
-// ===== 3. CLICK SPEED (IMPROVED) =====
-var clickCount,clickTimeLeft,clickActive,clickP1,clickP2,clickTurn;
-function initClickSpeed(){
-  if(currentMode==='friend'){
-    clickP1=0;clickP2=0;clickTimeLeft=10;clickActive=false;clickTurn=1;
-    document.getElementById('gameBody').innerHTML=
-      '<div class="game-status" id="clickStatus">👥 ضد صديق | دور اللاعب 1</div>'+
-      '<div class="click-arena">'+
-      '<div class="click-area" id="clickP1Area" onclick="friendClick(1)"><div class="click-text">اللاعب 1<br><span class="click-count" id="clickP1">0</span></div></div>'+
-      '<div class="vs-badge">VS</div>'+
-      '<div class="click-area p2" id="clickP2Area" onclick="friendClick(2)"><div class="click-text">اللاعب 2<br><span class="click-count" id="clickP2">0</span></div></div>'+
-      '</div>'+
-      '<div class="game-status" id="clickTimer">⏱️ 10 ثوانٍ</div>';
-  }else{
-    var targetRate=currentDiff==='easy'?30:currentDiff==='medium'?50:70;
-    clickCount=0;clickTimeLeft=10;clickActive=false;
-    document.getElementById('gameBody').innerHTML=
-      '<div class="game-status" id="clickStatus">🤖 AI يحتاج '+targetRate+' نقرة | ابدأ بالضغط!</div>'+
-      '<div class="click-area" id="clickArea"><div class="click-text">اضغط!<br><span class="click-count" id="clickCount">0</span></div></div>'+
-      '<div class="game-status" id="clickTimer">⏱️ 10 ثوانٍ | الذكاء: <span id="aiCount">0</span>/'+targetRate+'</div>';
-    document.getElementById('clickArea').onclick=handleGameClick;
-    // AI clicker
-    _gi=setInterval(function(){
-      if(clickActive){
-        var el=document.getElementById('aiCount');if(el)el.textContent=parseInt(el.textContent)+1;
-      }
-    },1000/targetRate*1000);
+// ===== 3. CLICK SPEED WAR =====
+var clickScores, clickLimit, clickActive;
+function initClickSpeed(mode, diff){
+  clickScores = {p1:0, p2:0};
+  clickLimit = 20; // First to 20 clicks wins
+  clickActive = false;
+  
+  var p2Label = mode === 'ai' ? 'الكمبيوتر 🤖' : 'اللاعب 2 ⭕';
+  var btnAction = mode === 'ai' ? '' : 'onclick="clickWarTap(\'p2\')"';
+  
+  document.getElementById('gameBody').innerHTML=
+    '<div class="game-status" id="warStatus">اضغط بأسرع ما يمكن!</div>'+
+    '<div class="click-area-war">'+
+      '<div class="click-player-zone"><h3>أنت (❌)</h3><div id="scoreP1" style="font-size:2rem;font-weight:bold;color:var(--accent)">0</div><button class="click-big-btn click-p1" onclick="clickWarTap(\'p1\')">اضغط هنا!</button></div>'+
+      '<div class="click-player-zone"><h3>'+p2Label+'</h3><div id="scoreP2" style="font-size:2rem;font-weight:bold;color:var(--accent3)">0</div><button class="click-big-btn click-p2" '+btnAction+'>اضغط هنا!</button></div>'+
+    '</div>';
+    
+  if(mode === 'ai') {
+    clickActive = true;
+    var speed = diff === 'easy' ? 800 : diff === 'medium' ? 400 : 150;
+    _gameInterval = setInterval(function(){
+      if(!clickActive) return;
+      clickScores.p2++;
+      document.getElementById('scoreP2').textContent = clickScores.p2;
+      checkClickWarWin();
+    }, speed);
+  } else {
+    clickActive = true; // Friend mode waits for taps
   }
 }
-function friendClick(player){
-  if(clickTimeLeft<=0)return;
-  if(!clickActive){
-    clickActive=true;
-    _gi=setInterval(function(){
-      clickTimeLeft--;
-      var el=document.getElementById('clickTimer');if(el)el.textContent='⏱️ '+clickTimeLeft+' ثوانٍ';
-      if(clickTimeLeft<=0){
-        clearInterval(_gi);clickActive=false;
-        var p1=clickP1,p2=clickP2;
-        updateScore(Math.max(p1,p2)*2);
-        if(p1>p2)showWinMessage('اللاعب 1 فاز! '+p1+' vs '+p2+' 🎉');
-        else if(p2>p1)showLoseMessage('اللاعب 2 فاز! '+p2+' vs '+p1);
-        else showLoseMessage('تعادل! '+p1+' vs '+p2);
-      }
-    },1000);
-  }
+function clickWarTap(p){
+  if(!clickActive) return;
   playClick();
-  if(player===1)clickP1++;else clickP2++;
-  var el=document.getElementById('clickP'+player);if(el)el.textContent=player===1?clickP1:clickP2;
-  spawnParticles(event.clientX,event.clientY,3);
+  clickScores[p]++;
+  document.getElementById('score'+p.toUpperCase()).textContent = clickScores[p];
+  checkClickWarWin();
 }
-function handleGameClick(e){
-  if(!clickActive&&clickTimeLeft===10){
-    clickActive=true;
-    _gi=setInterval(function(){
-      clickTimeLeft--;
-      var el=document.getElementById('clickTimer');if(el)el.textContent='⏱️ '+clickTimeLeft+' ثوانٍ';
-      if(clickTimeLeft<=0){
-        clearInterval(_gi);clickActive=false;
-        var target=parseInt(document.getElementById('aiCount').parentElement.textContent.split('/')[1])||50;
-        var aiTotal=parseInt(document.getElementById('aiCount').textContent);
-        if(clickCount>aiTotal){updateScore(clickCount*2);showWinMessage('فزت! '+clickCount+' vs '+aiTotal+' ⚡')}
-        else{updateScore(0);showLoseMessage('الذكاء الاصطناعي فاز! '+aiTotal+' vs '+clickCount)}
-      }
-    },1000);
+function checkClickWarWin(){
+  if(clickScores.p1 >= clickLimit || clickScores.p2 >= clickLimit){
+    clickActive = false;
+    clearInterval(_gameInterval);
+    var winner = clickScores.p1 >= clickLimit ? 'أنت فزت! ⚡' : 'خسرت! 😢';
+    if(lastMode !== 'ai') winner = clickScores.p1 > clickScores.p2 ? 'اللاعب 1 فاز!' : 'اللاعب 2 فاز!';
+    updateScore(clickScores.p1);
+    showWinMessage(winner);
   }
-  if(!clickActive)return;
-  clickCount++;
-  var el=document.getElementById('clickCount');if(el)el.textContent=clickCount;
-  playClick();
-  var area=document.getElementById('clickArea');
-  var ripple=document.createElement('div');ripple.className='click-ripple';
-  var rect=area.getBoundingClientRect();
-  ripple.style.left=(e.clientX-rect.left)+'px';ripple.style.top=(e.clientY-rect.top)+'px';
-  area.appendChild(ripple);(function(r){setTimeout(function(){if(r.parentNode)r.parentNode.removeChild(r)},600)})(ripple);
-  spawnParticles(e.clientX,e.clientY,3);
 }
 
-// ===== 4. WORD GUESS (ARABIC) =====
-var wordTarget,wordGuessed,wordLives,wordLength;
-var arabicWords=[
-  {word:'قطة',hint:'حيوان أليف يموء 🐱'},
-  {word:'شمس',hint:'تشرق في الصباح ☀️'},
-  {word:'قمر',hint:'ينير الليل 🌙'},
-  {word:'بحر',hint:'مياه مالحة واسعة 🌊'},
-  {word:'نهر',hint:'مجرى ماء عذب 🏞️'},
-  {word:'ورد',hint:'زهرة جميلة رائحتها عطرية 🌹'},
-  {word:'قلم',hint:'أداة للكتابة ✏️'},
-  {word:'كتاب',hint:'يحتوي على صفحات للقراءة 📖'},
-  {word:'نار',hint:'حارة ومضيئة 🔥'},
-  {word:'ثلج',hint:'أبيض وبارد يسقط في الشتاء ❄️'},
-  {word:'شجرة',hint:'لها جذور وأوراق خضراء 🌳'},
-  {word:'طائرة',hint:'تطير في السماء ✈️'},
-  {word:'سيارة',hint:'وسيلة نقل على الطريق 🚗'},
-  {word:'مدرسة',hint:'مكان للتعلم 🏫'},
-  {word:'مستشفى',hint:'مكان لعلاج المرضى 🏥'},
-  {word:'فراشة',hint:'حشرة جميلة بأجنحة ملونة 🦋'},
-  {word:'عصفور',hint:'طائر صغير يغرد 🐦'},
-  {word:'فيل',hint:'أكبر حيوان بري 🐘'},
-  {word:'نحلة',hint:'تصنع العسل 🐝'},
-  {word:'مطر',hint:'ماء يسقط من السماء 🌧️'},
-  {word:'جبل',hint:'مرتفع شاهق من الصخور ⛰️'},
-  {word:'نجم',hint:'يلمع في السماء ليلاً ⭐'},
-  {word:'قلب',hint:'عضو ينبض في صدرك ❤️'},
-  {word:'عسل',hint:'سائل حلو تصنعه النحل 🍯'}
+// ===== 4. WORD GUESS (Arabic) =====
+var wordTarget,wordGuessed,wordLives;
+var arWords=[
+  {w:'أسد',h:'ملك الغابة'}, {w:'مصر',h:'أم الدنيا'}, {w:'تفاح',h:'فاكهة حمراء أو خضراء'},
+  {w:'سيارة',h:'وسيلة نقل لها 4 عجلات'}, {w:'شمس',h:'تضيء الأرض نهاراً'}, {w:'كتاب',h:'خير جليس في الزمان'},
+  {w:'سمكة',h:'تعيش في الماء وتتنفس بالخياشيم'}, {w:'طائرة',h:'تطير في السماء'},
+  {w:'قلم',h:'أداة للكتابة'}, {w:'بحر',h:'مسطح مائي كبير جداً'}
 ];
-var arabicLetters='ابتثجحخدذرزسشصضطظعغفقكلمنهوي';
 
 function initWordGuess(){
-  var wObj=arabicWords[Math.floor(Math.random()*arabicWords.length)];
-  wordTarget=wObj.word;wordGuessed={};wordLives=6+3;wordLength=wordTarget.length;
-  var display='';for(var i=0;i<wordLength;i++)display+=' _ ';
-  var hearts='';for(var h=0;h<wordLives;h++)hearts+='❤️';
-
+  var obj = arWords[Math.floor(Math.random()*arWords.length)];
+  wordTarget = obj.w;
+  var hint = obj.h;
+  wordGuessed={};wordLives=6;
+  
+  var display='';for(var i=0;i<wordTarget.length;i++)display+=' _ ';
+  var hearts='❤️'.repeat(wordLives);
+  
   document.getElementById('gameBody').innerHTML=
-    '<div class="game-status" id="wordStatus">خمن الكلمة!</div>'+
-    '<div class="word-hint">💡 تلميح: '+wObj.hint+'</div>'+
+    '<div class="word-hint-box">💡 تلميح: '+hint+'</div>'+
     '<div class="word-display" id="wordDisplay">'+display+'</div>'+
     '<div class="hangman-lives" id="wordLives">'+hearts+'</div>'+
-    '<div class="ar-keyboard" id="arKeyboard"></div>';
+    '<div class="letter-keyboard" id="wordKeyboard"></div>';
 
-  var kb=document.getElementById('arKeyboard');
-  for(var i=0;i<arabicLetters.length;i++){
+  var kb=document.getElementById('wordKeyboard');
+  var letters='أبتثجحخدذرزسشصضطظعغفقكلمنهويءآةؤئ';
+  for(var i=0;i<letters.length;i++){
     (function(l){
-      var btn=document.createElement('button');btn.className='ar-letter-btn';btn.textContent=l;
-      btn.onclick=function(){guessArabicLetter(l,btn)};kb.appendChild(btn);
-    })(arabicLetters[i]);
+      var btn=document.createElement('button');btn.className='letter-btn';btn.textContent=l;
+      btn.onclick=function(){guessArLetter(l,btn)};kb.appendChild(btn);
+    })(letters[i]);
   }
 }
-function guessArabicLetter(letter,btn){
+function guessArLetter(letter,btn){
   btn.disabled=true;playClick();
   if(wordTarget.indexOf(letter)!==-1){
     btn.classList.add('correct');wordGuessed[letter]=true;
@@ -859,46 +617,30 @@ function guessArabicLetter(letter,btn){
     document.getElementById('wordDisplay').textContent=display;
     playMatch();
     if(display.indexOf('_')===-1){
-      updateScore((10+wordLives*2)*2);showWinMessage('أحسنت! خمنت الكلمة! 🎉');
+      updateScore(20);showWinMessage('إجابة صحيحة! 🎉');
     }
   }else{
     btn.classList.add('wrong');wordLives--;
     var hearts='';for(var h=0;h<Math.max(0,wordLives);h++)hearts+='❤️';
-    var empty=9-Math.max(0,wordLives);for(var e2=0;e2<empty;e2++)hearts+='🖤';
     document.getElementById('wordLives').textContent=hearts;
     if(wordLives<=0){
-      document.getElementById('wordStatus').textContent='الكلمة كانت: '+wordTarget;
+      document.getElementById('wordDisplay').textContent=wordTarget;
       showLoseMessage('انتهت المحاولات!');
     }
   }
 }
 
-// ===== 5. MAZE (IMPROVED) =====
-var mazeGrid,mazePlayer,mazeGoal,mazeSize,mazeVisited,mazeSteps;
+// ===== 5. MAZE (Improved Controls) =====
+var mazeGrid,mazePlayer,mazeGoal,mazeSize;
 function initMaze(){
-  mazeSize=Math.min(5+currentDiff*2,13);mazeSteps=0;
-  mazeGrid=generateMaze(mazeSize);
-  mazePlayer={x:0,y:0};mazeGoal={x:mazeSize-1,y:mazeSize-1};
-  mazeVisited=[[0,0]];
-
-  var b=document.getElementById('gameBody');
-  b.innerHTML=
-    '<div class="game-status">🏰 أوصل اللاعب 🧑‍🚀 إلى الهدف 🌟</div>'+
-    '<div class="maze-board" id="mazeBoard" style="grid-template-columns:repeat('+mazeSize+',35px)"></div>'+
-    '<div class="maze-controls"><div></div><button class="maze-btn" onclick="moveMaze(0,-1)">⬆️</button><div></div><button class="maze-btn" onclick="moveMaze(1,0)">➡️</button><button class="maze-btn" onclick="moveMaze(0,1)">⬇️</button><button class="maze-btn" onclick="moveMaze(-1,0)">⬅️</button></div>'+
-    '<div style="color:var(--text-secondary);font-size:0.8rem;margin-top:8px">الخطوات: <span id="mazeSteps">0</span> | أو استخدم أسهم لوحة المفاتيح / السحب على الشاشة</div>';
+  mazeSize=11;mazeGrid=generateMaze(mazeSize);
+  mazePlayer={x:1,y:1};mazeGoal={x:mazeSize-2,y:mazeSize-2};
+  document.getElementById('gameBody').innerHTML=
+    '<div class="game-status">🏰 أوصل البطل إلى العلم</div><div class="maze-board" id="mazeBoard" style="grid-template-columns:repeat('+mazeSize+',25px)"></div><div class="maze-controls"><div></div><button class="maze-btn" onclick="moveMaze(0,-1)">⬆️</button><div></div><button class="maze-btn" onclick="moveMaze(-1,0)">➡️</button><button class="maze-btn" onclick="moveMaze(0,1)">⬇️</button><button class="maze-btn" onclick="moveMaze(1,0)">⬅️</button></div>';
   renderMaze();
   document.onkeydown=function(e){
     if(currentGame!=='maze')return;
-    switch(e.key){case 'ArrowUp':moveMaze(0,-1);e.preventDefault();break;case 'ArrowDown':moveMaze(0,1);e.preventDefault();break;case 'ArrowLeft':moveMaze(1,0);e.preventDefault();break;case 'ArrowRight':moveMaze(-1,0);e.preventDefault();break}
-  };
-  // Touch swipe support
-  var tsx,tsy;
-  b.ontouchstart=function(e){tsx=e.touches[0].clientX;tsy=e.touches[0].clientY};
-  b.ontouchend=function(e){
-    var dx=e.changedTouches[0].clientX-tsx;
-    var dy=e.changedTouches[0].clientY-tsy;
-    if(Math.abs(dx)>Math.abs(dy)){moveMaze(dx>0?-1:1,0)}else{moveMaze(0,dy>0?1:-1)}
+    switch(e.key){case 'ArrowUp':moveMaze(0,-1);break;case 'ArrowDown':moveMaze(0,1);break;case 'ArrowLeft':moveMaze(1,0);break;case 'ArrowRight':moveMaze(-1,0);break}
   };
 }
 function generateMaze(size){
@@ -909,157 +651,107 @@ function generateMaze(size){
     dirs.sort(function(){return Math.random()-0.5});
     for(var d=0;d<dirs.length;d++){
       var nx=x+dirs[d][0],ny=y+dirs[d][1];
-      if(nx>=0&&nx<size&&ny>=0&&ny<size&&grid[ny][nx]===1){
+      if(nx>0&&nx<size-1&&ny>0&&ny<size-1&&grid[ny][nx]===1){
         grid[y+dirs[d][1]/2][x+dirs[d][0]/2]=0;carve(nx,ny);
       }
     }
   }
-  carve(0,0);
-  grid[size-1][size-1]=0;
-  if(size>2){grid[size-1][size-2]=0;grid[size-2][size-1]=0}
+  carve(1,1);
+  grid[size-2][size-2]=0;
   return grid;
 }
 function renderMaze(){
   var board=document.getElementById('mazeBoard');if(!board)return;board.innerHTML='';
-  board.style.width=(mazeSize*36)+'px';
   for(var y=0;y<mazeSize;y++){
     for(var x=0;x<mazeSize;x++){
       var cell=document.createElement('div');cell.className='maze-cell';
-      if(x===mazePlayer.x&&y===mazePlayer.y){cell.classList.add('player');cell.textContent='🧑‍🚀'}
-      else if(x===mazeGoal.x&&y===mazeGoal.y){cell.classList.add('goal');cell.textContent='🌟'}
+      if(x===mazePlayer.x&&y===mazePlayer.y)cell.classList.add('player');
+      else if(x===mazeGoal.x&&y===mazeGoal.y)cell.classList.add('goal');
       else if(mazeGrid[y][x]===1)cell.classList.add('wall');
-      else{cell.classList.add('path');
-        var isVisited=false;for(var v=0;v<mazeVisited.length;v++){if(mazeVisited[v][0]===x&&mazeVisited[v][1]===y){isVisited=true;break}}
-        if(isVisited)cell.classList.add('visited');
-      }
+      else cell.classList.add('path');
       board.appendChild(cell);
     }
   }
-  var el=document.getElementById('mazeSteps');if(el)el.textContent=mazeSteps;
 }
 function moveMaze(dx,dy){
   var nx=mazePlayer.x+dx,ny=mazePlayer.y+dy;
   if(nx<0||nx>=mazeSize||ny<0||ny>=mazeSize)return;
   if(mazeGrid[ny][nx]===1)return;
-  playClick();mazePlayer.x=nx;mazePlayer.y=ny;mazeSteps++;
-  mazeVisited.push([nx,ny]);
-  renderMaze();
+  playClick();mazePlayer.x=nx;mazePlayer.y=ny;renderMaze();
   if(nx===mazeGoal.x&&ny===mazeGoal.y){
-    updateScore(Math.max(5,(50-mazeSteps))*2);
-    _gt=setTimeout(function(){showWinMessage('وصلت! بطل المتاهة! 🏰 في '+mazeSteps+' خطوة')},300);
+    updateScore(15);showWinMessage('وصلت بسلام! 🏰');
   }
 }
 
-// ===== 6. PUZZLE (PICTURE) =====
-var puzzleTiles,puzzleSize,puzzleMoves,puzzleImage;
-var puzzleImages=[
-  {name:'🌅 غروب',colors:['#ff6b6b','#ffa502','#ff6348','#ee5a24','#f0932b'],emoji:'🌅'},
-  {name:'🌊 محيط',colors:['#0984e3','#74b9ff','#00cec9','#81ecec','#0652DD'],emoji:'🌊'},
-  {name:'🌲 غابة',colors:['#00b894','#55efc4','#00b894','#2d3436','#636e72'],emoji:'🌲'},
-  {name:'🌸 ربيع',colors:['#fd79a8','#fab1a0','#e17055','#d63031','#ff7675'],emoji:'🌸'},
-  {name:'🌌 فضاء',colors:['#2d3436','#636e72','#6c5ce7','#a29bfe','#dfe6e9'],emoji:'🌌'}
-];
-
-function initPuzzle(){
-  puzzleSize=currentDiff==='easy'?3:currentDiff==='medium'?4:5;
-  puzzleMoves=0;puzzleImage=puzzleImages[Math.floor(Math.random()*puzzleImages.length)];
-  puzzleTiles=generatePuzzle(puzzleSize);
-
-  var b=document.getElementById('gameBody');
-  var total=puzzleSize*puzzleSize-1;
-  b.innerHTML=
-    '<div class="game-status" id="puzzleStatus">🧩 رتب الصورة ('+puzzleImage.name+')</div>'+
-    '<div class="puzzle-preview" id="puzzlePreview" style="background:linear-gradient(135deg,'+puzzleImage.colors.join(',')+')">'+
-    '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem">'+puzzleImage.emoji+'</div></div>'+
-    '<div class="puzzle-board" id="puzzleBoard" style="grid-template-columns:repeat('+puzzleSize+',1fr);width:'+Math.min(280,puzzleSize*65)+'px"></div>'+
-    '<div style="color:var(--text-secondary);font-size:0.8rem;margin-top:8px">الحركات: <span id="puzzleMoves">0</span></div>';
-  renderPuzzle();
-}
-function generatePuzzle(size){
-  var tiles=[];for(var i=1;i<size*size;i++)tiles.push(i);tiles.push(0);
-  for(var s=0;s<200;s++){
-    var ei=tiles.indexOf(0);var row=Math.floor(ei/size);var col=ei%size;
-    var neighbors=[];
-    if(row>0)neighbors.push(ei-size);if(row<size-1)neighbors.push(ei+size);
-    if(col>0)neighbors.push(ei-1);if(col<size-1)neighbors.push(ei+1);
-    var sw=neighbors[Math.floor(Math.random()*neighbors.length)];
-    var tmp=tiles[ei];tiles[ei]=tiles[sw];tiles[sw]=tmp;
+// ===== 6. IMAGE PUZZLE =====
+var pzTiles, pzSize, pzImgId;
+function initPuzzle(diff){
+  pzSize = diff==='easy'?3 : diff==='medium'?4 : 5;
+  pzImgId = Math.floor(Math.random()*100); // Random image
+  
+  // Generate solved state then shuffle
+  pzTiles = [];
+  var total = pzSize*pzSize;
+  for(var i=0; i<total-1; i++) pzTiles.push(i);
+  pzTiles.push(-1); // Empty
+  
+  // Shuffle by making valid moves
+  var emptyIdx = total-1;
+  for(var s=0; s<150; s++){
+    var neighbors = [];
+    var r = Math.floor(emptyIdx/pzSize), c = emptyIdx%pzSize;
+    if(r>0) neighbors.push(emptyIdx-pzSize);
+    if(r<pzSize-1) neighbors.push(emptyIdx+pzSize);
+    if(c>0) neighbors.push(emptyIdx-1);
+    if(c<pzSize-1) neighbors.push(emptyIdx+1);
+    var rand = neighbors[Math.floor(Math.random()*neighbors.length)];
+    pzTiles[emptyIdx] = pzTiles[rand];
+    pzTiles[rand] = -1;
+    emptyIdx = rand;
   }
-  return tiles;
+  
+  var imgUrl = 'https://picsum.photos/id/'+pzImgId+'/300/300';
+  
+  document.getElementById('gameBody').innerHTML=
+    '<div class="game-status">🧩 رتب الصورة</div>'+
+    '<img src="'+imgUrl+'" class="puzzle-preview">'+
+    '<div class="puzzle-board" id="puzzleBoard" style="grid-template-columns:repeat('+pzSize+',1fr);width:'+ (pzSize*60) +'px;height:'+ (pzSize*60) +'px"></div>';
+    
+  renderPuzzle(imgUrl);
 }
-function renderPuzzle(){
+function renderPuzzle(url){
   var board=document.getElementById('puzzleBoard');board.innerHTML='';
-  var w=Math.min(280,puzzleSize*65);board.style.width=w+'px';
-  var tileSize=Math.floor(w/puzzleSize);
-  for(var i=0;i<puzzleTiles.length;i++){
-    (function(idx){
-      var tile=document.createElement('div');
-      tile.className='puzzle-tile';
-      tile.style.width=tileSize+'px';tile.style.height=tileSize+'px';
-      if(puzzleTiles[idx]===0){
-        tile.classList.add('empty');
-      }else{
-        var val=puzzleTiles[idx];
-        var row=Math.floor((val-1)/puzzleSize);var col=(val-1)%puzzleSize;
-        var c=puzzleImage.colors;
-        var ci=(row*puzzleSize+col)%c.length;
-        tile.style.background=c[ci];
-        tile.innerHTML='<span class="tile-pattern" style="color:white;text-shadow:0 2px 4px rgba(0,0,0,0.3)">'+puzzleImage.emoji+'</span>';
-        tile.onclick=function(){movePuzzle(idx)};
-      }
-      board.appendChild(tile);
-    })(i);
-  }
+  var sz = board.offsetWidth / pzSize;
+  
+  pzTiles.forEach(function(val, i){
+    var tile=document.createElement('div');
+    tile.className='puzzle-piece'+(val===-1?' empty':'');
+    if(val !== -1){
+      // Calculate original position for background
+      var origR = Math.floor(val/pzSize), origC = val%pzSize;
+      tile.style.backgroundImage = 'url('+url+')';
+      tile.style.backgroundSize = (pzSize*100)+'%';
+      tile.style.backgroundPosition = (origC * 100/(pzSize-1))+'% '+(origR * 100/(pzSize-1))+'%';
+      tile.onclick = function(){movePuzzle(i)};
+    }
+    board.appendChild(tile);
+  });
 }
 function movePuzzle(idx){
-  var ei=puzzleTiles.indexOf(0);
-  var r=Math.floor(idx/puzzleSize),c=idx%puzzleSize;
-  var er=Math.floor(ei/puzzleSize),ec=ei%puzzleSize;
+  var ei=pzTiles.indexOf(-1);
+  var r=Math.floor(idx/pzSize),c=idx%pzSize;
+  var er=Math.floor(ei/pzSize),ec=ei%pzSize;
   if(Math.abs(r-er)+Math.abs(c-ec)===1){
-    playClick();puzzleMoves++;
-    var el=document.getElementById('puzzleMoves');if(el)el.textContent=puzzleMoves;
-    var tmp=puzzleTiles[idx];puzzleTiles[idx]=puzzleTiles[ei];puzzleTiles[ei]=tmp;
-    renderPuzzle();
-    var solved=true;
-    for(var i=0;i<puzzleTiles.length-1;i++){if(puzzleTiles[i]!==i+1){solved=false;break}}
-    if(solved){updateScore(Math.max(5,(80-puzzleMoves))*3);_gt=setTimeout(function(){showWinMessage('أكملت الصورة! 🧩 في '+puzzleMoves+' حركة')},300)}
+    playClick();
+    var tmp=pzTiles[idx];pzTiles[idx]=pzTiles[ei];pzTiles[ei]=tmp;
+    renderPuzzle('https://picsum.photos/id/'+pzImgId+'/300/300');
+    
+    // Check win
+    var win=true;
+    for(var k=0;k<pzTiles.length-1;k++){if(pzTiles[k]!==k){win=false;break}}
+    if(win){updateScore(50);showWinMessage('صورة مكتملة! 🖼️')}
   }
 }
-
-// Fix XO friend mode - override cell click
-var origInitXO=initXO;
-initXO=function(){
-  xoBoard=['','','','','','','','',''];xoTurn='X';xoGameOver=false;
-  xoAI=currentDiff;
-  var label=currentMode==='friend'?'👥 ضد صديق':'🤖 AI: '+(xoAI==='easy'?'سهل':xoAI==='medium'?'متوسط':'صعب');
-  document.getElementById('gameBody').innerHTML=
-    '<div class="game-status" id="xoStatus">'+label+' | دور ❌</div><div class="xo-board" id="xoBoard"></div>';
-  var b=document.getElementById('xoBoard');
-  for(var i=0;i<9;i++){
-    var c=document.createElement('div');c.className='xo-cell';
-    (function(idx){
-      c.onclick=function(){
-        if(currentMode==='friend'){
-          if(xoBoard[idx]||xoGameOver)return;
-          playClick();
-          var mark=xoTurn==='X'?'X':'O';
-          xoBoard[idx]=mark;
-          var cells=document.querySelectorAll('.xo-cell');
-          cells[idx].textContent=mark==='X'?'❌':'⭕';
-          cells[idx].classList.add('taken',mark.toLowerCase());
-          var winMark=checkXOWin(mark);
-          if(winMark){xoGameOver=true;updateScore(15);showWinMessage((mark==='X'?'اللاعب 1':'اللاعب 2')+' فاز! 🎉');return}
-          if(xoBoard.every(function(c2){return c2!==''})){xoGameOver=true;showLoseMessage('تعادل! 🤝');return}
-          xoTurn=mark==='X'?'O':'X';
-          document.getElementById('xoStatus').textContent=label+' | دور '+(xoTurn==='X'?'❌':'⭕');
-        }else{
-          xoMove(idx);
-        }
-      };
-    })(i);
-    b.appendChild(c);
-  }
-};
 
 // ===== INIT =====
 window.addEventListener('load',function(){
