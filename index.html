@@ -3,12 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google-adsense-account" content="ca-pub-gamezone-qzz-io">
-<meta name="description" content="GAME ZONE - ألعاب احترافية مع نظام حسابات ومكافآت">
-<meta property="og:title" content="GAME ZONE">
-<meta property="og:description" content="ألعاب احترافية مع نظام حسابات ومكافآت يومية">
-<meta property="og:url" content="https://gamezone.qzz.io">
-<title>🎮 GAME ZONE</title>
+<title>🎮 ألعاب احترافية</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
 
@@ -142,23 +137,19 @@ body {
   background: linear-gradient(135deg, rgba(108,92,231,0.1), rgba(253,121,168,0.1));
   border: 2px dashed rgba(255,255,255,0.2);
   border-radius: 15px;
-  padding: 10px;
+  padding: 20px;
   margin: 20px auto;
   text-align: center;
-  max-width: 750px;
-  min-height: 95px;
+  max-width: 600px;
+  min-height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: rgba(255,255,255,0.4);
-  font-size: 0.85rem;
-  position: relative;
-  overflow: hidden;
+  font-size: 0.9rem;
 }
-.ad-container.top { margin-top: 0; margin-bottom: 10px; }
-.ad-container.bottom { margin-bottom: 0; margin-top: 10px; }
-.ad-container.square { min-height: 255px; max-width: 310px; }
-.ad-container.vertical { min-height: 605px; max-width: 165px; }
+.ad-container.top { margin-top: 0; }
+.ad-container.bottom { margin-bottom: 0; }
 .ad-label {
   position: absolute;
   top: 5px;
@@ -166,352 +157,9 @@ body {
   font-size: 0.7rem;
   color: rgba(255,255,255,0.3);
   text-transform: uppercase;
-  background: rgba(0,0,0,0.3);
-  padding: 2px 8px;
-  border-radius: 4px;
 }
 
-/* ===== AUTH SYSTEM ===== */
-#authScreen {
-  display: none; min-height: 100vh;
-  position: relative; z-index: 1; padding: 20px;
-}
-.auth-container {
-  max-width: 450px; margin: 40px auto;
-  background: var(--card-bg);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 25px; padding: 30px;
-}
-.auth-container h2 {
-  text-align: center; margin-bottom: 25px;
-  font-size: 1.8rem; font-weight: 700;
-}
-.auth-form .form-group { margin-bottom: 20px; }
-.auth-form label {
-  display: block; margin-bottom: 8px;
-  font-weight: 600; font-size: 0.95rem;
-}
-.auth-form input, .auth-form select {
-  width: 100%; padding: 12px 15px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 12px; color: #fff;
-  font-family: 'Cairo', sans-serif; font-size: 1rem;
-}
-.auth-form input:focus, .auth-form select:focus {
-  outline: none; border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(108,92,231,0.2);
-}
-.auth-form .gender-group {
-  display: flex; gap: 15px; margin-top: 8px;
-}
-.auth-form .gender-option {
-  flex: 1; padding: 10px;
-  background: rgba(255,255,255,0.08);
-  border: 2px solid rgba(255,255,255,0.15);
-  border-radius: 10px; text-align: center;
-  cursor: pointer; transition: all 0.3s;
-}
-.auth-form .gender-option:hover,
-.auth-form .gender-option.active {
-  border-color: var(--primary);
-  background: rgba(108,92,231,0.15);
-}
-.auth-form .profile-upload {
-  text-align: center; padding: 15px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 12px; cursor: pointer;
-}
-.auth-form .profile-upload:hover {
-  background: rgba(108,92,231,0.1);
-}
-.auth-form .profile-preview {
-  width: 80px; height: 80px;
-  border-radius: 50%; margin: 0 auto 10px;
-  background: var(--card-bg);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 2rem; overflow: hidden;
-}
-.auth-form .profile-preview img {
-  width: 100%; height: 100%; object-fit: cover;
-}
-.auth-btn {
-  width: 100%; padding: 14px;
-  background: var(--primary); color: #fff;
-  border: none; border-radius: 12px;
-  font-family: 'Cairo', sans-serif;
-  font-weight: 700; font-size: 1.1rem;
-  cursor: pointer; transition: all 0.3s;
-  margin-top: 10px;
-}
-.auth-btn:hover {
-  background: #5a4bd1;
-  box-shadow: 0 0 20px rgba(108,92,231,0.4);
-}
-.auth-switch {
-  text-align: center; margin-top: 20px;
-  color: rgba(255,255,255,0.5);
-}
-.auth-switch a {
-  color: var(--accent); text-decoration: none;
-  font-weight: 600; cursor: pointer;
-}
-.auth-switch a:hover { text-decoration: underline; }
-
-/* ===== USER DASHBOARD ===== */
-#userDashboard {
-  display: none; min-height: 100vh;
-  position: relative; z-index: 1; padding: 20px;
-}
-.user-header {
-  display: flex; align-items: center; gap: 15px;
-  padding: 15px 20px; background: var(--card-bg);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 15px; margin-bottom: 20px;
-}
-.user-avatar {
-  width: 50px; height: 50px; border-radius: 50%;
-  background: var(--card-bg); display: flex;
-  align-items: center; justify-content: center;
-  font-size: 1.5rem; overflow: hidden;
-}
-.user-avatar img { width: 100%; height: 100%; object-fit: cover; }
-.user-info h3 { font-size: 1.2rem; font-weight: 700; }
-.user-info p { color: rgba(255,255,255,0.5); font-size: 0.9rem; }
-.user-stats {
-  display: flex; gap: 20px; margin-right: auto;
-}
-.stat-item { text-align: center; }
-.stat-item .value {
-  font-size: 1.3rem; font-weight: 700; color: var(--warning);
-}
-.stat-item .label {
-  font-size: 0.8rem; color: rgba(255,255,255,0.5);
-}
-.btn-logout {
-  padding: 8px 20px; background: var(--danger);
-  color: #fff; border: none; border-radius: 10px;
-  cursor: pointer; font-family: 'Cairo', sans-serif;
-  font-weight: 600; transition: all 0.3s;
-}
-.btn-logout:hover { background: #c0292a; }
-
-/* ===== LETTER COLLECTION GAME ===== */
-#letterGame {
-  display: none; min-height: 100vh;
-  position: relative; z-index: 1; padding: 20px;
-}
-.letter-header {
-  text-align: center; padding: 20px;
-  background: var(--card-bg);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 15px; margin-bottom: 20px;
-}
-.letter-header h2 { font-size: 1.5rem; margin-bottom: 10px; }
-.letter-header p { color: rgba(255,255,255,0.6); }
-.letter-pull-area {
-  text-align: center; padding: 30px 20px;
-  background: var(--card-bg);
-  border: 2px solid rgba(108,92,231,0.3);
-  border-radius: 20px; margin-bottom: 20px;
-}
-.letter-wheel {
-  width: 200px; height: 200px; margin: 0 auto 20px;
-  border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 3rem; font-weight: 900; color: #fff;
-  box-shadow: 0 0 30px rgba(108,92,231,0.5);
-  position: relative; overflow: hidden;
-}
-.letter-wheel::after {
-  content: ''; position: absolute;
-  width: 180px; height: 180px;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.2);
-}
-.letter-wheel span { position: relative; z-index: 1; }
-.letter-pull-btn {
-  padding: 15px 40px; background: var(--success);
-  color: #fff; border: none; border-radius: 15px;
-  font-family: 'Cairo', sans-serif; font-weight: 700;
-  font-size: 1.1rem; cursor: pointer; transition: all 0.3s;
-  display: inline-flex; align-items: center; gap: 10px;
-}
-.letter-pull-btn:disabled {
-  background: rgba(255,255,255,0.1); cursor: not-allowed;
-}
-.letter-pull-btn:not(:disabled):hover {
-  background: #00a884; box-shadow: 0 0 20px rgba(0,184,148,0.4);
-}
-.letter-pull-info {
-  margin-top: 15px; font-size: 0.9rem;
-  color: rgba(255,255,255,0.6);
-}
-.letter-inventory {
-  background: var(--card-bg);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 15px; padding: 20px;
-}
-.letter-inventory h3 {
-  margin-bottom: 15px; font-size: 1.3rem;
-}
-.letters-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-  gap: 12px;
-}
-.letter-card {
-  background: linear-gradient(135deg, rgba(108,92,231,0.2), rgba(162,155,254,0.1));
-  border: 2px solid rgba(108,92,231,0.4);
-  border-radius: 12px; padding: 15px 10px;
-  text-align: center; cursor: pointer;
-  transition: all 0.3s; position: relative;
-}
-.letter-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
-.letter-card.rare {
-  border-color: var(--warning);
-  background: linear-gradient(135deg, rgba(253,203,110,0.2), rgba(253,121,168,0.1));
-  box-shadow: 0 0 15px rgba(253,203,110,0.3);
-}
-.letter-card .letter {
-  font-size: 2rem; font-weight: 900;
-  margin-bottom: 5px;
-}
-.letter-card .count {
-  font-size: 0.8rem; color: rgba(255,255,255,0.6);
-}
-.letter-card .copy-code {
-  font-size: 0.7rem; color: var(--warning);
-  margin-top: 5px; display: none;
-}
-.letter-card.copied .copy-code {
-  display: block; color: var(--success);
-}
-
-/* ===== STORE ===== */
-#storeScreen {
-  display: none; min-height: 100vh;
-  position: relative; z-index: 1; padding: 20px;
-}
-.store-header {
-  text-align: center; padding: 20px;
-  background: var(--card-bg);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 15px; margin-bottom: 20px;
-}
-.store-header h2 { font-size: 1.5rem; margin-bottom: 5px; }
-.store-header .points-balance {
-  font-size: 1.8rem; font-weight: 700;
-  color: var(--warning);
-}
-.store-items {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-}
-.store-item {
-  background: var(--card-bg);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 15px; padding: 20px;
-  text-align: center; transition: all 0.3s;
-}
-.store-item:hover {
-  border-color: var(--primary);
-  transform: translateY(-5px);
-}
-.store-item .icon {
-  font-size: 3rem; margin-bottom: 15px;
-}
-.store-item h3 { font-size: 1.2rem; margin-bottom: 10px; }
-.store-item .price {
-  font-size: 1.5rem; font-weight: 700;
-  color: var(--warning); margin-bottom: 15px;
-}
-.store-item .desc {
-  font-size: 0.9rem; color: rgba(255,255,255,0.6);
-  margin-bottom: 15px;
-}
-.store-item .buy-btn {
-  padding: 10px 25px; background: var(--primary);
-  color: #fff; border: none; border-radius: 10px;
-  cursor: pointer; font-family: 'Cairo', sans-serif;
-  font-weight: 600; transition: all 0.3s;
-}
-.store-item .buy-btn:hover {
-  background: #5a4bd1;
-  box-shadow: 0 0 15px rgba(108,92,231,0.4);
-}
-.store-item .buy-btn:disabled {
-  background: rgba(255,255,255,0.1); cursor: not-allowed;
-}
-
-/* ===== TASKS & REFERRALS ===== */
-#tasksScreen {
-  display: none; min-height: 100vh;
-  position: relative; z-index: 1; padding: 20px;
-}
-.tasks-container {
-  max-width: 600px; margin: 0 auto;
-}
-.task-card {
-  background: var(--card-bg);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 15px; padding: 20px;
-  margin-bottom: 15px; display: flex;
-  align-items: center; gap: 15px;
-}
-.task-card .task-icon {
-  font-size: 2rem; width: 50px; height: 50px;
-  border-radius: 12px; background: rgba(108,92,231,0.2);
-  display: flex; align-items: center; justify-content: center;
-}
-.task-card .task-info { flex: 1; }
-.task-card .task-info h4 { font-size: 1.1rem; margin-bottom: 5px; }
-.task-card .task-info p {
-  font-size: 0.9rem; color: rgba(255,255,255,0.6);
-}
-.task-card .task-reward {
-  font-weight: 700; color: var(--warning);
-  font-size: 1.1rem;
-}
-.task-card .task-btn {
-  padding: 8px 20px; background: var(--success);
-  color: #fff; border: none; border-radius: 8px;
-  cursor: pointer; font-family: 'Cairo', sans-serif;
-  font-weight: 600; transition: all 0.3s;
-}
-.task-card .task-btn.completed {
-  background: var(--primary); cursor: default;
-}
-.task-card .task-btn:disabled {
-  background: rgba(255,255,255,0.1); cursor: not-allowed;
-}
-.referral-card {
-  background: var(--card-bg);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 15px; padding: 20px;
-  text-align: center; margin-top: 20px;
-}
-.referral-card h3 { margin-bottom: 15px; }
-.referral-link {
-  background: rgba(255,255,255,0.08);
-  padding: 12px; border-radius: 10px;
-  margin: 15px 0; font-family: monospace;
-  word-break: break-all; direction: ltr;
-}
-.copy-link-btn {
-  padding: 10px 25px; background: var(--primary);
-  color: #fff; border: none; border-radius: 10px;
-  cursor: pointer; font-family: 'Cairo', sans-serif;
-  font-weight: 600; transition: all 0.3s;
-}
-.copy-link-btn:hover {
-  background: #5a4bd1;
-  box-shadow: 0 0 15px rgba(108,92,231,0.4);
-}
-
-/* ===== GAME SCREENS (existing) ===== */
+/* ===== GAME SCREENS ===== */
 .game-screen {
   display: none; min-height: 100vh;
   position: relative; z-index: 1; padding: 20px;
@@ -542,6 +190,7 @@ body {
   padding: 20px;
 }
 .mode-selector-overlay.show { display: flex; animation: fadeIn 0.3s; }
+
 .mode-selector-content {
   background: linear-gradient(135deg, #1a1a2e, #16213e);
   border: 1px solid rgba(255,255,255,0.1);
@@ -604,6 +253,7 @@ body {
   animation: winPulse 0.5s ease infinite alternate;
 }
 @keyframes winPulse { to{box-shadow:0 0 20px rgba(0,184,148,0.4)} }
+
 .ttt-status { text-align: center; font-size: 1.1rem; font-weight: 600; margin-bottom: 15px; min-height: 30px; }
 .ttt-score {
   display: flex; justify-content: center; gap: 30px; margin-bottom: 20px;
@@ -614,6 +264,7 @@ body {
 .ttt-score .x-score .value { color: var(--accent); }
 .ttt-score .o-score .value { color: var(--success); }
 .ttt-score .d-score .value { color: var(--warning); }
+
 .ttt-mode-badge {
   text-align: center; padding: 8px 20px;
   background: rgba(108,92,231,0.2); border: 1px solid rgba(108,92,231,0.3);
@@ -664,8 +315,10 @@ body {
 .maze-ctrl-btn.down { grid-area: down; }
 .maze-ctrl-btn.left { grid-area: left; }
 .maze-ctrl-btn.right { grid-area: right; }
+
 .maze-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 .maze-actions .btn-result { padding: 10px 25px; font-size: 0.9rem; }
+
 .maze-levels-grid {
   display: grid; grid-template-columns: repeat(5,1fr);
   gap: 10px; max-width: 500px; margin: 0 auto 20px;
@@ -703,12 +356,14 @@ body {
 }
 .mem-diff-btn:hover { border-color: var(--accent); background: rgba(253,121,168,0.1); }
 .mem-diff-btn.active { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 15px rgba(253,121,168,0.3); }
+
 .memory-info {
   display: flex; justify-content: space-between; align-items: center;
   margin-bottom: 15px; padding: 10px 15px;
   background: var(--card-bg); border-radius: 12px; flex-wrap: wrap; gap: 10px;
 }
 .memory-info span { font-weight: 600; }
+
 .memory-board {
   display: grid; gap: 10px; justify-content: center;
   margin-bottom: 20px; perspective: 1000px;
@@ -738,7 +393,9 @@ body {
   background: linear-gradient(135deg, #2d1b69, #11998e);
 }
 .card-back::after { content: '❓'; font-size: 1.5rem; }
+
 .memory-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
 .memory-levels-grid {
   display: grid; grid-template-columns: repeat(5,1fr);
   gap: 10px; max-width: 500px; margin: 0 auto 20px;
@@ -814,24 +471,6 @@ body {
   font-weight: 700; margin-bottom: 15px; color: var(--secondary);
 }
 
-/* ===== NAVIGATION ===== */
-.main-nav {
-  display: flex; justify-content: center; gap: 10px;
-  padding: 10px 20px; background: var(--card-bg);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  margin-bottom: 20px; flex-wrap: wrap;
-}
-.nav-btn {
-  padding: 8px 16px; background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 10px; color: #fff;
-  cursor: pointer; font-family: 'Cairo', sans-serif;
-  font-size: 0.9rem; transition: all 0.3s;
-}
-.nav-btn:hover, .nav-btn.active {
-  background: var(--primary); border-color: var(--primary);
-}
-
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--darker); }
@@ -849,9 +488,6 @@ body {
   .maze-level-btn, .memory-level-btn { font-size: 0.9rem; }
   .mode-selector-content { padding: 25px; }
   .memory-board { gap: 6px; }
-  .ad-container { min-height: 90px; }
-  .ad-container.square { min-height: 250px; }
-  .letters-grid { grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); }
 }
 </style>
 </head>
@@ -859,7 +495,7 @@ body {
 
 <!-- LOADING SCREEN -->
 <div id="loadingScreen">
-  <div class="loader-logo">🎮 GAME ZONE</div>
+  <div class="loader-logo">🎮 GAME HUB</div>
   <div class="loader-percent" id="loadPercent">0%</div>
   <div class="loader-bar-container">
     <div class="loader-bar" id="loadBar"></div>
@@ -870,86 +506,17 @@ body {
 <!-- PARTICLES -->
 <div class="particles" id="particles"></div>
 
-<!-- AUTH SCREEN -->
-<div id="authScreen">
-  <div class="auth-container">
-    <h2 id="authTitle">تسجيل الدخول</h2>
-    <form class="auth-form" id="authForm">
-      <div class="form-group">
-        <label>البريد الإلكتروني</label>
-        <input type="email" id="authEmail" required placeholder="example@email.com">
-      </div>
-      <div class="form-group">
-        <label>كلمة المرور</label>
-        <input type="password" id="authPassword" required placeholder="••••••••">
-      </div>
-      <div class="form-group" id="nameGroup" style="display:none;">
-        <label>الاسم</label>
-        <input type="text" id="authName" placeholder="اسمك">
-      </div>
-      <div class="form-group" id="genderGroup" style="display:none;">
-        <label>الجنس</label>
-        <div class="gender-group">
-          <div class="gender-option" data-value="male">👨 ذكر</div>
-          <div class="gender-option" data-value="female">👩 أنثى</div>
-        </div>
-      </div>
-      <div class="form-group" id="dobGroup" style="display:none;">
-        <label>تاريخ الميلاد</label>
-        <input type="date" id="authDob">
-      </div>
-      <div class="form-group" id="photoGroup" style="display:none;">
-        <label>صورة الحساب</label>
-        <div class="profile-upload" id="profileUpload">
-          <div class="profile-preview" id="profilePreview">👤</div>
-          <p style="font-size:0.85rem;color:rgba(255,255,255,0.6);">اضغط لرفع صورة</p>
-          <input type="file" id="profileFile" accept="image/*" style="display:none;">
-        </div>
-      </div>
-      <button type="submit" class="auth-btn" id="authSubmit">دخول</button>
-    </form>
-    <div class="auth-switch">
-      <span id="authSwitchText">ليس لديك حساب؟ </span>
-      <a id="authSwitchLink">إنشاء حساب جديد</a>
-    </div>
-  </div>
-  
-  <!-- Adsterra 300x250 -->
-  <div class="ad-container square">
-    <span class="ad-label">إعلان</span>
-    <script type="text/javascript">
-      atOptions = {
-        'key' : '29323066',
-        'format' : 'iframe',
-        'height' : 250,
-        'width' : 300,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//gamezone.qzz.io/invoke.js"></script>
-  </div>
-</div>
-
 <!-- MAIN MENU -->
 <div id="mainMenu">
   <div class="menu-header">
-    <h1>🎮 GAME ZONE</h1>
+    <h1>🎮 مركز الألعاب</h1>
     <p>اختر لعبتك المفضلة واستمتع!</p>
   </div>
   
-  <!-- Adsterra 728x90 Top -->
-  <div class="ad-container top">
+  <!-- Ad Space Top -->
+  <div class="ad-container">
     <span class="ad-label">إعلان</span>
-    <script type="text/javascript">
-      atOptions = {
-        'key' : '29323072',
-        'format' : 'iframe',
-        'height' : 90,
-        'width' : 728,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//gamezone.qzz.io/invoke.js"></script>
+    <div>مساحة إعلانية - 728x90</div>
   </div>
   
   <div class="games-grid">
@@ -1012,215 +579,12 @@ body {
         <p>75 مرحلة بـ 3 صعوبات - اختبر ذاكرتك!</p>
       </div>
     </div>
-    <div class="game-card" onclick="openLetterGame()">
-      <div class="game-card-image" style="background: linear-gradient(135deg, #11998e, #38ef7d);">
-        <svg width="150" height="150" viewBox="0 0 150 150">
-          <text x="15" y="60" font-family="Arial" font-size="40" font-weight="bold" fill="#fff">G</text>
-          <text x="50" y="60" font-family="Arial" font-size="40" font-weight="bold" fill="#fff">A</text>
-          <text x="85" y="60" font-family="Arial" font-size="40" font-weight="bold" fill="#fff">M</text>
-          <text x="120" y="60" font-family="Arial" font-size="40" font-weight="bold" fill="#ffd700">E</text>
-          <text x="30" y="110" font-family="Arial" font-size="40" font-weight="bold" fill="#fff">Z</text>
-          <text x="75" y="110" font-family="Arial" font-size="40" font-weight="bold" fill="#ffd700">O</text>
-          <text x="110" y="110" font-family="Arial" font-size="40" font-weight="bold" fill="#fff">N</text>
-          <text x="135" y="110" font-family="Arial" font-size="40" font-weight="bold" fill="#fff">E</text>
-        </svg>
-      </div>
-      <div class="game-card-info">
-        <h3>🔤 تجميع الحروف</h3>
-        <p>اجمع حروف GAME ZONE واربح جوائز!</p>
-      </div>
-    </div>
   </div>
   
-  <!-- Adsterra 728x90 Bottom -->
-  <div class="ad-container bottom">
+  <!-- Ad Space Bottom -->
+  <div class="ad-container">
     <span class="ad-label">إعلان</span>
-    <script type="text/javascript">
-      atOptions = {
-        'key' : '29323072',
-        'format' : 'iframe',
-        'height' : 90,
-        'width' : 728,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//gamezone.qzz.io/invoke.js"></script>
-  </div>
-</div>
-
-<!-- USER DASHBOARD NAV -->
-<div id="userNav" class="main-nav" style="display:none;">
-  <button class="nav-btn active" onclick="showSection('mainMenu')">🏠 الرئيسية</button>
-  <button class="nav-btn" onclick="showSection('letterGame')">🔤 الحروف</button>
-  <button class="nav-btn" onclick="showSection('storeScreen')">🛒 المتجر</button>
-  <button class="nav-btn" onclick="showSection('tasksScreen')">📋 المهام</button>
-</div>
-
-<!-- LETTER COLLECTION GAME -->
-<div id="letterGame" class="game-screen">
-  <div class="game-header">
-    <button class="btn-back" onclick="showSection('mainMenu')">🏠 الرئيسية</button>
-    <h2>🔤 تجميع حروف GAME ZONE</h2>
-    <div></div>
-  </div>
-  
-  <div class="letter-header">
-    <h2>اجمع الحروف واربح!</h2>
-    <p>كل يوم فتحة مجانية • حرف <strong style="color:var(--warning);">Z</strong> نادر جداً (1 من كل 100)</p>
-    <p style="margin-top:5px;font-size:0.9rem;">🎁 الجائزة: رقم تليجرام خاص - تواصل مع @yyr_x</p>
-  </div>
-  
-  <div class="letter-pull-area">
-    <div class="letter-wheel" id="letterWheel">
-      <span>?</span>
-    </div>
-    <button class="letter-pull-btn" id="pullBtn" onclick="pullLetter()">
-      🎁 فتحة مجانية اليوم
-    </button>
-    <p class="letter-pull-info" id="pullInfo">
-      فتحتك اليومية متاحة! اضغط للعب
-    </p>
-    <button class="letter-pull-btn" id="adPullBtn" onclick="watchAdForPull()" style="margin-top:10px;background:var(--warning);display:none;">
-      📺 شاهد إعلان + فتحة إضافية
-    </button>
-  </div>
-  
-  <div class="letter-inventory">
-    <h3>🎒 حقيبتك</h3>
-    <div class="letters-grid" id="lettersGrid">
-      <!-- Letters will be added here -->
-    </div>
-  </div>
-  
-  <!-- Adsterra 300x250 -->
-  <div class="ad-container square">
-    <span class="ad-label">إعلان</span>
-    <script type="text/javascript">
-      atOptions = {
-        'key' : '29323066',
-        'format' : 'iframe',
-        'height' : 250,
-        'width' : 300,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//gamezone.qzz.io/invoke.js"></script>
-  </div>
-</div>
-
-<!-- STORE SCREEN -->
-<div id="storeScreen" class="game-screen">
-  <div class="game-header">
-    <button class="btn-back" onclick="showSection('mainMenu')">🏠 الرئيسية</button>
-    <h2>🛒 متجر GAME ZONE</h2>
-    <div></div>
-  </div>
-  
-  <div class="store-header">
-    <h2>رصيدك من النقاط</h2>
-    <div class="points-balance" id="userPoints">0 ⭐</div>
-  </div>
-  
-  <div class="store-items">
-    <div class="store-item">
-      <div class="icon">📱</div>
-      <h3>رقم تليجرام خاص</h3>
-      <p class="desc">احصل على رقم تليجرام مميز للتواصل</p>
-      <div class="price">250 ⭐</div>
-      <button class="buy-btn" onclick="buyItem('telegram', 250)">شراء</button>
-    </div>
-    <div class="store-item">
-      <div class="icon">⭐</div>
-      <h3>25 نجمة</h3>
-      <p class="desc">حزمة نقاط إضافية لتسريع تقدمك</p>
-      <div class="price">250 ⭐</div>
-      <button class="buy-btn" onclick="buyItem('stars', 250)">شراء</button>
-    </div>
-  </div>
-  
-  <!-- Adsterra 300x250 -->
-  <div class="ad-container square">
-    <span class="ad-label">إعلان</span>
-    <script type="text/javascript">
-      atOptions = {
-        'key' : '29323066',
-        'format' : 'iframe',
-        'height' : 250,
-        'width' : 300,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//gamezone.qzz.io/invoke.js"></script>
-  </div>
-</div>
-
-<!-- TASKS & REFERRALS SCREEN -->
-<div id="tasksScreen" class="game-screen">
-  <div class="game-header">
-    <button class="btn-back" onclick="showSection('mainMenu')">🏠 الرئيسية</button>
-    <h2>📋 المهام والمكافآت</h2>
-    <div></div>
-  </div>
-  
-  <div class="tasks-container">
-    <h3 style="margin-bottom:15px;">✨ المهام اليومية</h3>
-    
-    <div class="task-card">
-      <div class="task-icon">📺</div>
-      <div class="task-info">
-        <h4>شاهد إعلان مكافأة</h4>
-        <p>احصل على فتحة إضافية في لعبة الحروف</p>
-      </div>
-      <div class="task-reward">+1 فتحة</div>
-      <button class="task-btn" id="taskAdBtn" onclick="completeTask('ad')">مشاهدة</button>
-    </div>
-    
-    <div class="task-card">
-      <div class="task-icon">🎮</div>
-      <div class="task-info">
-        <h4>العب أي لعبة</h4>
-        <p>اكسب نقطة واحدة لكل لعبة تلعبها</p>
-      </div>
-      <div class="task-reward">+1 ⭐</div>
-      <button class="task-btn completed" disabled>مفعل تلقائياً</button>
-    </div>
-    
-    <div class="task-card">
-      <div class="task-icon">✈️</div>
-      <div class="task-info">
-        <h4>اشترك في قناة تليجرام</h4>
-        <p>تابعنا على @ucrey للحصول على أخبار حصرية</p>
-      </div>
-      <div class="task-reward">+10 ⭐</div>
-      <button class="task-btn" id="taskTelegramBtn" onclick="completeTask('telegram')">اشتراك</button>
-    </div>
-    
-    <div class="referral-card">
-      <h3>👥 نظام الإحالة</h3>
-      <p style="color:rgba(255,255,255,0.6);margin-bottom:10px;">
-        ادعُ أصدقاءك واربح 2 نقطة لكل صديق يسجل عبر رابطك
-      </p>
-      <div class="referral-link" id="referralLink">https://gamezone.qzz.io/?ref=USER_ID</div>
-      <button class="copy-link-btn" onclick="copyReferralLink()">📋 نسخ الرابط</button>
-      <p style="margin-top:15px;font-size:0.9rem;color:var(--warning);">
-        الإحالات الناجحة: <span id="referralCount">0</span> • النقاط المكتسبة: <span id="referralPoints">0</span> ⭐
-      </p>
-    </div>
-  </div>
-  
-  <!-- Adsterra 300x250 -->
-  <div class="ad-container square">
-    <span class="ad-label">إعلان</span>
-    <script type="text/javascript">
-      atOptions = {
-        'key' : '29323066',
-        'format' : 'iframe',
-        'height' : 250,
-        'width' : 300,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//gamezone.qzz.io/invoke.js"></script>
+    <div>مساحة إعلانية - 728x90</div>
   </div>
 </div>
 
@@ -1271,19 +635,10 @@ body {
     <div class="ttt-board" id="tttBoard"></div>
   </div>
   
-  <!-- Adsterra 300x250 -->
-  <div class="ad-container square">
+  <!-- Ad Space -->
+  <div class="ad-container">
     <span class="ad-label">إعلان</span>
-    <script type="text/javascript">
-      atOptions = {
-        'key' : '29323066',
-        'format' : 'iframe',
-        'height' : 250,
-        'width' : 300,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//gamezone.qzz.io/invoke.js"></script>
+    <div>مساحة إعلانية - 300x250</div>
   </div>
 </div>
 
@@ -1317,19 +672,10 @@ body {
       </div>
     </div>
     
-    <!-- Adsterra 300x250 -->
-    <div class="ad-container square">
+    <!-- Ad Space -->
+    <div class="ad-container">
       <span class="ad-label">إعلان</span>
-      <script type="text/javascript">
-        atOptions = {
-          'key' : '29323066',
-          'format' : 'iframe',
-          'height' : 250,
-          'width' : 300,
-          'params' : {}
-        };
-      </script>
-      <script type="text/javascript" src="//gamezone.qzz.io/invoke.js"></script>
+      <div>مساحة إعلانية - 300x250</div>
     </div>
   </div>
 </div>
@@ -1361,19 +707,10 @@ body {
       </div>
     </div>
     
-    <!-- Adsterra 300x250 -->
-    <div class="ad-container square">
+    <!-- Ad Space -->
+    <div class="ad-container">
       <span class="ad-label">إعلان</span>
-      <script type="text/javascript">
-        atOptions = {
-          'key' : '29323066',
-          'format' : 'iframe',
-          'height' : 250,
-          'width' : 300,
-          'params' : {}
-        };
-      </script>
-      <script type="text/javascript" src="//gamezone.qzz.io/invoke.js"></script>
+      <div>مساحة إعلانية - 300x250</div>
     </div>
   </div>
 </div>
@@ -1394,534 +731,11 @@ body {
 <!-- CONFETTI -->
 <div class="confetti-container" id="confettiContainer"></div>
 
-<!-- REWARDED AD MODAL -->
-<div class="result-modal" id="rewardedAdModal">
-  <div class="result-content">
-    <div class="result-icon">🎁</div>
-    <h2>مشاهدة إعلان مكافأة</h2>
-    <p>شاهد إعلاناً قصيراً للحصول على فتحة إضافية!</p>
-    <div class="result-buttons">
-      <button class="btn-result btn-next" onclick="completeRewardedAd()">✅ شاهدت الإعلان</button>
-      <button class="btn-result btn-home" onclick="document.getElementById('rewardedAdModal').classList.remove('show')">إلغاء</button>
-    </div>
-  </div>
-</div>
-
 <script>
-// ===== GLOBAL CONFIG =====
-const CONFIG = {
-  domain: 'gamezone.qzz.io',
-  adsterra: {
-    banner300x250: '29323066',
-    banner728x90: '29323072',
-    rewarded: '29323070'
-  },
-  telegram: {
-    prizeChannel: '@yyr_x',
-    taskChannel: '@ucrey'
-  },
-  letterGame: {
-    letters: ['G','A','M','E','Z','O','N'],
-    zRarity: 0.01, // 1% chance = ~1 per 100 pulls globally
-    dailyFreePulls: 1,
-    adExtraPulls: 1
-  },
-  points: {
-    perGame: 1,
-    perReferral: 2,
-    taskTelegram: 10
-  },
-  store: {
-    telegramNumber: { price: 250, type: 'telegram' },
-    stars25: { price: 250, type: 'stars', amount: 25 }
-  }
-};
+// ===== GLOBALS =====
+let currentGame = null;
 
-// ===== DATABASE SIMULATION (localStorage) =====
-// ⚠️ NOTE: For production, replace with real backend + GitHub API integration
-const DB = {
-  users: new Map(),
-  currentUser: null,
-  
-  init() {
-    const saved = localStorage.getItem('gamezone_users');
-    if (saved) {
-      const users = JSON.parse(saved);
-      this.users = new Map(Object.entries(users));
-    }
-    const current = localStorage.getItem('gamezone_current');
-    if (current) this.currentUser = current;
-  },
-  
-  save() {
-    const usersObj = Object.fromEntries(this.users);
-    localStorage.setItem('gamezone_users', JSON.stringify(usersObj));
-    if (this.currentUser) {
-      localStorage.setItem('gamezone_current', this.currentUser);
-    }
-  },
-  
-  getUser(email) {
-    return this.users.get(email);
-  },
-  
-  createUser(userData) {
-    const user = {
-      ...userData,
-      id: 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2,9),
-      points: 0,
-      letters: {},
-      lastPullDate: null,
-      adPullsToday: 0,
-      tasks: { telegram: false, ad: false },
-      referrals: [],
-      referralCode: Math.random().toString(36).substr(2,8),
-      createdAt: new Date().toISOString()
-    };
-    this.users.set(userData.email, user);
-    this.save();
-    return user;
-  },
-  
-  updateUser(email, updates) {
-    const user = this.users.get(email);
-    if (user) {
-      Object.assign(user, updates);
-      this.save();
-      return user;
-    }
-    return null;
-  },
-  
-  // Simulate global pull counter for Z rarity
-  getGlobalPullCount() {
-    let count = parseInt(localStorage.getItem('gz_global_pulls') || '0');
-    return count;
-  },
-  
-  incrementGlobalPulls() {
-    let count = this.getGlobalPullCount();
-    localStorage.setItem('gz_global_pulls', (count + 1).toString());
-    return count + 1;
-  }
-};
-
-// ===== AUTH SYSTEM =====
-let isLoginMode = true;
-let selectedGender = null;
-let profileImage = null;
-
-function toggleAuthMode() {
-  isLoginMode = !isLoginMode;
-  document.getElementById('authTitle').textContent = isLoginMode ? 'تسجيل الدخول' : 'إنشاء حساب جديد';
-  document.getElementById('authSubmit').textContent = isLoginMode ? 'دخول' : 'إنشاء حساب';
-  document.getElementById('authSwitchText').textContent = isLoginMode ? 'ليس لديك حساب؟ ' : 'لديك حساب بالفعل؟ ';
-  document.getElementById('authSwitchLink').textContent = isLoginMode ? 'إنشاء حساب جديد' : 'تسجيل الدخول';
-  
-  // Toggle extra fields
-  const extraFields = ['nameGroup', 'genderGroup', 'dobGroup', 'photoGroup'];
-  extraFields.forEach(id => {
-    document.getElementById(id).style.display = isLoginMode ? 'none' : 'block';
-  });
-}
-
-// Gender selection
-document.querySelectorAll('.gender-option').forEach(opt => {
-  opt.addEventListener('click', function() {
-    document.querySelectorAll('.gender-option').forEach(o => o.classList.remove('active'));
-    this.classList.add('active');
-    selectedGender = this.dataset.value;
-  });
-});
-
-// Profile upload
-document.getElementById('profileUpload').addEventListener('click', () => {
-  document.getElementById('profileFile').click();
-});
-
-document.getElementById('profileFile').addEventListener('change', function(e) {
-  const file = e.target.files[0];
-  if (file && file.type.startsWith('image/')) {
-    const reader = new FileReader();
-    reader.onload = function(event) {
-      profileImage = event.target.result;
-      document.getElementById('profilePreview').innerHTML = `<img src="${profileImage}" alt="Profile">`;
-    };
-    reader.readAsDataURL(file);
-  }
-});
-
-// Auth form submit
-document.getElementById('authForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  const email = document.getElementById('authEmail').value.trim();
-  const password = document.getElementById('authPassword').value;
-  
-  if (isLoginMode) {
-    // Login
-    const user = DB.getUser(email);
-    if (user && user.password === password) {
-      DB.currentUser = email;
-      showDashboard();
-    } else {
-      alert('❌ البريد الإلكتروني أو كلمة المرور غير صحيحة');
-    }
-  } else {
-    // Register
-    const name = document.getElementById('authName').value.trim();
-    const dob = document.getElementById('authDob').value;
-    
-    if (!name || !selectedGender || !dob) {
-      alert('❌ يرجى ملء جميع الحقول');
-      return;
-    }
-    
-    if (DB.getUser(email)) {
-      alert('❌ هذا البريد الإلكتروني مسجل مسبقاً');
-      return;
-    }
-    
-    const user = DB.createUser({
-      email, password, name,
-      gender: selectedGender,
-      dob,
-      avatar: profileImage
-    });
-    
-    DB.currentUser = email;
-    showDashboard();
-  }
-});
-
-document.getElementById('authSwitchLink').addEventListener('click', toggleAuthMode);
-
-function showDashboard() {
-  document.getElementById('authScreen').style.display = 'none';
-  document.getElementById('mainMenu').style.display = 'block';
-  document.getElementById('userNav').style.display = 'flex';
-  updateUserDashboard();
-}
-
-function updateUserDashboard() {
-  if (!DB.currentUser) return;
-  const user = DB.getUser(DB.currentUser);
-  
-  // Update points display
-  document.getElementById('userPoints').textContent = `${user.points} ⭐`;
-  
-  // Update referral link
-  document.getElementById('referralLink').textContent = 
-    `https://${CONFIG.domain}/?ref=${user.referralCode}`;
-  document.getElementById('referralCount').textContent = user.referrals.length;
-  document.getElementById('referralPoints').textContent = user.referrals.length * CONFIG.points.perReferral;
-  
-  // Update letter inventory
-  renderLetterInventory();
-  
-  // Update pull button state
-  updatePullButton();
-  
-  // Update task buttons
-  document.getElementById('taskTelegramBtn').disabled = user.tasks.telegram;
-  document.getElementById('taskTelegramBtn').textContent = user.tasks.telegram ? '✅ مكتمل' : 'اشتراك';
-  document.getElementById('taskTelegramBtn').classList.toggle('completed', user.tasks.telegram);
-}
-
-// ===== NAVIGATION =====
-function showSection(sectionId) {
-  // Hide all screens
-  document.querySelectorAll('.game-screen, #mainMenu, #userDashboard').forEach(el => {
-    el.style.display = 'none';
-  });
-  
-  // Show requested section
-  if (sectionId === 'mainMenu') {
-    document.getElementById('mainMenu').style.display = 'block';
-  } else {
-    document.getElementById(sectionId).style.display = 'block';
-  }
-  
-  // Update nav buttons
-  document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-  event?.target?.classList?.add('active');
-  
-  // Refresh data if needed
-  if (sectionId === 'letterGame') {
-    renderLetterInventory();
-    updatePullButton();
-  } else if (sectionId === 'storeScreen' || sectionId === 'tasksScreen') {
-    updateUserDashboard();
-  }
-}
-
-function goHome() {
-  document.getElementById('resultModal').classList.remove('show');
-  document.getElementById('tttModeSelect').classList.remove('show');
-  document.querySelectorAll('.game-screen').forEach(s => s.style.display = 'none');
-  
-  if (DB.currentUser) {
-    document.getElementById('mainMenu').style.display = 'block';
-    document.getElementById('userNav').style.display = 'flex';
-  } else {
-    document.getElementById('authScreen').style.display = 'block';
-  }
-}
-
-function logout() {
-  DB.currentUser = null;
-  localStorage.removeItem('gamezone_current');
-  document.getElementById('userNav').style.display = 'none';
-  document.getElementById('mainMenu').style.display = 'none';
-  document.getElementById('authScreen').style.display = 'block';
-}
-
-// ===== LETTER COLLECTION GAME =====
-const LETTER_CODES = {
-  'G': 'GZ-' + Math.random().toString(36).substr(2,6).toUpperCase(),
-  'A': 'AZ-' + Math.random().toString(36).substr(2,6).toUpperCase(),
-  'M': 'MZ-' + Math.random().toString(36).substr(2,6).toUpperCase(),
-  'E': 'EZ-' + Math.random().toString(36).substr(2,6).toUpperCase(),
-  'Z': 'ZGOLD-' + Math.random().toString(36).substr(2,8).toUpperCase(),
-  'O': 'OZ-' + Math.random().toString(36).substr(2,6).toUpperCase(),
-  'N': 'NZ-' + Math.random().toString(36).substr(2,6).toUpperCase()
-};
-
-function openLetterGame() {
-  if (!DB.currentUser) {
-    document.querySelectorAll('.game-screen').forEach(s => s.style.display = 'none');
-    document.getElementById('mainMenu').style.display = 'none';
-    document.getElementById('authScreen').style.display = 'block';
-    return;
-  }
-  showSection('letterGame');
-}
-
-function updatePullButton() {
-  if (!DB.currentUser) return;
-  const user = DB.getUser(DB.currentUser);
-  const btn = document.getElementById('pullBtn');
-  const adBtn = document.getElementById('adPullBtn');
-  const info = document.getElementById('pullInfo');
-  
-  const today = new Date().toDateString();
-  const hasUsedFree = user.lastPullDate === today;
-  
-  btn.disabled = hasUsedFree;
-  btn.innerHTML = hasUsedFree ? '✅ استخدمت فتحتك اليوم' : '🎁 فتحة مجانية اليوم';
-  
-  info.textContent = hasUsedFree 
-    ? 'عد غداً لفتحة مجانية جديدة، أو شاهد إعلاناً لفتحة إضافية!'
-    : 'فتحتك اليومية متاحة! اضغط للعب';
-  
-  adBtn.style.display = hasUsedFree ? 'inline-flex' : 'none';
-}
-
-function pullLetter(isAdPull = false) {
-  if (!DB.currentUser) return;
-  const user = DB.getUser(DB.currentUser);
-  const today = new Date().toDateString();
-  
-  if (!isAdPull && user.lastPullDate === today) {
-    alert('❌ لقد استخدمت فتحتك المجانية اليوم!');
-    return;
-  }
-  
-  // Determine letter with Z rarity
-  const globalCount = DB.incrementGlobalPulls();
-  let letter;
-  
-  if (Math.random() < CONFIG.letterGame.zRarity || globalCount % 100 === 0) {
-    letter = 'Z'; // Rare!
-  } else {
-    const available = CONFIG.letterGame.letters.filter(l => l !== 'Z');
-    letter = available[Math.floor(Math.random() * available.length)];
-  }
-  
-  // Add to inventory
-  if (!user.letters[letter]) user.letters[letter] = { count: 0, code: LETTER_CODES[letter] };
-  user.letters[letter].count++;
-  
-  // Update user
-  if (isAdPull) {
-    user.adPullsToday = (user.adPullsToday || 0) + 1;
-  } else {
-    user.lastPullDate = today;
-    // Award point for playing
-    user.points += CONFIG.points.perGame;
-  }
-  
-  DB.updateUser(DB.currentUser, user);
-  
-  // Show result
-  const wheel = document.getElementById('letterWheel');
-  wheel.innerHTML = `<span style="color:${letter === 'Z' ? '#ffd700' : '#fff'};font-size:4rem;">${letter}</span>`;
-  
-setTimeout(() => {
-    if (letter === 'Z') {
-      // جائزة حرف Z النادر
-      const telegramNumber = '+1-555-' + Math.floor(1000 + Math.random() * 9000);
-      const uniqueCode = 'ZGOLD-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substr(2,8).toUpperCase();
-      
-      alert(`🏆 مبروك! حصلت على الحرف النادر Z!\n\n📋 الكود الخاص بك: ${uniqueCode}\n📱 رقم التليجرام الجائزة: ${telegramNumber}\n\n✈️ ارسل الكود إلى حسابي تليجرام لتستلم: @yyr_x`);
-      
-    } else {
-      // حروف عادية
-      alert(`🎉 حصلت على حرف ${letter}!\nالكود: ${user.letters[letter].code}\n(انسخه من حقيبتك)`);
-    }
-    
-    renderLetterInventory();
-    updatePullButton();
-    updateUserDashboard();
-  }, 500);
-
-function watchAdForPull() {
-  document.getElementById('rewardedAdModal').classList.add('show');
-}
-
-function completeRewardedAd() {
-  document.getElementById('rewardedAdModal').classList.remove('show');
-  pullLetter(true);
-}
-
-function renderLetterInventory() {
-  if (!DB.currentUser) return;
-  const user = DB.getUser(DB.currentUser);
-  const grid = document.getElementById('lettersGrid');
-  grid.innerHTML = '';
-  
-  CONFIG.letterGame.letters.forEach(letter => {
-    if (user.letters[letter]) {
-      const card = document.createElement('div');
-      card.className = `letter-card ${letter === 'Z' ? 'rare' : ''}`;
-      card.innerHTML = `
-        <div class="letter">${letter}</div>
-        <div class="count">x${user.letters[letter].count}</div>
-        <div class="copy-code" onclick="copyLetterCode('${letter}')">📋 ${user.letters[letter].code}</div>
-      `;
-      card.onclick = (e) => {
-        if (!e.target.classList.contains('copy-code')) {
-          card.classList.toggle('copied');
-        }
-      };
-      grid.appendChild(card);
-    }
-  });
-  
-  if (grid.children.length === 0) {
-    grid.innerHTML = '<p style="color:rgba(255,255,255,0.5);grid-column:1/-1;text-align:center;padding:20px;">لا توجد حروف بعد. ابدأ باللعب!</p>';
-  }
-}
-
-function copyLetterCode(letter) {
-  if (!DB.currentUser) return;
-  const user = DB.getUser(DB.currentUser);
-  const code = user.letters[letter]?.code;
-  if (code) {
-    navigator.clipboard.writeText(code).then(() => {
-      alert(`✅ تم نسخ الكود: ${code}\nتم خصم الحرف من حقيبتك`);
-      // Remove one instance
-      user.letters[letter].count--;
-      if (user.letters[letter].count <= 0) delete user.letters[letter];
-      DB.updateUser(DB.currentUser, user);
-      renderLetterInventory();
-    });
-  }
-}
-
-// ===== STORE =====
-function buyItem(itemType, price) {
-  if (!DB.currentUser) {
-    alert('❌ يرجى تسجيل الدخول أولاً');
-    return;
-  }
-  
-  const user = DB.getUser(DB.currentUser);
-  
-  if (user.points < price) {
-    alert(`❌ رصيدك غير كافي! تحتاج ${price} نقطة`);
-    return;
-  }
-  
-  if (confirm(`هل تريد شراء هذا العنصر مقابل ${price} نقطة؟`)) {
-    user.points -= price;
-    
-    // توليد كود فريد
-    const uniqueCode = 'GZ-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substr(2,6).toUpperCase();
-    
-    if (itemType === 'telegram') {
-      // شراء رقم تليجرام
-      const telegramNumber = '+1-555-' + Math.floor(1000 + Math.random() * 9000);
-      alert(`🎉 تم الشراء بنجاح!\n\n📋 الكود الخاص بك: ${uniqueCode}\n📱 رقم التليجرام: ${telegramNumber}\n\n✈️ ارسل الكود إلى حسابي تليجرام لتستلم: @yyr_x`);
-      
-    } else if (itemType === 'stars') {
-      // شراء 25 نجمة
-      user.points += 25;
-      alert(`✅ تم الشراء بنجاح!\n\n📋 الكود الخاص بك: ${uniqueCode}\n⭐ تمت إضافة 25 نجمة لرصيدك!\n\n✈️ ارسل الكود إلى حسابي تليجرام لتستلم: @yyr_x`);
-    }
-    
-    DB.updateUser(DB.currentUser, user);
-    updateUserDashboard();
-  }
-	}
-
-// ===== TASKS & REFERRALS =====
-function completeTask(taskType) {
-  if (!DB.currentUser) return;
-  const user = DB.getUser(DB.currentUser);
-  
-  if (taskType === 'telegram') {
-    if (user.tasks.telegram) {
-      alert('✅ لقد أكملت هذه المهمة مسبقاً!');
-      return;
-    }
-    // Open Telegram
-    window.open(`https://t.me/${CONFIG.telegram.taskChannel.replace('@', '')}`, '_blank');
-    // Mark as completed after delay (in real app, verify via API)
-    setTimeout(() => {
-      user.tasks.telegram = true;
-      user.points += CONFIG.points.taskTelegram;
-      DB.updateUser(DB.currentUser, user);
-      updateUserDashboard();
-      alert(`🎉 مبروك! حصلت على ${CONFIG.points.taskTelegram} نقاط`);
-    }, 3000);
-    
-  } else if (taskType === 'ad') {
-    document.getElementById('rewardedAdModal').classList.add('show');
-  }
-}
-
-function copyReferralLink() {
-  const link = document.getElementById('referralLink').textContent;
-  navigator.clipboard.writeText(link).then(() => {
-    alert('✅ تم نسخ رابط الإحالة! شاركه مع أصدقائك');
-  });
-}
-
-// Check for referral on page load
-function checkReferral() {
-  const params = new URLSearchParams(window.location.search);
-  const refCode = params.get('ref');
-  
-  if (refCode && DB.currentUser) {
-    // Find user with this referral code
-    for (let [email, user] of DB.users) {
-      if (user.referralCode === refCode && email !== DB.currentUser) {
-        // Check if already referred
-        if (!user.referrals.includes(DB.currentUser)) {
-          user.referrals.push(DB.currentUser);
-          user.points += CONFIG.points.perReferral;
-          DB.updateUser(email, user);
-          alert(`🎉 صديقك انضم عبر رابطك! حصلت على ${CONFIG.points.perReferral} نقاط`);
-          updateUserDashboard();
-        }
-        break;
-      }
-    }
-  }
-}
-
-// ===== TIC TAC TOE (existing - unchanged) =====
+// TTT
 let tttMode = 'pvp';
 let tttDifficulty = 'easy';
 let tttBoard = Array(9).fill('');
@@ -1929,13 +743,150 @@ let tttGameActive = true;
 let tttCurrentPlayer = 'X';
 let tttScores = { x: 0, o: 0, draw: 0 };
 
-function openTTTModeSelect() {
-  if (!DB.currentUser) {
-    document.querySelectorAll('.game-screen').forEach(s => s.style.display = 'none');
-    document.getElementById('mainMenu').style.display = 'none';
-    document.getElementById('authScreen').style.display = 'block';
-    return;
+// Maze
+let mazeGrid = [];
+let mazeCols = 7, mazeRows = 7;
+let playerPos = { x: 0, y: 0 };
+let mazeCurrentLevel = 1;
+let mazeSteps = 0;
+let mazeCompleted = new Set();
+const MAZE_LEVELS = 25;
+
+// Memory - Separate completed sets for each difficulty
+let memoryCards = [];
+let memoryFlipped = [];
+let memoryMatched = new Set();
+let memoryLocked = false;
+let memoryCurrentLevel = 1;
+let memoryDiff = 'easy';
+let memoryCompleted = {
+  easy: new Set(),
+  medium: new Set(),
+  hard: new Set()
+};
+const MEMORY_LEVELS = 25;
+
+// Emojis for memory game - Extended list to ensure no empty squares
+const emojis = ['🎮','🎲','🎯','🏆','⭐','🌟','💎','🔥','🎪','','🎨','','🎸','','🎻','','🎧','','🎢','','🎠','','🎳','','🏀','','🏈','','🏐','','🏄','','🏇','','🦄','','🦊','','🐨','','🐯','','🐸','','🦋','🐝','','🦀','','🦜','','🐢','','🐍','','🐳','','🦈','','🦒','','🦛','','🐘','','🦌','','🐑','','🐗','','🐕','','🦮','','🐓','','🦚','','🦢','🦩','🐇','🦨','','🦥','','🐿️','','','🍊','🍋','🍌','🍉','🍇','🍓','🫐','','🍒','','🥭','','🥥','🥝','🍅','','🥑','','🥬','','🌶️','','','🫑','🥔','','🥐','','🍞','','🥨','','🥚','','🧈','','🧇','','🥩','','🍖','🦴','','🍔','🍟','🍕','🥪','🥙','','🌮','','🫔','🥗','🥘','','🥫','','🍜','','🍛','','🍱','','🦪','','🍙','','🍘','','🥠','','🍢','','🍧','🍨','🍦','','🧁','🍰','🎂','','🍭','','🍫','','🍩','','🌰','🥜','🍯','🥛','🍼','☕','🫖','🍵','🧃','','🧋','','🍺','','🥂','','🥃','','🍹','🧉','🍾','🧊','','🍴','️','🥣','🥡','🥢',''];
+
+// ===== LOADING =====
+function startLoading() {
+  const bar = document.getElementById('loadBar');
+  const percent = document.getElementById('loadPercent');
+  const text = document.getElementById('loadText');
+  const msgs = ['جاري تحميل الألعاب...','إعداد المتاهة...','تجهيز اختبار الذاكرة...','تحميل إكس أو...','جاهز!'];
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += Math.random() * 15 + 5;
+    if (progress > 100) progress = 100;
+    bar.style.width = progress + '%';
+    percent.textContent = Math.floor(progress) + '%';
+    text.textContent = msgs[Math.min(Math.floor(progress / 25), msgs.length - 1)];
+    if (progress >= 100) {
+      clearInterval(interval);
+      setTimeout(() => {
+        document.getElementById('loadingScreen').classList.add('hidden');
+        document.getElementById('mainMenu').style.display = 'block';
+        createParticles();
+      }, 500);
+    }
+  }, 200);
+}
+
+// ===== PARTICLES =====
+function createParticles() {
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDuration = (Math.random() * 10 + 8) + 's';
+    p.style.animationDelay = (Math.random() * 10) + 's';
+    p.style.width = p.style.height = (Math.random() * 3 + 1) + 'px';
+    container.appendChild(p);
   }
+}
+
+// ===== NAVIGATION =====
+function openGame(game) {
+  currentGame = game;
+  document.getElementById('mainMenu').style.display = 'none';
+  if (game === 'maze') {
+    document.getElementById('mazeScreen').style.display = 'block';
+    showMazeLevels();
+  } else if (game === 'memory') {
+    document.getElementById('memoryScreen').style.display = 'block';
+    showMemoryLevels();
+  }
+}
+
+function goHome() {
+  document.getElementById('resultModal').classList.remove('show');
+  document.getElementById('tttModeSelect').classList.remove('show');
+  document.querySelectorAll('.game-screen').forEach(s => s.style.display = 'none');
+  document.getElementById('mainMenu').style.display = 'block';
+  currentGame = null;
+}
+
+function showResult(icon, title, text, extraBtn) {
+  document.getElementById('resultIcon').textContent = icon;
+  document.getElementById('resultTitle').textContent = title;
+  document.getElementById('resultText').textContent = text;
+  const btns = document.getElementById('resultButtons');
+  btns.innerHTML = '';
+
+  if (extraBtn) {
+    const nb = document.createElement('button');
+    nb.className = 'btn-result btn-next';
+    nb.textContent = extraBtn.text;
+    nb.onclick = extraBtn.action;
+    btns.appendChild(nb);
+  } else {
+    const rb = document.createElement('button');
+    rb.className = 'btn-result btn-replay';
+    rb.textContent = '🔄 إعادة اللعب';
+    rb.onclick = replayGame;
+    btns.appendChild(rb);
+  }
+
+  const hb = document.createElement('button');
+  hb.className = 'btn-result btn-home';
+  hb.textContent = '🏠 الرئيسية';
+  hb.onclick = goHome;
+  btns.appendChild(hb);
+
+  document.getElementById('resultModal').classList.add('show');
+  if (icon === '🎉' || icon === '🏆') spawnConfetti();
+}
+
+function replayGame() {
+  document.getElementById('resultModal').classList.remove('show');
+  if (currentGame === 'ttt') initTTT();
+  else if (currentGame === 'maze') restartMaze();
+  else if (currentGame === 'memory') restartMemory();
+}
+
+function spawnConfetti() {
+  const container = document.getElementById('confettiContainer');
+  container.innerHTML = '';
+  const colors = ['#6c5ce7','#fd79a8','#00b894','#fdcb6e','#e17055','#0984e3','#a29bfe'];
+  for (let i = 0; i < 60; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + '%';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
+    piece.style.animationDelay = (Math.random() * 0.5) + 's';
+    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    piece.style.width = (Math.random() * 8 + 5) + 'px';
+    piece.style.height = (Math.random() * 8 + 5) + 'px';
+    container.appendChild(piece);
+  }
+  setTimeout(() => container.innerHTML = '', 4000);
+}
+
+// ===== TTT MODE SELECT =====
+function openTTTModeSelect() {
   document.getElementById('tttModeSelect').classList.add('show');
 }
 function closeTTTModeSelect() {
@@ -1950,6 +901,7 @@ function startTTT(mode, diff) {
 
   document.getElementById('mainMenu').style.display = 'none';
   document.getElementById('tttScreen').style.display = 'block';
+  currentGame = 'ttt';
 
   const badge = document.getElementById('tttModeBadge');
   if (mode === 'pvp') {
@@ -1963,11 +915,9 @@ function startTTT(mode, diff) {
 
   updateTTTScore();
   initTTT();
-  
-  // Award point for playing
-  awardPointForGame();
 }
 
+// ===== TIC TAC TOE =====
 function initTTT() {
   tttBoard = Array(9).fill('');
   tttGameActive = true;
@@ -2004,7 +954,11 @@ function playerMove(index) {
   if (checkWin(tttCurrentPlayer)) {
     tttGameActive = false;
     highlightWin(tttCurrentPlayer);
-    if (tttCurrentPlayer === 'X') tttScores.x++; else tttScores.o++;
+    if (tttCurrentPlayer === 'X') {
+      tttScores.x++;
+    } else {
+      tttScores.o++;
+    }
     updateTTTScore();
     const winner = tttMode === 'pvp' ? (tttCurrentPlayer === 'X' ? 'X' : 'O') : 'الكمبيوتر';
     document.getElementById('tttStatus').textContent = `🎉 ${winner} فاز!`;
@@ -2042,10 +996,13 @@ function playerMove(index) {
 function aiMove() {
   if (!tttGameActive) return;
   let move;
-  if (tttDifficulty === 'easy') move = getRandomMove();
-  else if (tttDifficulty === 'medium') move = Math.random() > 0.35 ? getBestMove() : getRandomMove();
-  else move = getBestMove();
-  
+  if (tttDifficulty === 'easy') {
+    move = getRandomMove();
+  } else if (tttDifficulty === 'medium') {
+    move = Math.random() > 0.35 ? getBestMove() : getRandomMove();
+  } else {
+    move = getBestMove();
+  }
   tttBoard[move] = 'O';
   renderTTTBoard();
 
@@ -2118,7 +1075,11 @@ function minimax(board, depth, isMax) {
 }
 
 const winLines = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-function checkWin(player) { return winLines.some(line => line.every(i => tttBoard[i] === player)); }
+
+function checkWin(player) {
+  return winLines.some(line => line.every(i => tttBoard[i] === player));
+}
+
 function highlightWin(player) {
   const line = winLines.find(l => l.every(i => tttBoard[i] === player));
   if (line) {
@@ -2127,46 +1088,41 @@ function highlightWin(player) {
   }
 }
 
-// Award point for playing any game
-function awardPointForGame() {
-  if (DB.currentUser) {
-    const user = DB.getUser(DB.currentUser);
-    user.points += CONFIG.points.perGame;
-    DB.updateUser(DB.currentUser, user);
-    updateUserDashboard();
+// ===== MAZE GAME =====
+function generateMaze(cols, rows) {
+  const grid = [];
+  for (let y = 0; y < rows; y++) {
+    grid[y] = [];
+    for (let x = 0; x < cols; x++) {
+      grid[y][x] = { x, y, walls: { top: true, right: true, bottom: true, left: true }, visited: false };
+    }
   }
+  const stack = [];
+  const start = grid[0][0];
+  start.visited = true;
+  stack.push(start);
+  while (stack.length > 0) {
+    const current = stack[stack.length - 1];
+    const neighbors = [];
+    const { x, y } = current;
+    if (y > 0 && !grid[y-1][x].visited) neighbors.push(grid[y-1][x]);
+    if (x < cols-1 && !grid[y][x+1].visited) neighbors.push(grid[y][x+1]);
+    if (y < rows-1 && !grid[y+1][x].visited) neighbors.push(grid[y+1][x]);
+    if (x > 0 && !grid[y][x-1].visited) neighbors.push(grid[y][x-1]);
+    if (neighbors.length > 0) {
+      const next = neighbors[Math.floor(Math.random() * neighbors.length)];
+      if (next.y < y) { current.walls.top = false; next.walls.bottom = false; }
+      if (next.x > x) { current.walls.right = false; next.walls.left = false; }
+      if (next.y > y) { current.walls.bottom = false; next.walls.top = false; }
+      if (next.x < x) { current.walls.left = false; next.walls.right = false; }
+      next.visited = true;
+      stack.push(next);
+    } else {
+      stack.pop();
+    }
+  }
+  return grid;
 }
-
-// ===== MAZE & MEMORY (existing - unchanged, just add point award) =====
-function openGame(game) {
-  if (!DB.currentUser) {
-    document.querySelectorAll('.game-screen').forEach(s => s.style.display = 'none');
-    document.getElementById('mainMenu').style.display = 'none';
-    document.getElementById('authScreen').style.display = 'block';
-    return;
-  }
-  
-  currentGame = game;
-  document.getElementById('mainMenu').style.display = 'none';
-  if (game === 'maze') {
-    document.getElementById('mazeScreen').style.display = 'block';
-    showMazeLevels();
-  } else if (game === 'memory') {
-    document.getElementById('memoryScreen').style.display = 'block';
-    showMemoryLevels();
-  }
-  // Award point for playing
-  awardPointForGame();
-}
-
-// ... [Maze and Memory game code remains the same as before - abbreviated for space] ...
-// For brevity, I'm keeping the existing maze/memory code unchanged
-// Just ensure awardPointForGame() is called when games start
-
-// Simplified maze/memory functions (keeping core logic)
-let mazeGrid = [], mazeCols = 7, mazeRows = 7, playerPos = {x:0,y:0};
-let mazeCurrentLevel = 1, mazeSteps = 0, mazeCompleted = new Set();
-const MAZE_LEVELS = 25;
 
 function showMazeLevels() {
   document.getElementById('mazeGameArea').style.display = 'none';
@@ -2180,7 +1136,9 @@ function showMazeLevels() {
     if (i === 1 || mazeCompleted.has(i - 1)) {
       if (!mazeCompleted.has(i)) btn.classList.add('current');
       btn.onclick = () => startMazeLevel(i);
-    } else btn.classList.add('locked');
+    } else {
+      btn.classList.add('locked');
+    }
     btn.textContent = i;
     grid.appendChild(btn);
   }
@@ -2190,100 +1148,111 @@ function startMazeLevel(level) {
   mazeCurrentLevel = level;
   document.getElementById('mazeLevelsGrid').style.display = 'none';
   document.getElementById('mazeGameArea').style.display = 'block';
-  const baseSize = 5, extra = Math.floor((level - 1) / 2);
+
+  // Increase maze size with level
+  const baseSize = 5;
+  const extra = Math.floor((level - 1) / 2);
   mazeCols = Math.min(baseSize + extra, 18);
   mazeRows = Math.min(baseSize + extra, 18);
+
   mazeGrid = generateMaze(mazeCols, mazeRows);
-  playerPos = {x:0, y:0}; mazeSteps = 0;
+  playerPos = { x: 0, y: 0 };
+  mazeSteps = 0;
   document.getElementById('mazeLevelBadge').textContent = 'المرحلة ' + level;
   document.getElementById('mazeSteps').textContent = '0';
   drawMaze();
-}
-
-function generateMaze(cols, rows) {
-  const grid = [];
-  for (let y = 0; y < rows; y++) {
-    grid[y] = [];
-    for (let x = 0; x < cols; x++) {
-      grid[y][x] = { x, y, walls: { top: true, right: true, bottom: true, left: true }, visited: false };
-    }
-  }
-  const stack = [], start = grid[0][0];
-  start.visited = true; stack.push(start);
-  while (stack.length > 0) {
-    const current = stack[stack.length - 1];
-    const neighbors = [], { x, y } = current;
-    if (y > 0 && !grid[y-1][x].visited) neighbors.push(grid[y-1][x]);
-    if (x < cols-1 && !grid[y][x+1].visited) neighbors.push(grid[y][x+1]);
-    if (y < rows-1 && !grid[y+1][x].visited) neighbors.push(grid[y+1][x]);
-    if (x > 0 && !grid[y][x-1].visited) neighbors.push(grid[y][x-1]);
-    if (neighbors.length > 0) {
-      const next = neighbors[Math.floor(Math.random() * neighbors.length)];
-      if (next.y < y) { current.walls.top = false; next.walls.bottom = false; }
-      if (next.x > x) { current.walls.right = false; next.walls.left = false; }
-      if (next.y > y) { current.walls.bottom = false; next.walls.top = false; }
-      if (next.x < x) { current.walls.left = false; next.walls.right = false; }
-      next.visited = true; stack.push(next);
-    } else stack.pop();
-  }
-  return grid;
 }
 
 function drawMaze() {
   const canvas = document.getElementById('mazeCanvas');
   const ctx = canvas.getContext('2d');
   const maxW = Math.min(600, window.innerWidth - 40);
-  canvas.width = canvas.height = maxW;
+  canvas.width = maxW;
+  canvas.height = maxW;
+  
   const cellSize = maxW / Math.max(mazeCols, mazeRows);
   const offsetX = (maxW - cellSize * mazeCols) / 2;
   const offsetY = (maxW - cellSize * mazeRows) / 2;
-  ctx.fillStyle = '#0a0a1a'; ctx.fillRect(0, 0, maxW, maxW);
-  ctx.strokeStyle = 'rgba(108,92,231,0.7)'; ctx.lineWidth = 3;
+
+  ctx.fillStyle = '#0a0a1a';
+  ctx.fillRect(0, 0, maxW, maxW);
+
+  ctx.strokeStyle = 'rgba(108,92,231,0.7)';
+  ctx.lineWidth = 3;
+  ctx.lineCap = 'round';
+
   for (let y = 0; y < mazeRows; y++) {
     for (let x = 0; x < mazeCols; x++) {
-      const cell = mazeGrid[y][x], px = offsetX + x * cellSize, py = offsetY + y * cellSize;
+      const cell = mazeGrid[y][x];
+      const px = offsetX + x * cellSize;
+      const py = offsetY + y * cellSize;
       if (cell.walls.top) { ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(px + cellSize, py); ctx.stroke(); }
       if (cell.walls.right) { ctx.beginPath(); ctx.moveTo(px + cellSize, py); ctx.lineTo(px + cellSize, py + cellSize); ctx.stroke(); }
       if (cell.walls.bottom) { ctx.beginPath(); ctx.moveTo(px, py + cellSize); ctx.lineTo(px + cellSize, py + cellSize); ctx.stroke(); }
       if (cell.walls.left) { ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(px, py + cellSize); ctx.stroke(); }
     }
   }
-  // End
-  const endX = offsetX + (mazeCols-1)*cellSize + cellSize/2;
-  const endY = offsetY + (mazeRows-1)*cellSize + cellSize/2;
-  ctx.fillStyle = '#00b894'; ctx.shadowColor = '#00b894'; ctx.shadowBlur = 15;
-  ctx.beginPath(); ctx.arc(endX, endY, cellSize*0.35, 0, Math.PI*2); ctx.fill();
-  ctx.shadowBlur = 0; ctx.fillStyle = '#fff';
-  ctx.font = `${Math.max(cellSize*0.5,12)}px Cairo`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+
+  // End point
+  const endX = offsetX + (mazeCols - 1) * cellSize + cellSize / 2;
+  const endY = offsetY + (mazeRows - 1) * cellSize + cellSize / 2;
+  ctx.fillStyle = '#00b894';
+  ctx.shadowColor = '#00b894';
+  ctx.shadowBlur = 15;
+  ctx.beginPath();
+  ctx.arc(endX, endY, cellSize * 0.35, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.shadowBlur = 0;
+  ctx.fillStyle = '#fff';
+  ctx.font = `${Math.max(cellSize * 0.5, 12)}px Cairo`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
   ctx.fillText('🏁', endX, endY);
+
   // Player
-  const px = offsetX + playerPos.x*cellSize + cellSize/2;
-  const py = offsetY + playerPos.y*cellSize + cellSize/2;
-  ctx.fillStyle = '#fd79a8'; ctx.shadowColor = '#fd79a8'; ctx.shadowBlur = 15;
-  ctx.beginPath(); ctx.arc(px, py, cellSize*0.35, 0, Math.PI*2); ctx.fill();
-  ctx.shadowBlur = 0; ctx.fillStyle = '#fff';
-  ctx.font = `${Math.max(cellSize*0.4,10)}px Cairo`;
+  const px = offsetX + playerPos.x * cellSize + cellSize / 2;
+  const py = offsetY + playerPos.y * cellSize + cellSize / 2;
+  ctx.fillStyle = '#fd79a8';
+  ctx.shadowColor = '#fd79a8';
+  ctx.shadowBlur = 15;
+  ctx.beginPath();
+  ctx.arc(px, py, cellSize * 0.35, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.shadowBlur = 0;
+  ctx.fillStyle = '#fff';
+  ctx.font = `${Math.max(cellSize * 0.4, 10)}px Cairo`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
   ctx.fillText('😊', px, py);
 }
 
 function movePlayer(dx, dy) {
   const cell = mazeGrid[playerPos.y][playerPos.x];
-  const nx = playerPos.x + dx, ny = playerPos.y + dy;
+  const nx = playerPos.x + dx;
+  const ny = playerPos.y + dy;
   if (nx < 0 || nx >= mazeCols || ny < 0 || ny >= mazeRows) return;
   if (dx === 1 && cell.walls.right) return;
   if (dx === -1 && cell.walls.left) return;
   if (dy === 1 && cell.walls.bottom) return;
   if (dy === -1 && cell.walls.top) return;
-  playerPos.x = nx; playerPos.y = ny; mazeSteps++;
+
+  playerPos.x = nx;
+  playerPos.y = ny;
+  mazeSteps++;
   document.getElementById('mazeSteps').textContent = mazeSteps;
   drawMaze();
-  if (playerPos.x === mazeCols-1 && playerPos.y === mazeRows-1) {
+
+  if (playerPos.x === mazeCols - 1 && playerPos.y === mazeRows - 1) {
     mazeCompleted.add(mazeCurrentLevel);
     setTimeout(() => {
       if (mazeCurrentLevel < MAZE_LEVELS) {
-        showResult('🎉', 'أحسنت! 🏆', `أنهيت المرحلة ${mazeCurrentLevel} في ${mazeSteps} خطوة!`,
-          { text: '➡️ المرحلة التالية', action: nextMazeLevel });
-      } else showResult('🏆', 'مبروك! أنهيت جميع المراحل!', 'أنت بطل المتاهة! 🎊');
+        showResult('🎉', 'أحسنت! 🏆',
+          `أنهيت المرحلة ${mazeCurrentLevel} في ${mazeSteps} خطوة!`,
+          { text: '➡️ المرحلة التالية', action: nextMazeLevel }
+        );
+      } else {
+        showResult('🏆', 'مبروك! أنهيت جميع المراحل!', 'أنت بطل المتاهة! 🎊');
+      }
     }, 300);
   }
 }
@@ -2292,28 +1261,61 @@ function nextMazeLevel() {
   document.getElementById('resultModal').classList.remove('show');
   startMazeLevel(mazeCurrentLevel + 1);
 }
-function restartMaze() { startMazeLevel(mazeCurrentLevel); }
 
-// Memory game (abbreviated)
-let memoryCards = [], memoryFlipped = [], memoryMatched = new Set(), memoryLocked = false;
-let memoryCurrentLevel = 1, memoryDiff = 'easy';
-let memoryCompleted = { easy: new Set(), medium: new Set(), hard: new Set() };
-const MEMORY_LEVELS = 25;
-const emojis = ['🎮','🎲','🎯','🏆','⭐','🌟','💎','🔥','🎪','🎨','🎸','🎻','🎧','🎢','🎠','🎳','🏀','🏈','🏐','🏄','🏇','🦄','🦊','🐨','🐯','🐸','🦋','🐝','🦀','🦜','🐢','🐍','🐳','🦈','🦒','🦛','🐘','🦌','🐑','🐗','🐕','🦮','🐓','🦚','🦢','🦩','🐇','🦨','🦥','🐿️','🦔'];
+function restartMaze() {
+  startMazeLevel(mazeCurrentLevel);
+}
+
+document.addEventListener('keydown', (e) => {
+  if (currentGame !== 'maze') return;
+  if (document.getElementById('mazeGameArea').style.display === 'none') return;
+  switch(e.key) {
+    case 'ArrowUp': case 'w': case 'W': movePlayer(0, -1); e.preventDefault(); break;
+    case 'ArrowDown': case 's': case 'S': movePlayer(0, 1); e.preventDefault(); break;
+    case 'ArrowLeft': case 'a': case 'A': movePlayer(-1, 0); e.preventDefault(); break;
+    case 'ArrowRight': case 'd': case 'D': movePlayer(1, 0); e.preventDefault(); break;
+  }
+});
+
+// ===== MEMORY GAME =====
+function getMemoryGridSize(level) {
+  // Each difficulty has different grid sizes
+  const diffSettings = {
+    easy: { baseCols: 3, baseRows: 2, growth: 0.3 },
+    medium: { baseCols: 4, baseRows: 3, growth: 0.4 },
+    hard: { baseCols: 5, baseRows: 4, growth: 0.5 }
+  };
+  
+  const settings = diffSettings[memoryDiff];
+  const cols = Math.floor(settings.baseCols + (level - 1) * settings.growth);
+  const rows = Math.floor(settings.baseRows + (level - 1) * settings.growth);
+  
+  // Ensure even number of cells
+  let total = cols * rows;
+  if (total % 2 !== 0) {
+    return { cols: cols + 1, rows: rows };
+  }
+  return { cols, rows };
+}
 
 function showMemoryLevels() {
   document.getElementById('memoryGameArea').style.display = 'none';
   const grid = document.getElementById('memoryLevelsGrid');
-  grid.innerHTML = ''; grid.style.display = 'grid';
+  grid.innerHTML = '';
+  grid.style.display = 'grid';
+  
   const completed = memoryCompleted[memoryDiff];
+  
   for (let i = 1; i <= MEMORY_LEVELS; i++) {
     const btn = document.createElement('button');
     btn.className = 'memory-level-btn';
     if (completed.has(i)) btn.classList.add('completed');
-    if (i === 1 || completed.has(i-1)) {
+    if (i === 1 || completed.has(i - 1)) {
       if (!completed.has(i)) btn.classList.add('current');
       btn.onclick = () => startMemoryLevel(i);
-    } else btn.classList.add('locked');
+    } else {
+      btn.classList.add('locked');
+    }
     btn.textContent = i;
     grid.appendChild(btn);
   }
@@ -2328,85 +1330,118 @@ function setMemoryDiff(diff, btn) {
 
 function startMemoryLevel(level) {
   memoryCurrentLevel = level;
-  const diffSettings = {
-    easy: { baseCols: 3, baseRows: 2, growth: 0.3 },
-    medium: { baseCols: 4, baseRows: 3, growth: 0.4 },
-    hard: { baseCols: 5, baseRows: 4, growth: 0.5 }
-  };
-  const s = diffSettings[memoryDiff];
-  let cols = Math.floor(s.baseCols + (level-1)*s.growth);
-  let rows = Math.floor(s.baseRows + (level-1)*s.growth);
-  if ((cols*rows) % 2 !== 0) cols++;
-  const pairs = (cols*rows)/2;
-  const startIdx = ((level-1)*pairs) % (emojis.length - pairs);
-  const selected = [];
-  for (let i = 0; i < pairs; i++) selected.push(emojis[(startIdx+i) % emojis.length]);
+  const { cols, rows } = getMemoryGridSize(level);
+  const totalCells = cols * rows;
+  const pairs = totalCells / 2;
+
+  // Select emojis for this level - ensure we have enough
+  const startIdx = ((level - 1) * pairs) % (emojis.length - pairs);
+  const selectedEmojis = [];
+  
+  for (let i = 0; i < pairs; i++) {
+    selectedEmojis.push(emojis[(startIdx + i) % emojis.length]);
+  }
+  
   const cardValues = [];
-  for (let i = 0; i < pairs; i++) { cardValues.push(selected[i], selected[i]); }
-  for (let i = cardValues.length-1; i > 0; i--) {
-    const j = Math.floor(Math.random()*(i+1));
+  for (let i = 0; i < pairs; i++) {
+    cardValues.push(selectedEmojis[i], selectedEmojis[i]);
+  }
+
+  // Shuffle
+  for (let i = cardValues.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
     [cardValues[i], cardValues[j]] = [cardValues[j], cardValues[i]];
   }
-  memoryCards = cardValues; memoryFlipped = []; memoryMatched = new Set(); memoryLocked = false;
+
+  memoryCards = cardValues;
+  memoryFlipped = [];
+  memoryMatched = new Set();
+  memoryLocked = false;
+
   document.getElementById('memoryLevelsGrid').style.display = 'none';
   document.getElementById('memoryGameArea').style.display = 'block';
-  document.getElementById('memoryLevelBadge').textContent = `المرحلة ${level} - ${memoryDiff==='easy'?'🟢 سهل':memoryDiff==='medium'?'🟡 متوسط':'🔴 صعب'}`;
+  document.getElementById('memoryLevelBadge').textContent = `المرحلة ${level} - ${memoryDiff === 'easy' ? '🟢 سهل' : memoryDiff === 'medium' ? '🟡 متوسط' : '🔴 صعب'}`;
   document.getElementById('memoryMatches').textContent = '0';
   document.getElementById('memoryTotal').textContent = pairs;
+
   renderMemoryBoard(cols, rows);
 }
 
 function renderMemoryBoard(cols, rows) {
   const board = document.getElementById('memoryBoard');
   board.innerHTML = '';
-  const maxW = Math.min(window.innerWidth-40, 700);
-  const cellSize = Math.min(80, Math.floor((maxW - (cols-1)*10) / cols));
+
+  const maxBoardW = Math.min(window.innerWidth - 40, 700);
+  const cellSize = Math.min(80, Math.floor((maxBoardW - (cols - 1) * 10) / cols));
+
   board.style.gridTemplateColumns = `repeat(${cols}, ${cellSize}px)`;
   board.style.gap = '10px';
+
   memoryCards.forEach((value, index) => {
     const card = document.createElement('div');
     card.className = 'memory-card';
-    card.style.width = cellSize+'px'; card.style.height = cellSize+'px';
+    card.style.width = cellSize + 'px';
+    card.style.height = cellSize + 'px';
     card.dataset.index = index;
+
     const front = document.createElement('div');
     front.className = 'card-front';
-    front.textContent = value || '❓';
-    front.style.fontSize = Math.max(cellSize*0.5, 20)+'px';
+    front.textContent = value || '❓'; // Fallback if empty
+    front.style.fontSize = Math.max(cellSize * 0.5, 20) + 'px';
+
     const back = document.createElement('div');
     back.className = 'card-back';
-    card.appendChild(front); card.appendChild(back);
+
+    card.appendChild(front);
+    card.appendChild(back);
     card.onclick = () => flipCard(index);
     board.appendChild(card);
   });
 }
 
 function flipCard(index) {
-  if (memoryLocked || memoryFlipped.includes(index) || memoryMatched.has(index)) return;
+  if (memoryLocked) return;
+  if (memoryFlipped.includes(index)) return;
+  if (memoryMatched.has(index)) return;
+
   const cards = document.querySelectorAll('.memory-card');
   cards[index].classList.add('flipped');
   memoryFlipped.push(index);
+
   if (memoryFlipped.length === 2) {
     memoryLocked = true;
     const [i1, i2] = memoryFlipped;
+
     if (memoryCards[i1] === memoryCards[i2]) {
-      memoryMatched.add(i1); memoryMatched.add(i2);
-      cards[i1].classList.add('matched'); cards[i2].classList.add('matched');
-      memoryFlipped = []; memoryLocked = false;
-      document.getElementById('memoryMatches').textContent = memoryMatched.size/2;
+      memoryMatched.add(i1);
+      memoryMatched.add(i2);
+      cards[i1].classList.add('matched');
+      cards[i2].classList.add('matched');
+      memoryFlipped = [];
+      memoryLocked = false;
+
+      const totalPairs = memoryCards.length / 2;
+      document.getElementById('memoryMatches').textContent = memoryMatched.size / 2;
+
       if (memoryMatched.size === memoryCards.length) {
         memoryCompleted[memoryDiff].add(memoryCurrentLevel);
         setTimeout(() => {
           if (memoryCurrentLevel < MEMORY_LEVELS) {
-            showResult('🎉', 'رائع! أحسنت! 🧠', `أنهيت المرحلة ${memoryCurrentLevel} بنجاح!`,
-              { text: '➡️ المرحلة التالية', action: nextMemoryLevel });
-          } else showResult('🏆', 'أسطوري!', `أنهيت جميع مراحل الصعوبة ${memoryDiff==='easy'?'السهلة':memoryDiff==='medium'?'المتوسطة':'الصعبة'}! 🎊`);
+            showResult('🎉', 'رائع! أحسنت! 🧠',
+              `أنهيت المرحلة ${memoryCurrentLevel} بنجاح!`,
+              { text: '➡️ المرحلة التالية', action: nextMemoryLevel }
+            );
+          } else {
+            showResult('🏆', 'أسطوري!', `أنهيت جميع مراحل الصعوبة ${memoryDiff === 'easy' ? 'السهلة' : memoryDiff === 'medium' ? 'المتوسطة' : 'الصعبة'}! 🎊`);
+          }
         }, 500);
       }
     } else {
       setTimeout(() => {
         cards[i1].classList.remove('flipped');
         cards[i2].classList.remove('flipped');
-        memoryFlipped = []; memoryLocked = false;
+        memoryFlipped = [];
+        memoryLocked = false;
       }, 800);
     }
   }
@@ -2416,105 +1451,9 @@ function nextMemoryLevel() {
   document.getElementById('resultModal').classList.remove('show');
   startMemoryLevel(memoryCurrentLevel + 1);
 }
-function restartMemory() { startMemoryLevel(memoryCurrentLevel); }
 
-// ===== RESULT MODAL =====
-function showResult(icon, title, text, extraBtn) {
-  document.getElementById('resultIcon').textContent = icon;
-  document.getElementById('resultTitle').textContent = title;
-  document.getElementById('resultText').textContent = text;
-  const btns = document.getElementById('resultButtons');
-  btns.innerHTML = '';
-  if (extraBtn) {
-    const nb = document.createElement('button');
-    nb.className = 'btn-result btn-next';
-    nb.textContent = extraBtn.text;
-    nb.onclick = extraBtn.action;
-    btns.appendChild(nb);
-  } else {
-    const rb = document.createElement('button');
-    rb.className = 'btn-result btn-replay';
-    rb.textContent = '🔄 إعادة اللعب';
-    rb.onclick = replayGame;
-    btns.appendChild(rb);
-  }
-  const hb = document.createElement('button');
-  hb.className = 'btn-result btn-home';
-  hb.textContent = '🏠 الرئيسية';
-  hb.onclick = goHome;
-  btns.appendChild(hb);
-  document.getElementById('resultModal').classList.add('show');
-  if (icon === '🎉' || icon === '🏆') spawnConfetti();
-}
-
-function replayGame() {
-  document.getElementById('resultModal').classList.remove('show');
-  if (currentGame === 'ttt') initTTT();
-  else if (currentGame === 'maze') restartMaze();
-  else if (currentGame === 'memory') restartMemory();
-}
-
-function spawnConfetti() {
-  const container = document.getElementById('confettiContainer');
-  container.innerHTML = '';
-  const colors = ['#6c5ce7','#fd79a8','#00b894','#fdcb6e','#e17055','#0984e3','#a29bfe'];
-  for (let i = 0; i < 60; i++) {
-    const piece = document.createElement('div');
-    piece.className = 'confetti-piece';
-    piece.style.left = Math.random()*100+'%';
-    piece.style.background = colors[Math.floor(Math.random()*colors.length)];
-    piece.style.animationDuration = (Math.random()*2+1.5)+'s';
-    piece.style.animationDelay = (Math.random()*0.5)+'s';
-    piece.style.borderRadius = Math.random()>0.5?'50%':'2px';
-    piece.style.width = (Math.random()*8+5)+'px';
-    piece.style.height = (Math.random()*8+5)+'px';
-    container.appendChild(piece);
-  }
-  setTimeout(() => container.innerHTML = '', 4000);
-}
-
-// ===== PARTICLES =====
-function createParticles() {
-  const container = document.getElementById('particles');
-  for (let i = 0; i < 30; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    p.style.left = Math.random()*100+'%';
-    p.style.animationDuration = (Math.random()*10+8)+'s';
-    p.style.animationDelay = (Math.random()*10)+'s';
-    p.style.width = p.style.height = (Math.random()*3+1)+'px';
-    container.appendChild(p);
-  }
-}
-
-// ===== LOADING =====
-function startLoading() {
-  const bar = document.getElementById('loadBar');
-  const percent = document.getElementById('loadPercent');
-  const text = document.getElementById('loadText');
-  const msgs = ['جاري تحميل الألعاب...','إعداد المتاهة...','تجهيز اختبار الذاكرة...','تحميل إكس أو...','جاهز!'];
-  let progress = 0;
-  const interval = setInterval(() => {
-    progress += Math.random()*15+5;
-    if (progress>100) progress=100;
-    bar.style.width = progress+'%';
-    percent.textContent = Math.floor(progress)+'%';
-    text.textContent = msgs[Math.min(Math.floor(progress/25), msgs.length-1)];
-    if (progress>=100) {
-      clearInterval(interval);
-      setTimeout(() => {
-        document.getElementById('loadingScreen').classList.add('hidden');
-        DB.init();
-        if (DB.currentUser) {
-          showDashboard();
-        } else {
-          document.getElementById('mainMenu').style.display = 'block';
-        }
-        createParticles();
-        checkReferral();
-      }, 500);
-    }
-  }, 200);
+function restartMemory() {
+  startMemoryLevel(memoryCurrentLevel);
 }
 
 // ===== INIT =====
